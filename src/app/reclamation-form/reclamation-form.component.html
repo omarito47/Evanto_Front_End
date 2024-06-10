@@ -1,0 +1,16 @@
+
+
+<form [formGroup]="reclamation">
+    <input formControlName="title" placeholder="title"><br>
+    <textarea formControlName="description" placeholder="description"></textarea><br>
+    <input formControlName="email" placeholder="email"><br>
+    <input type="number" formControlName="numTelReclamation" placeholder="numTelReclamation"><br>
+    <input *ngIf="idr == undefined" type="file" formControlName="pieceJointe" (change)="onFileChange($event)"><br>
+    
+
+    <select class="ss" formControlName="typeReclamation">
+        <option *ngFor="let s of listServices" [value]="s._id">{{s.libelle}}</option>
+    </select>
+
+    <input type="submit" value="Envoyer" (click)="add()">
+</form>
