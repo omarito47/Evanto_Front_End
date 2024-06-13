@@ -20,14 +20,14 @@ const routes: Routes = [
   { path: 'sign-up', component: SignUpComponent },
   { path: 'verificationCode/:id', component: VerificationCodeComponent },
   {
-    path:'forgetpwd_step1',
-    component:ForgetPwdStep1Component
+    path: 'forgetpwd_step1',
+    component: ForgetPwdStep1Component,
   },
   {
-    path:'forgetpwd_step2/:id',
-    component:ForgetPwdStep2Component
-  }
- 
+    path: 'forgetpwd_step2/:id',
+    component: ForgetPwdStep2Component,
+  },
+
   // { path: 'change-password', component: ChangePasswordComponent },
   // { path: 'choose-domaine', component: ChooseDomaineComponent },
   // { path: 'select-account', component: SelectAccountComponent },
@@ -38,13 +38,7 @@ const routes: Routes = [
 ];
 
 @NgModule({
-  imports: [
-    
-    RouterModule.forChild(routes)
-  ],
-  exports: [
-    RouterModule
-  ]
+  imports: [RouterModule.forChild(routes)],
+  exports: [RouterModule],
 })
-
-export class AuthRoutingModule { }
+export class AuthRoutingModule {}

@@ -3,25 +3,23 @@ import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 export interface User {
   _id?: string;
-    name?:string;
-    email?:string;
-    password?:string;
-    age?:number;
-    address?:string;
-    verified?:boolean;
-    verificationCode?:string;
-    phoneNumber?:string;
-    token?:string;
-    role?:string;
+  name?: string;
+  email?: string;
+  password?: string;
+  age?: number;
+  address?: string;
+  verified?: boolean;
+  verificationCode?: string;
+  phoneNumber?: string;
+  token?: string;
+  role?: string;
 }
 @Injectable({
-  providedIn: 'root'
+  providedIn: 'root',
 })
 export class UsersService {
   private apiUrl = 'http://localhost:9090/User';
-  constructor(
-    private http : HttpClient
-  ) { }
+  constructor(private http: HttpClient) {}
 
   getUsers(): Observable<User[]> {
     return this.http.get<User[]>(this.apiUrl);
@@ -34,6 +32,7 @@ export class UsersService {
   getUserByEmail(email: string): Observable<User> {
     return this.http.get<User>(`${this.apiUrl}/getuserbyEmail/${email}`);
   }
+
   createUser(user: User): Observable<User> {
     return this.http.post<User>(this.apiUrl, user);
   }

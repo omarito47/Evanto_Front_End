@@ -18,6 +18,7 @@ import { ReactiveFormsModule } from '@angular/forms';
 import { DetailsCategoryComponent } from './CategoryComponents/details-category/details-category.component';
 import { DetailsProductComponent } from './ProductComponents/details-product/details-product.component';
 import { OrderComponent } from './OrderComponents/order/order.component';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 @NgModule({
   declarations: [
@@ -40,6 +41,7 @@ import { OrderComponent } from './OrderComponents/order/order.component';
     FormsModule,
     HttpClientModule,
     ReactiveFormsModule, // Add ReactiveFormsModule here
+    BrowserAnimationsModule,
   ],
   providers: [],
   bootstrap: [AppComponent],

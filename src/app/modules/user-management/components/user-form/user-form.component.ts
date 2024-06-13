@@ -7,7 +7,7 @@ import { User, UsersService } from 'src/app/core/services/users.service';
 @Component({
   selector: 'app-user-form',
   templateUrl: './user-form.component.html',
-  styleUrls: ['./user-form.component.scss']
+  styleUrls: ['./user-form.component.scss'],
 })
 export class UserFormComponent implements OnInit {
   user: User;
@@ -27,7 +27,7 @@ export class UserFormComponent implements OnInit {
 
     if (userId) {
       this.isEditMode = true;
-      this.userService.getUserById(userId).subscribe(user => {
+      this.userService.getUserById(userId).subscribe((user) => {
         this.user = user;
       });
     }
@@ -38,12 +38,12 @@ export class UserFormComponent implements OnInit {
       this.userService.updateUser(this.user._id!, this.user).subscribe(() => {
         this.snackBar.open('User updated successfully!', 'Close', {
           duration: 3000, // Duration in milliseconds
-          panelClass:['custom-snackbar']
+          panelClass: ['custom-snackbar'],
         });
 
-        if (this.isFromUserlistPage === "true") {
+        if (this.isFromUserlistPage === 'true') {
           this.router.navigate(['/liste-user']);
-          localStorage.setItem('fromListUser', "false");
+          localStorage.setItem('fromListUser', 'false');
         } else {
           this.router.navigate(['/users/edit/' + this.user._id]);
         }

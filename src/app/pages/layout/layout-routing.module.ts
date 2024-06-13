@@ -7,60 +7,73 @@ import { AuthGuard } from 'src/app/core/services/auth.guard';
 
 const routes: Routes = [
   {
-    path: '', component: NavbarComponent,
+    path: '',
+    component: NavbarComponent,
     children: [
       {
         path: '',
         loadChildren: () =>
-          import('../../modules/user-management/user-management.module').then((m) => m.UserManagementModule),
-        canActivate: [AuthGuard]
+          import('../../modules/user-management/user-management.module').then(
+            (m) => m.UserManagementModule
+          ),
+        canActivate: [AuthGuard],
       },
       {
         path: '',
         loadChildren: () =>
-          import('../../modules/type-event-managment/type-event-managment.module').then((m) => m.TypeEventManagmentModule),
-        canActivate: [AuthGuard]
+          import(
+            '../../modules/type-event-managment/type-event-managment.module'
+          ).then((m) => m.TypeEventManagmentModule),
+        canActivate: [AuthGuard],
       },
       {
         path: '',
         loadChildren: () =>
-          import('../../modules/event-managment/event-managment.module').then((m) => m.EventManagmentModule),
-        canActivate: [AuthGuard]
+          import('../../modules/event-managment/event-managment.module').then(
+            (m) => m.EventManagmentModule
+          ),
+        canActivate: [AuthGuard],
       },
       {
         path: 'admin',
         loadChildren: () =>
-          import('../../modules/reservation/reservation.module').then((m) => m.ReservationModule),
-        canActivate: [AuthGuard]
+          import('../../modules/reservation/reservation.module').then(
+            (m) => m.ReservationModule
+          ),
+        canActivate: [AuthGuard],
       },
-
     ],
   },
   {
-    path: 'nav2', component: NavbarV2Component,
+    path: 'nav2',
+    component: NavbarV2Component,
     children: [
       {
         path: '',
         loadChildren: () =>
-          import('../../modules/reservation/reservation.module').then((m) => m.ReservationModule),
-        canActivate: [AuthGuard]
+          import('../../modules/reservation/reservation.module').then(
+            (m) => m.ReservationModule
+          ),
+        canActivate: [AuthGuard],
       },
       {
         path: '',
         loadChildren: () =>
-          import('../../modules/user-management/user-management.module').then((m) => m.UserManagementModule),
-        canActivate: [AuthGuard]
+          import('../../modules/user-management/user-management.module').then(
+            (m) => m.UserManagementModule
+          ),
+        canActivate: [AuthGuard],
       },
     ],
   },
   {
-    path: 'nav-split', component: NavSplitComponent,
-  }
-
+    path: 'nav-split',
+    component: NavSplitComponent,
+  },
 ];
 
 @NgModule({
   imports: [RouterModule.forChild(routes)],
-  exports: [RouterModule]
+  exports: [RouterModule],
 })
-export class LaoutRoutingModule { }
+export class LaoutRoutingModule {}

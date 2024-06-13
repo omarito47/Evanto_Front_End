@@ -12,16 +12,14 @@ import { Router } from '@angular/router';
 export class NavbarComponent {
   screenWidth!: number;
   userRole: string;
-  userId:string;
+  userId: string;
 
   ngOnInit() {
     // Retrieve the user's role from local storage
     this.userRole = localStorage.getItem('role');
     // Retrieve the user id from local storage
     this.userId = localStorage.getItem('userId');
-    
   }
-
   public isExpanded: boolean = false;
 
   isHandset$: Observable<boolean> = this.breakpointObserver
@@ -33,7 +31,7 @@ export class NavbarComponent {
 
   constructor(
     private breakpointObserver: BreakpointObserver,
-    private router : Router
+    private router: Router
   ) {
     this.getScreenSize();
   }
@@ -48,8 +46,8 @@ export class NavbarComponent {
     }
   }
 
-  logout(){
-    localStorage.clear()
-    this.router.navigateByUrl('/auth/login')
+  logout() {
+    localStorage.clear();
+    this.router.navigateByUrl('/auth/login');
   }
 }
