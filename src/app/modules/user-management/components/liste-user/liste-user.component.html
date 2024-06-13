@@ -1,7 +1,6 @@
 <div class="div-main">
   <div class="title-page">
     <h2>Liste des utilisateurs</h2>
-
   </div>
 
   <div>
@@ -26,16 +25,18 @@
             <td>{{ user.age }}</td>
             <td>{{ user.address }}</td>
             <td>{{ user.role }}</td>
-            <td>{{user.phoneNumber}}</td>
+            <td>{{ user.phoneNumber }}</td>
             <td>
-              <button class="btn btn-primary" (click)="editUser(user._id)">Edit</button>
-              <button class="btn btn-danger" (click)="deleteUser(user._id)">Delete</button>
+              <button class="btn btn-primary" (click)="editUser(user._id)">
+                Edit
+              </button>
+              <button class="btn btn-danger" (click)="deleteUser(user._id)">
+                Delete
+              </button>
             </td>
           </tr>
         </tbody>
       </table>
     </div>
-
-
   </div>
 </div>

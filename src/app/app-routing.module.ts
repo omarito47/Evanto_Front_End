@@ -27,6 +27,16 @@ const routes: Routes = [
       // { path: ':id', component: DetailsResidenceComponent },
     ],
   },
+  {
+    path: 'auth',
+    loadChildren: () =>
+      import('./modules/auth/auth.module').then((m) => m.AuthModule),
+  },
+  {
+    path: '',
+    loadChildren: () =>
+      import('./pages/layout/layout.module').then((m) => m.LayouttModule),
+  },
 ];
 
 @NgModule({

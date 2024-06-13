@@ -5,10 +5,10 @@ import { SignUpComponent } from './components/sign-up/sign-up.component';
 import { ForgotPasswordComponent } from './components/forgot-password/forgot-password.component';
 import { NotFoundComponent } from './components/not-found/not-found.component';
 import { AuthRoutingModule } from './auth-routing.module';
-import {MatIconModule} from '@angular/material/icon';
+import { MatIconModule } from '@angular/material/icon';
 import { ChangePasswordComponent } from './components/change-password/change-password.component';
 import { ChooseDomaineComponent } from './components/choose-domaine/choose-domaine.component';
-import {MatButtonModule} from '@angular/material/button';
+import { MatButtonModule } from '@angular/material/button';
 import { SelectAccountComponent } from './components/select-account/select-account.component';
 import { Ng2SearchPipeModule } from 'ng2-search-filter';
 import { NgxMatSelectSearchModule } from 'ngx-mat-select-search';
@@ -19,8 +19,6 @@ import { LoginGoogleComponent } from './components/login-google/login-google.com
 import { VerificationCodeComponent } from './components/verification-code/verification-code.component';
 import { ForgetPwdStep1Component } from './components/forget-pwd-step1/forget-pwd-step1.component';
 import { ForgetPwdStep2Component } from './components/forget-pwd-step2/forget-pwd-step2.component';
-
-
 
 @NgModule({
   declarations: [
@@ -35,7 +33,7 @@ import { ForgetPwdStep2Component } from './components/forget-pwd-step2/forget-pw
     LoginGoogleComponent,
     VerificationCodeComponent,
     ForgetPwdStep1Component,
-    ForgetPwdStep2Component
+    ForgetPwdStep2Component,
   ],
   imports: [
     CommonModule,
@@ -46,7 +44,7 @@ import { ForgetPwdStep2Component } from './components/forget-pwd-step2/forget-pw
     NgxMatSelectSearchModule,
     MatSelectModule,
     FormsModule,
-    ReactiveFormsModule
-  ]
+    ReactiveFormsModule,
+  ],
 })
-export class AuthModule { }
+export class AuthModule {}

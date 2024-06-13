@@ -13,25 +13,25 @@ import Swal from 'sweetalert2';
   styleUrls: ['./liste-user.component.scss'],
 })
 export class ListeUserComponent implements OnInit {
-
   users: User[] = [];
   private apiUrl = 'http://127.0.0.1:9090/user/';
   private httpOptions = {
     headers: new HttpHeaders({
-      'Authorization': 'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI2NjVmNTUwODdkNmMwMzkyYjgzZDYwY2MiLCJpYXQiOjE3MTc1MjU4ODR9.-hYgaJCFKQACQP38vhEyr_WsWfyVpOk5DRiP_esDHGM'
-    })
+      Authorization:
+        'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI2NjVmNTUwODdkNmMwMzkyYjgzZDYwY2MiLCJpYXQiOjE3MTc1MjU4ODR9.-hYgaJCFKQACQP38vhEyr_WsWfyVpOk5DRiP_esDHGM',
+    }),
   };
 
   constructor(
     private userService: UsersService,
-    private router : Router,
+    private router: Router,
     private http: HttpClient
   ) {}
 
   ngOnInit(): void {
     this.getAll();
   }
- // get all users
+  // get all users
   getAll() {
     this.http.get<User[]>(this.apiUrl, this.httpOptions).subscribe(
       (data: User[]) => {
@@ -44,10 +44,10 @@ export class ListeUserComponent implements OnInit {
     );
   }
 
-  editUser(id:any){
-    localStorage.setItem('fromListUser', "true");
-    const url = "users/edit/"+id
-    this.router.navigateByUrl(url)
+  editUser(id: any) {
+    localStorage.setItem('fromListUser', 'true');
+    const url = 'users/edit/' + id;
+    this.router.navigateByUrl(url);
   }
 
   deleteUser(item: any) {

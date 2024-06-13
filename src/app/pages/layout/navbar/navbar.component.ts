@@ -13,8 +13,8 @@ import { UsersService } from 'src/app/core/services/users.service';
 export class NavbarComponent {
   screenWidth!: number;
   userRole: string;
-  userId:string;
-  userName:string;
+  userId: string;
+  userName: string;
 
   ngOnInit() {
     // Retrieve the user's role from local storage
@@ -22,12 +22,10 @@ export class NavbarComponent {
     // Retrieve the user id from local storage
     this.userId = localStorage.getItem('userId');
     //set the user name
-    this.userService.getUserById(this.userId).subscribe(user => {
-      this.userName=user.name
-     });
-    
+    this.userService.getUserById(this.userId).subscribe((user) => {
+      this.userName = user.name;
+    });
   }
-
   public isExpanded: boolean = false;
 
   isHandset$: Observable<boolean> = this.breakpointObserver
@@ -39,8 +37,8 @@ export class NavbarComponent {
 
   constructor(
     private breakpointObserver: BreakpointObserver,
-    private router : Router,
-    private userService : UsersService  // Inject UserService for user name retrieval
+    private router: Router,
+    private userService: UsersService // Inject UserService for user name retrieval
   ) {
     this.getScreenSize();
   }
@@ -55,8 +53,8 @@ export class NavbarComponent {
     }
   }
 
-  logout(){
-    localStorage.clear()
-    this.router.navigateByUrl('/auth/login')
+  logout() {
+    localStorage.clear();
+    this.router.navigateByUrl('/auth/login');
   }
 }

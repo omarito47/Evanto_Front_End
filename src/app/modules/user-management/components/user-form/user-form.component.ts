@@ -8,15 +8,15 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
 @Component({
   selector: 'app-user-form',
   templateUrl: './user-form.component.html',
-  styleUrls: ['./user-form.component.scss']
+  styleUrls: ['./user-form.component.scss'],
 })
 export class UserFormComponent implements OnInit {
-  userBody={
+  userBody = {
     name: '',
     email: '',
     age: 0,
     address: '',
-    phoneNumber: ''
+    phoneNumber: '',
   };
   isEditMode: boolean = false;
   isFromUserlistPage: string;
@@ -31,18 +31,17 @@ export class UserFormComponent implements OnInit {
   ) {}
 
   ngOnInit(): void {
-    this. userId = this.route.snapshot.paramMap.get('id');
+    this.userId = this.route.snapshot.paramMap.get('id');
     this.isFromUserlistPage = localStorage.getItem('fromListUser');
 
     if (this.userId) {
       this.isEditMode = true;
-      this.userService.getUserById(this.userId).subscribe(user => {
+      this.userService.getUserById(this.userId).subscribe((user) => {
         this.userBody.address = user.address;
         this.userBody.age = user.age;
         this.userBody.email = user.email;
         this.userBody.name = user.name;
         this.userBody.phoneNumber = user.phoneNumber;
-
       });
     }
   }
@@ -50,14 +49,14 @@ export class UserFormComponent implements OnInit {
   updateUser(): void {
     const url = 'http://127.0.0.1:9090/user/66772b5a9b66fcaa30c2f3ea';
     const headers = new HttpHeaders({
-      'Content-Type': 'application/json'
+      'Content-Type': 'application/json',
     });
 
     this.http.put(url, this.userBody, { headers }).subscribe(
-      response => {
+      (response) => {
         console.log(response);
       },
-      error => {
+      (error) => {
         console.error(error);
       }
     );
@@ -69,7 +68,7 @@ export class UserFormComponent implements OnInit {
 
       this.snackBar.open('User updated successfully!', 'Close', {
         duration: 3000, // Duration in milliseconds
-        panelClass: ['custom-snackbar']
+        panelClass: ['custom-snackbar'],
       });
 
       if (this.isFromUserlistPage === 'true') {
