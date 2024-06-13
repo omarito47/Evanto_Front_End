@@ -1,0 +1,24 @@
+<h1>List products</h1>
+<!-- <input type="text" [(ngModel)]="searchText" />
+<button (click)="searchSurface()">Search</button> -->
+<table *ngIf="listProducts.length !== 0">
+  <tr>
+    <th>ID</th>
+    <th>image</th>
+    <th>title</th>
+    <th>slug</th>
+    <th>Price</th>
+    <th>Quntity</th>
+    <th>Category</th>
+  </tr>
+  <tr *ngFor="let pr of listProducts">
+    <td>{{ pr._id }}</td>
+    <td><img [src]="pr.images[0]" /></td>
+    <td>{{ pr.title }}</td>
+    <td>{{ pr.price }}</td>
+    <td>{{ pr.quantity }}</td>
+    <td>{{ pr.category.name }}</td>
+  </tr>
+</table>
+
+<p *ngIf="listProducts.length == 0">No product found !</p>
