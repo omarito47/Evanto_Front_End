@@ -15,14 +15,17 @@ import { MatSidenavModule } from '@angular/material/sidenav';
 import { MatToolbarModule } from '@angular/material/toolbar';
 import { MatIconModule } from '@angular/material/icon';
 
+import { ProductComponent } from './ProductComponents/product/product.component';
+import { NavbarComponent } from './navbar/navbar.component';
+import { FooterComponent } from './footer/footer.component';
+import { AddProductComponent } from './ProductComponents/add-product/add-product.component';
+import { CategoryComponent } from './CategoryComponents/category/category.component';
+import { AddCategoryComponent } from './CategoryComponents/add-category/add-category.component';
+import { ReactiveFormsModule } from '@angular/forms';
+import { DetailsCategoryComponent } from './CategoryComponents/details-category/details-category.component';
 
 @NgModule({
-  declarations: [
-    AppComponent,
-    AtelierComponent,
-    WelcomePageComponent,
-    
-  ],
+  declarations: [AppComponent, AtelierComponent, WelcomePageComponent],
   imports: [
     BrowserModule,
     AppRoutingModule,
@@ -36,9 +39,8 @@ import { MatIconModule } from '@angular/material/icon';
     MatBadgeModule,
     MatFormFieldModule,
     MatIconModule,
-
   ],
   providers: [],
-  bootstrap: [AppComponent]
+  bootstrap: [AppComponent],
 })
-export class AppModule { }
+export class AppModule {}
