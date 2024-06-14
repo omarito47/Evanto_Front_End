@@ -5,6 +5,16 @@
     Add New Product
   </button>
 
+  <div class="form-group">
+    <input
+      type="text"
+      class="form-control mb-5"
+      placeholder="Search products..."
+      (input)="searchProduct($event)"
+      [(ngModel)]="searchText"
+    />
+  </div>
+
   <table class="table table-bordered table-hover">
     <thead class="thead-dark">
       <tr>
@@ -17,7 +27,7 @@
       </tr>
     </thead>
     <tbody>
-      <tr *ngFor="let product of listProducts">
+      <tr *ngFor="let product of listProductSearched">
         <td>
           <img
             [src]="
@@ -55,7 +65,10 @@
     </tbody>
   </table>
 
-  <p *ngIf="listProducts.length === 0" class="text-center">
+  <p
+    *ngIf="listProductSearched && listProductSearched.length === 0"
+    class="text-center"
+  >
     No products found!
   </p>
 </div>
