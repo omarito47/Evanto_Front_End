@@ -27,4 +27,7 @@ export class ProductService {
   deleteProduct(id: string) {
     return this.http.delete(this.apiUrlProducts + id);
   }
+  chercherProduct(key: string) {
+    return this.http.get<Product[]>(this.apiUrlProducts + 'search/' + key);
+  }
 }
