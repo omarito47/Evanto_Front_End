@@ -1,9 +1,11 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
+import { HttpClientModule } from '@angular/common/http';
+import { FormsModule } from '@angular/forms'; // Import FormsModule for ngModel
+
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { HttpClientModule } from '@angular/common/http';
 import { AtelierComponent } from './modules/atelier/atelier.component';
 
 import { ProductComponent } from './ProductComponents/product/product.component';
@@ -33,6 +35,7 @@ import { DetailsProductComponent } from './ProductComponents/details-product/det
     BrowserModule,
     AppRoutingModule,
     BrowserAnimationsModule,
+    FormsModule,
     HttpClientModule,
     ReactiveFormsModule, // Add ReactiveFormsModule here
   ],
