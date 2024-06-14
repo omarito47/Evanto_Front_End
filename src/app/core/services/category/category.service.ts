@@ -13,7 +13,7 @@ export class CategoryService {
     return this.http.get<{ data: Category[] }>(this.apiUrlCategorys);
   }
   getCategoryById(id: string) {
-    return this.http.get<Category>(this.apiUrlCategorys + id);
+    return this.http.get<{ data: Category }>(this.apiUrlCategorys + id);
   }
   addCategory(body: Category) {
     return this.http.post(this.apiUrlCategorys, body);
