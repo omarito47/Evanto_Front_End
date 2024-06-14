@@ -20,7 +20,7 @@
             <img
               [src]="
                 category.image && category.image.length > 0
-                  ? 'http://localhost:8000/uploads/' + category.image
+                  ? category.image
                   : 'assets/category_img.png'
               "
               alt="img_cat"
