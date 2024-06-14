@@ -15,4 +15,15 @@ export class ProductComponent {
       next: (response) => (this.listProducts = response.data),
     });
   }
+  delete(id: string) {
+    this.productService.deleteProduct(id).subscribe({
+      next: () =>
+        (this.listProducts = this.listProducts.filter(
+          (Product) => Product._id !== id
+        )),
+      error: (error) => {
+        console.error('Error deleting category:', error);
+      },
+    });
+  }
 }

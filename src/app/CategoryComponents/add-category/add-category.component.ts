@@ -21,13 +21,13 @@ export class AddCategoryComponent {
     this.id = this.ar.snapshot.params['id'];
     if (this.id != undefined) {
       this.catService.getCategoryById(this.id).subscribe({
-        next: (data) => {
+        next: (response) => {
           this.category.patchValue({
-            name: data.name,
-            description: data.description,
-            image: data.image,
+            name: response.data.name,
+            description: response.data.description,
+            image: response.data.image,
           });
-          this.cat = data;
+          this.cat = response.data;
         },
       });
     }

@@ -14,6 +14,15 @@ export class DetailsCategoryComponent {
 
   constructor(private ar: ActivatedRoute, private cat: CategoryService) {
     console.log(this.ar.snapshot.params['id']);
-    // this.category = this.cat.getCategoryById(this.ar.snapshot.params['id']);
+    this.cat.getCategoryById(this.ar.snapshot.params['id']).subscribe({
+      next: (response) => {
+        console.log('Fetched categories:', response); // Debug log
+        this.category = response.data;
+        console.log('listCategorys:', this.category); // Debug log
+      },
+      error: (error) => {
+        console.error('Error fetching categories:', error); // Debug log
+      },
+    });
   }
 }

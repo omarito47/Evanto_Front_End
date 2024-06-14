@@ -1,7 +1,7 @@
 <!-- src/app/category/category.component.html -->
 <div class="container mt-5">
   <h2 class="mb-4">Category List</h2>
-  <button class="btn btn-success mb-3" [routerLink]="['/category/addCategory']">
+  <button class="btn btn-success mb-3" [routerLink]="['/category/add']">
     Add New Category
   </button>
   <table class="table table-bordered table-hover">
@@ -21,7 +21,7 @@
           <img
             [src]="
               category.image && category.image.length > 0
-                ? 'http://localhost:8000/uploads/' + category.image
+                ? category.image
                 : 'assets/category_img.png'
             "
             alt="img_cat"
@@ -39,7 +39,7 @@
           </button>
           <button
             class="btn btn-info btn-sm mr-2"
-            [routerLink]="['/category/addCategory', category._id]"
+            [routerLink]="['/category/update', category._id]"
           >
             Update
           </button>
