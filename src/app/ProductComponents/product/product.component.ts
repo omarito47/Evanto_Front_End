@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { Product } from '../../core/models/product';
 import { ProductService } from '../../core/services/products/product.service';
+import { Product } from '../../core/models/product';
 
 @Component({
   selector: 'app-product',
@@ -11,26 +11,49 @@ export class ProductComponent implements OnInit {
   listProducts: Product[] = [];
   listProductSearched: Product[] = [];
   searchText: string = '';
-  etatRchercher: string = '';
-  serviceidSearch: string = 'all';
+  currentPage = 1;
+  pageSize = 10;
+  totalPages = 0;
 
   constructor(private productService: ProductService) {}
 
   ngOnInit(): void {
-    this.getAllProducts();
+    this.loadProducts();
   }
 
-  getAllProducts(): void {
-    this.productService.getAllProducts().subscribe({
-      next: (response) => {
-        this.listProducts = response.data;
-        this.listProductSearched = [...this.listProducts];
-        console.log('All products loaded:', this.listProducts);
-      },
-      error: (error) => {
-        console.error('Error fetching products:', error);
-      },
-    });
+  loadProducts(): void {
+    this.productService
+      .getAllProducts(this.currentPage, this.pageSize)
+      .subscribe({
+        next: (response) => {
+          this.listProducts = response.data;
+
+          // Check if paginationResult exists and contains totalItems
+          if (
+            response.paginationResult &&
+            response.paginationResult.totalItems !== undefined
+          ) {
+            this.totalPages = Math.ceil(
+              response.paginationResult.totalItems / this.pageSize
+            );
+            console.log('Total pages:', this.totalPages);
+          } else {
+            console.error('Invalid pagination data in response:', response);
+            // Handle or log the issue with pagination data
+          }
+
+          this.listProductSearched = [...this.listProducts]; // Initialize listProductSearched with all products
+        },
+        error: (error) => {
+          console.error('Error fetching products:', error);
+          // Handle error loading products
+        },
+      });
+  }
+
+  onPageChange(page: number): void {
+    this.currentPage = page;
+    this.loadProducts();
   }
 
   delete(id: string): void {
@@ -45,6 +68,7 @@ export class ProductComponent implements OnInit {
       },
       error: (error) => {
         console.error('Error deleting product:', error);
+        // Handle error deleting product
       },
     });
   }
@@ -73,5 +97,9 @@ export class ProductComponent implements OnInit {
         this.listProductSearched
       ); // Debugging log
     }
+  }
+
+  totalPagesArray(): number[] {
+    return Array.from({ length: this.totalPages }, (_, index) => index + 1);
   }
 }

@@ -11,8 +11,12 @@ export class ProductService {
 
   constructor(private http: HttpClient) {}
 
-  getAllProducts() {
-    return this.http.get<{ data: Product[] }>(this.apiUrlProducts);
+  getAllProducts(page: number, limit: number) {
+    const params = { page: page.toString(), limit: limit.toString() };
+    return this.http.get<{ data: Product[]; paginationResult: any }>(
+      this.apiUrlProducts,
+      { params }
+    );
   }
   getProductById(id: string) {
     return this.http.get<{ data: Product }>(this.apiUrlProducts + id);
