@@ -1,0 +1,41 @@
+
+<h1> Liste des Salles : </h1>
+
+<!--<input type="text" [(ngModel)]="searchText" placeholder="Search services..." (keyup)="searchService($event)" >-->
+<table border="1">
+    <tr>
+      <th>Id</th>
+      <th>NomSalle</th>
+      <th>Description</th>
+      <th>Lieu</th>
+      <th>Prix</th>
+      <th>Image</th>
+      <th>TypeSalle</th>
+    <!--   <th>Reservations</th>
+      <th>Ratings</th> -->
+    </tr>
+    <tr *ngFor="let s of listSalles">
+      <td>{{ s._id }}</td>
+      <td>{{ s.nomSalle }}</td>
+      <td>{{ s.description }}</td>
+      <td>{{ s.lieu }}</td>
+      <td>{{ s.prix }}</td>
+      <td><img [src]="s.image" width="50" height="50"></td>
+      <td>{{ getTypeSalleLibelleById(s.typeSalle) }}</td> 
+     <!--  <td>
+       <ul>
+          <li *ngFor="let reservation of s.reservations">{{ reservation }}</li>
+        </ul>
+      </td>
+      <td>
+        <ul>
+          <li *ngFor="let rating of s.ratings">{{ rating }}</li>
+        </ul>
+      </td>-->
+      <td>
+        <button type="button" [routerLink]="['/salle/details/', s._id]">Voir détails</button>
+        <button type="button" (click)="delete(s._id)">Supprimer</button>
+      </td>
+    </tr>
+  </table>
+ 

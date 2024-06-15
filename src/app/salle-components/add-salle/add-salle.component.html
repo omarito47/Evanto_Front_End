@@ -1,0 +1,35 @@
+<div class="container mt-5">
+  <h2 class="mb-4">{{ id ? 'Modifier la salle' : 'Ajouter une nouvelle salle' }}</h2>
+  <form [formGroup]="salle" (ngSubmit)="add()">
+    <div class="mb-3">
+      <label for="nomSalle" class="form-label">Nom de la salle:</label>
+      <input type="text" class="form-control form-control-lg" id="nomSalle" formControlName="nomSalle">
+    </div>
+    <div class="mb-3">
+      <label for="description" class="form-label">Description:</label>
+      <textarea class="form-control form-control-lg" id="description" formControlName="description"></textarea>
+    </div>
+    <div class="mb-3">
+      <label for="lieu" class="form-label">Lieu:</label>
+      <input type="text" class="form-control form-control-lg" id="lieu" formControlName="lieu">
+    </div>
+    <div class="mb-3">
+      <label for="prix" class="form-label">Prix:</label>
+      <input type="number" class="form-control form-control-lg" id="prix" formControlName="prix">
+    </div>
+    <div class="mb-3">
+      <label for="image" class="form-label">Image:</label>
+      <input type="file" class="form-control-file form-control-lg" id="image" (change)="onFileChange($event)">
+    </div>
+    <div class="mb-3">
+      <label for="typeSalle" class="form-label">Type de salle:</label>
+      <select class="form-select form-control-lg" id="typeSalle" formControlName="typeSalle">
+        <option *ngFor="let typeSalle of ListTypeSalles" [value]="typeSalle._id">{{ typeSalle.libelle }}</option>
+      </select>
+    </div>
+    <div class="my-3">
+      <button type="submit" class="btn btn-primary">{{ id ? 'Modifier' : 'Ajouter' }}</button>
+      <a *ngIf="id" class="btn btn-secondary" [routerLink]="['/category']">Annuler</a>
+    </div>
+  </form>
+</div>

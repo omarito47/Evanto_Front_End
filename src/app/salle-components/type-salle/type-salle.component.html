@@ -1,0 +1,31 @@
+<h1>Liste Types Salle :</h1>
+
+<form [formGroup]="typeSalle">
+  <input formControlName="libelle" placeholder="entrer type salle">
+  <button type="button" (click)="addTypeSalle()">Add</button>
+</form>
+
+<table border="1">
+  <tr *ngIf="ListTypeSalles.length !== 0">
+    <th>id</th>
+    <th>libelle</th>
+  </tr>
+  <tr *ngFor="let s of ListTypeSalles">
+    <td>{{s._id}}</td>
+    <td>
+      <ng-container *ngIf="!s.isEditing; else editInput">
+        {{s.libelle}}
+        <button (click)="s.isEditing = true">Edit</button>
+      </ng-container>
+      <ng-template #editInput>
+        <input type="text" [(ngModel)]="s.libelle">
+        <td>
+        <button (click)="updateTypeSalle(s)">Update</button>
+        <button (click)="s.isEditing = false">Cancel</button>
+      </ng-template>
+    </td>
+    <td>
+      <button (click)="deleteTypeSalle(s._id)">Delete</button>
+    </td>
+  </tr>
+</table>
