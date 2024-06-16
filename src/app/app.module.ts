@@ -8,6 +8,7 @@ import { SignInComponent } from './sign-in/sign-in.component';
 import { VerificationCodeComponent } from './verification-code/verification-code.component';
 import { HttpClientModule } from '@angular/common/http';
 import { ReactiveFormsModule } from '@angular/forms';
+import { HomePageComponent } from './home-page/home-page.component';
 
 
 @NgModule({
@@ -15,7 +16,8 @@ import { ReactiveFormsModule } from '@angular/forms';
     AppComponent,
     SignUpComponent,
     SignInComponent,
-    VerificationCodeComponent
+    VerificationCodeComponent,
+    HomePageComponent
   ],
   imports: [
     BrowserModule,

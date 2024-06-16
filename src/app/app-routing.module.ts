@@ -3,6 +3,7 @@ import { RouterModule, Routes } from '@angular/router';
 import { SignUpComponent } from './sign-up/sign-up.component';
 import { SignInComponent } from './sign-in/sign-in.component';
 import { VerificationCodeComponent } from './verification-code/verification-code.component';
+import { HomePageComponent } from './home-page/home-page.component';
 
 const routes: Routes = [
   {
@@ -16,6 +17,10 @@ const routes: Routes = [
   {
     path:'verificationCode/:id',
     component:VerificationCodeComponent
+  },
+  {
+    path:'homePage',
+    component:HomePageComponent
   }
 ];
 
