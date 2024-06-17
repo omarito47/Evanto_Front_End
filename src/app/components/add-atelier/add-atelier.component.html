@@ -1,0 +1,109 @@
+<main id="main" class="main">
+  <div class="pagetitle">
+    <h1>Ajouter Atelier</h1>
+  </div>
+
+  <section class="section">
+    <div class="row">
+      <div class="col-md-12">
+        <div class="card">
+          <div class="card-body">
+            <h5 class="card-title">Détail de l'Atelier</h5>
+
+            <!-- General Form Elements -->
+            <form [formGroup]="form" (ngSubmit)="addAtelier()">
+              <div class="mb-3 row">
+                <label for="nom" class="col-sm-2 col-form-label">Nom Atelier</label>
+                <div class="col-sm-10">
+                  <input id="nom" type="text" class="form-control" formControlName="nom" required>
+                </div>
+              </div>
+
+              <div class="mb-3 row">
+                <label for="description" class="col-sm-2 col-form-label">Description</label>
+                <div class="col-sm-10">
+                  <input id="description" type="text" class="form-control" formControlName="description" required>
+                </div>
+              </div>
+
+              <div class="mb-3 row">
+                <label for="lieu" class="col-sm-2 col-form-label">Lieu</label>
+                <div class="col-sm-10">
+                  <input id="lieu" type="text" class="form-control" formControlName="lieu" required>
+                </div>
+              </div>
+
+              <div class="mb-3 row">
+                <label for="date_debut" class="col-sm-2 col-form-label">Date début</label>
+                <div class="col-sm-10">
+                  <input id="date_debut" type="date" class="form-control" formControlName="date_debut" required>
+                </div>
+              </div>
+
+              <div class="mb-3 row">
+                <label for="date_fin" class="col-sm-2 col-form-label">Date fin</label>
+                <div class="col-sm-10">
+                  <input id="date_fin" type="date" class="form-control" formControlName="date_fin" required>
+                </div>
+              </div>
+
+              <div class="mb-3 row">
+                <label for="Nbr_place" class="col-sm-2 col-form-label">Nombre de places</label>
+                <div class="col-sm-10">
+                  <input id="Nbr_place" type="number" class="form-control" formControlName="Nbr_place" required>
+                </div>
+              </div>
+
+              <div class="mb-3 row">
+                <label for="frequence_de_repetition" class="col-sm-2 col-form-label">Fréquence de répétition</label>
+                <div class="col-sm-10">
+                  <select id="frequence_de_repetition" class="form-select" formControlName="frequence_de_repetition" required>
+                    <option value="Une seule fois">Une seule fois</option>
+                    <option value="Quotidien">Quotidien</option>
+                    <option value="Hebdomadaire">Hebdomadaire</option>
+                    <option value="Bihebdomadaire">Bihebdomadaire</option>
+                  </select>
+                </div>
+              </div>
+
+              <div class="mb-3 row">
+                <label for="typeAtelier" class="col-sm-2 col-form-label">Type Atelier</label>
+                <div class="col-sm-10">
+                  <select id="typeAtelier" class="form-select" formControlName="typeAtelier" required>
+                    <option *ngFor="let categorie of categories" [value]="categorie._id">{{ categorie.nom_categorie }}</option>
+                  </select>
+                </div>
+              </div>
+
+              <div class="mb-3 row">
+                <label for="prix" class="col-sm-2 col-form-label">Prix</label>
+                <div class="col-sm-10">
+                  <input id="prix" type="number" class="form-control" formControlName="prix" required>
+                </div>
+              </div>
+
+              <div class="mb-3 row">
+                <label for="frais_de_participation" class="col-sm-2 col-form-label">Frais de participation</label>
+                <div class="col-sm-10">
+                  <select id="frais_de_participation" class="form-select" formControlName="frais_de_participation" required>
+                    <option value="payant">Payant</option>
+                    <option value="gratuit">Gratuit</option>
+                  </select>
+                </div>
+              </div>
+
+              <div class="mb-3 row">
+                <div class="col-12">
+                  <button type="submit" class="btn btn-primary w-100">
+                    <i class="fas fa-plus"></i> Ajouter Atelier
+                  </button>
+                </div>
+              </div>
+            </form><!-- End General Form Elements -->
+
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+</main>

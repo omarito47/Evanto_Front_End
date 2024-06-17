@@ -1,0 +1,131 @@
+/* Style global du composant */
+.main-container {
+    padding: 20px;
+    font-family: Arial, sans-serif;
+}
+
+/* Style pour le titre de la page */
+.pagetitle h1 {
+    text-align: center;
+    margin-bottom: 20px;
+    color: #333;
+}
+
+/* Style pour le bouton d'exportation en PDF */
+.export-btn {
+    display: block;
+    margin: 0 auto 20px auto;
+    padding: 10px 20px;
+    font-size: 16px;
+    color: #fff;
+    background-color: #007bff;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    text-align: center;
+}
+
+.export-btn:hover {
+    background-color: #0056b3;
+}
+
+.export-btn i {
+    margin-right: 5px;
+}
+
+/* Style pour le tableau */
+table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-bottom: 20px;
+}
+
+thead {
+    background-color: #f2f2f2;
+}
+
+th, td {
+    padding: 10px;
+    text-align: left;
+    border: 1px solid #ddd;
+}
+
+th {
+    background-color: #f8f9fa;
+    font-weight: bold;
+    color: #333;
+}
+
+tbody tr:nth-child(even) {
+    background-color: #f9f9f9;
+}
+
+/* Style pour les boutons d'actions */
+.action-btn {
+    padding: 5px 10px;
+    font-size: 14px;
+    color: #fff;
+    background-color: #007bff;
+    border: none;
+    border-radius: 3px;
+    cursor: pointer;
+    margin-right: 5px;
+}
+
+.action-btn:hover {
+    background-color: #0056b3;
+}
+
+.action-btn i {
+    pointer-events: none; /* Prevent clicking the icon separately from the button */
+}
+
+.action-btn.delete {
+    background-color: #dc3545;
+}
+
+.action-btn.delete:hover {
+    background-color: #c82333;
+}
+
+/* Style pour les champs d'édition */
+input[type="text"], input[type="date"], input[type="number"], select {
+    width: 100%;
+    padding: 8px;
+    margin: 5px 0;
+    box-sizing: border-box;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+}
+
+/* Style pour les boutons de validation et d'annulation */
+.validation-btn, .cancel-btn {
+    padding: 5px 10px;
+    font-size: 14px;
+    color: #fff;
+    border: none;
+    border-radius: 3px;
+    cursor: pointer;
+    margin-right: 5px;
+}
+
+.validation-btn {
+    background-color: #28a745;
+}
+
+.validation-btn:hover {
+    background-color: #218838;
+}
+
+.cancel-btn {
+    background-color: #6c757d;
+}
+
+.cancel-btn:hover {
+    background-color: #5a6268;
+}
+
+/* Alignement du texte pour les boutons */
+button, .validation-btn, .cancel-btn {
+    text-align: center;
+}

@@ -1,0 +1,37 @@
+<h1>Liste des Catégories :</h1>
+<table border="1">
+  <thead>
+    <tr>
+      <th>Nom Catégorie</th>
+      <th>Actions</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr *ngFor="let categorie of listServices">
+      <ng-container *ngIf="editingCategoryId !== categorie._id; else editCategory">
+        <td>{{ categorie.nom_categorie }}</td>
+        <td>
+          <button (click)="delete(categorie._id)" class="action-btn delete">
+            <i class="fas fa-trash"></i> <!-- Icône de suppression -->
+          </button>
+          <button (click)="startEditing(categorie._id)" class="action-btn">
+            <i class="fas fa-edit"></i> <!-- Icône d'édition -->
+          </button>
+        </td>
+      </ng-container>
+      <ng-template #editCategory>
+        <td>
+          <input type="text" [(ngModel)]="categorie.nom_categorie" name="nom_categorie">
+        </td>
+        <td>
+          <button (click)="update(categorie)" class="action-btn validation-btn">
+            <i class="fas fa-check"></i> <!-- Icône de validation -->
+          </button>
+          <button (click)="cancelEditing()" class="action-btn cancel-btn">
+            <i class="fas fa-times"></i> <!-- Icône d'annulation -->
+          </button>
+        </td>
+      </ng-template>
+    </tr>
+  </tbody>
+</table>

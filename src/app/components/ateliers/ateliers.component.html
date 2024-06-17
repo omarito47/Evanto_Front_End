@@ -1,0 +1,81 @@
+<main id="main" class="main">
+  <div class="main-container">
+    <div class="pagetitle">
+      <h1>Liste des Ateliers :</h1>
+      <button (click)="exportToPDF()" class="export-btn">
+        <i class="fas fa-file-pdf"></i> Exporter en PDF
+      </button>
+      <button (click)="trierParDateDebut()" class="sort-btn">
+        <i class="fas fa-sort"></i> Trier par Date de Début
+      </button>
+    </div>
+
+    <table border="1">
+      <thead>
+        <tr>
+          <th>Nom</th>
+          <th>Description</th>
+          <th>Lieu</th>
+          <th>Date Début</th>
+          <th>Date Fin</th>
+          <th>Nombre de Places</th>
+          <th>Fréquence de Répétition</th>
+          <th>Type d'Atelier</th>
+          <th>Prix</th>
+          <th>frais_de_participation</th>
+          <th>Actions</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let atelier of listAteliers; let i = index">
+          <td>{{ atelier.nom }}</td>
+          <td>{{ atelier.description }}</td>
+          <td>{{ atelier.lieu }}</td>
+          <td>{{ atelier.date_debut | date }}</td>
+          <td>{{ atelier.date_fin | date }}</td>
+          <td>{{ atelier.Nbr_place }}</td>
+          <td>{{ atelier.frequence_de_repetition }}</td>
+          <td>{{ getNomCategorie(atelier) }}</td>
+          <td>{{ atelier.prix }}</td>
+          <td>{{ atelier.frais_de_participation}}</td>
+          <td>
+            <button (click)="startEditing(atelier)" class="action-btn">
+              <i class="fas fa-edit"></i>
+            </button>
+            <button (click)="deleteAtelier(atelier._id)" class="action-btn delete">
+              <i class="fas fa-trash"></i>
+            </button>
+          </td>
+        </tr>
+        <!-- Ligne pour l'édition -->
+        <tr *ngIf="editingAtelier">
+          <td><input type="text" [(ngModel)]="editingAtelier.nom" name="nom"></td>
+          <td><input type="text" [(ngModel)]="editingAtelier.description" name="description"></td>
+          <td><input type="text" [(ngModel)]="editingAtelier.lieu" name="lieu"></td>
+          <td><input type="date" [(ngModel)]="editingAtelier.date_debut" name="date_debut"></td>
+          <td><input type="date" [(ngModel)]="editingAtelier.date_fin" name="date_fin"></td>
+          <td><input type="number" [(ngModel)]="editingAtelier.Nbr_place" name="Nbr_place"></td>
+          <td>
+            <select [(ngModel)]="editingAtelier.frequence_de_repetition" name="frequence_de_repetition">
+              <option value="Une seule fois">Une seule fois</option>
+              <option value="Quotidien">Quotidien</option>
+              <option value="Hebdomadaire">Hebdomadaire</option>
+              <option value="Bihebdomadaire">Bihebdomadaire</option>
+            </select>
+          </td>
+          <td><input type="text" [value]="getNomCategorie(editingAtelier)" readonly></td>
+          <td><input type="number" [(ngModel)]="editingAtelier.prix" name="prix"></td>
+          <td><input type="text" [(ngModel)]="editingAtelier.frais_de_participation" name="frais_de_participation"></td>
+          <td>
+            <button (click)="updateAtelier()" class="action-btn">
+              <i class="fas fa-check"></i> <!-- Icône Valider -->
+            </button>
+            <button (click)="cancelEditing()" class="action-btn delete">
+              <i class="fas fa-times"></i> <!-- Icône Annuler -->
+            </button>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</main>
