@@ -1,7 +1,6 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { AuthRoutingModule } from './modules/auth/auth-routing.module';
-
 const routes: Routes = [
   {
     path: 'auth',
