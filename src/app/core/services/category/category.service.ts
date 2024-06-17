@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Category } from '../../models/category';
+import { Observable } from 'rxjs';
 
 @Injectable({
   providedIn: 'root',
@@ -15,10 +16,10 @@ export class CategoryService {
   getCategoryById(id: string) {
     return this.http.get<{ data: Category }>(this.apiUrlCategorys + id);
   }
-  addCategory(body: Category) {
+  addCategory(body: FormData) {
     return this.http.post(this.apiUrlCategorys, body);
   }
-  updateCategory(id: string, body: Category) {
+  updateCategory(id: string, body: FormData) {
     return this.http.put(this.apiUrlCategorys + id, body);
   }
 

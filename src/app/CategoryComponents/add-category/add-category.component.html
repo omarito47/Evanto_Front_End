@@ -20,13 +20,29 @@
     </div>
     <div class="form-group">
       <label for="image">Image:</label>
-      <input
-        type="file"
-        class="form-control-file"
-        id="image"
-        formControlName="image"
-        (change)="onFileSelected($event)"
-      />
+
+      <div class="file-upload">
+        <input
+          type="file"
+          #fileInput
+          (change)="onFileSelected($event)"
+          style="display: none"
+        />
+        <img
+          *ngIf="currentImageUrl"
+          [src]="currentImageUrl"
+          alt="Upload"
+          class="upload-image"
+          (click)="fileInput.click()"
+        />
+        <img
+          *ngIf="!currentImageUrl"
+          src="assets/category_img.png"
+          alt="Upload"
+          class="upload-image"
+          (click)="fileInput.click()"
+        />
+      </div>
     </div>
 
     <button type="submit" class="btn btn-primary">

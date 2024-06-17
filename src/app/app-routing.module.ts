@@ -5,6 +5,7 @@ import { CategoryComponent } from './CategoryComponents/category/category.compon
 import { AddCategoryComponent } from './CategoryComponents/add-category/add-category.component';
 import { DetailsCategoryComponent } from './CategoryComponents/details-category/details-category.component';
 import { AddProductComponent } from './ProductComponents/add-product/add-product.component';
+import { DetailsProductComponent } from './ProductComponents/details-product/details-product.component';
 
 const routes: Routes = [
   {
@@ -24,7 +25,7 @@ const routes: Routes = [
       { path: '', component: ProductComponent },
       { path: 'add', component: AddProductComponent },
       { path: 'update/:id', component: AddProductComponent },
-      { path: 'details/:id', component: DetailsCategoryComponent },
+      { path: 'details/:id', component: DetailsProductComponent },
 
       // { path: ':id', component: DetailsResidenceComponent },
     ],

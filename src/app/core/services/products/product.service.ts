@@ -19,12 +19,13 @@ export class ProductService {
     );
   }
   getProductById(id: string) {
+    console.log('idproooooo', this.apiUrlProducts + id);
     return this.http.get<{ data: Product }>(this.apiUrlProducts + id);
   }
-  addProduct(body: Product) {
+  addProduct(body: FormData) {
     return this.http.post(this.apiUrlProducts, body);
   }
-  updateProduct(id: string, body: Product) {
+  updateProduct(id: string, body: FormData) {
     return this.http.put(this.apiUrlProducts + id, body);
   }
 
