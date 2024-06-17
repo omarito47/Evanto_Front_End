@@ -57,12 +57,28 @@
 
     <div class="form-group">
       <label for="images">Images:</label>
-      <input
-        type="file"
-        id="image"
-        class="form-control-file"
-        (change)="onFileSelected($event)"
-      />
+      <div class="file-upload">
+        <input
+          type="file"
+          #fileInput
+          (change)="onFileSelected($event)"
+          style="display: none"
+        />
+        <img
+          *ngIf="currentImageUrl"
+          [src]="currentImageUrl"
+          alt="Upload"
+          class="upload-image"
+          (click)="fileInput.click()"
+        />
+        <img
+          *ngIf="!currentImageUrl"
+          src="assets/category_img.png"
+          alt="Upload"
+          class="upload-image"
+          (click)="fileInput.click()"
+        />
+      </div>
     </div>
 
     <button type="submit" class="btn btn-primary">
