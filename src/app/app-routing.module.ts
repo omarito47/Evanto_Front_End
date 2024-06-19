@@ -5,6 +5,7 @@ import { SignInComponent } from './sign-in/sign-in.component';
 import { VerificationCodeComponent } from './verification-code/verification-code.component';
 import { HomePageComponent } from './home-page/home-page.component';
 import { ForgetPwdStep1Component } from './forget-pwd-step1/forget-pwd-step1.component';
+import { ProfileComponent } from './profile/profile.component';
 
 const routes: Routes = [
   {
@@ -26,6 +27,10 @@ const routes: Routes = [
   {
     path:'forgetpwd_step1',
     component:ForgetPwdStep1Component
+  },
+  {
+    path:'profile',
+    component:ProfileComponent
   }
 ];
 

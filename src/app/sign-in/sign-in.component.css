@@ -29,11 +29,11 @@ body {
   }
   
   .form-right {
-    background-color: #800000;
+    background-color: rgb(70, 127, 255);
     color: #fff;
     padding: 30px;
     display: flex;
-    height: 250px;
+    height: 300px;
     justify-content: center;
     align-items: center;
     text-align: center;
@@ -55,7 +55,7 @@ body {
   }
   
   button {
-    background-color: #800000;
+    background-color: rgb(70, 127, 255);
     color: #fff;
     padding: 12px 20px;
     border: none;
@@ -65,7 +65,7 @@ body {
   }
   
   button:hover {
-    background-color: #b30303;
+    background-color: rgb(42, 83, 179);
   }
   
   .small-text {
@@ -77,6 +77,19 @@ body {
   }
   
   .small-text a {
-    color: #800000;
+    color: rgb(70, 127, 255);
     text-decoration: none;
+  }
+  .error-message {
+    color: red;
+    font-size: 10px;
+    padding-left: 15px;
+  }
+  
+  .fix-container {
+    height: 20px;
+    display: grid;
+  }
+  .left-text{
+    text-align: right;
   }

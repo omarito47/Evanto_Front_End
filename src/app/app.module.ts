@@ -11,7 +11,10 @@ import { ReactiveFormsModule } from '@angular/forms';
 import { HomePageComponent } from './home-page/home-page.component';
 import { ForgetPasswordComponent } from './forget-password/forget-password.component';
 import { ForgetPwdStep1Component } from './forget-pwd-step1/forget-pwd-step1.component';
-
+import { ProfileComponent } from './profile/profile.component';
+import {MatToolbarModule} from '@angular/material/toolbar';
+import {MatIconModule} from '@angular/material/icon';
+import {MatSidenavModule} from '@angular/material/sidenav';
 
 @NgModule({
   declarations: [
@@ -21,13 +24,18 @@ import { ForgetPwdStep1Component } from './forget-pwd-step1/forget-pwd-step1.com
     VerificationCodeComponent,
     HomePageComponent,
     ForgetPasswordComponent,
-    ForgetPwdStep1Component
+    ForgetPwdStep1Component,
+    ProfileComponent
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     HttpClientModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    MatToolbarModule,
+    MatIconModule,
+    MatSidenavModule
+    
   ],
   providers: [],
   bootstrap: [AppComponent]
