@@ -24,6 +24,9 @@ export class SignInComponent {
       password: ['', [Validators.required, Validators.minLength(6)]]
     });
   }
+  navigateToForgotPassword(){
+    this.router.navigate(['/forgot-password']);
+  }
 
   submitForm() {
     this.formSubmitted = true;
@@ -36,10 +39,13 @@ export class SignInComponent {
       
       this.http.post('http://127.0.0.1:9090/user/signin', formData, { headers: { 'Content-Type': 'application/json' } })
         .subscribe(
-          (response) => {
+          (response: any) => {
             console.log(response);
-            // Handle the response here
-            // For example, redirect to a new page
+            // Store user ID and token in local storage
+            localStorage.setItem('userId', response.userId);
+            localStorage.setItem('token', response.token);
+
+            // Redirect to the home page
             this.router.navigate(['/homePage']);
           },
           (error) => {

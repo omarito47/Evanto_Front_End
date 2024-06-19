@@ -9,6 +9,8 @@ import { VerificationCodeComponent } from './verification-code/verification-code
 import { HttpClientModule } from '@angular/common/http';
 import { ReactiveFormsModule } from '@angular/forms';
 import { HomePageComponent } from './home-page/home-page.component';
+import { ForgetPasswordComponent } from './forget-password/forget-password.component';
+import { ForgetPwdStep1Component } from './forget-pwd-step1/forget-pwd-step1.component';
 
 
 @NgModule({
@@ -17,7 +19,9 @@ import { HomePageComponent } from './home-page/home-page.component';
     SignUpComponent,
     SignInComponent,
     VerificationCodeComponent,
-    HomePageComponent
+    HomePageComponent,
+    ForgetPasswordComponent,
+    ForgetPwdStep1Component
   ],
   imports: [
     BrowserModule,
