@@ -14,6 +14,7 @@ import { AddCategoryComponent } from './CategoryComponents/add-category/add-cate
 import { ReactiveFormsModule } from '@angular/forms';
 import { DetailsCategoryComponent } from './CategoryComponents/details-category/details-category.component';
 import { DetailsProductComponent } from './ProductComponents/details-product/details-product.component';
+import { OrderComponent } from './OrderComponents/order/order.component';
 
 @NgModule({
   declarations: [
@@ -26,6 +27,7 @@ import { DetailsProductComponent } from './ProductComponents/details-product/det
     AddCategoryComponent,
     DetailsCategoryComponent,
     DetailsProductComponent,
+    OrderComponent,
   ],
   imports: [
     BrowserModule,

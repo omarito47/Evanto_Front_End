@@ -6,6 +6,7 @@ import { AddCategoryComponent } from './CategoryComponents/add-category/add-cate
 import { DetailsCategoryComponent } from './CategoryComponents/details-category/details-category.component';
 import { AddProductComponent } from './ProductComponents/add-product/add-product.component';
 import { DetailsProductComponent } from './ProductComponents/details-product/details-product.component';
+import { OrderComponent } from './OrderComponents/order/order.component';
 
 const routes: Routes = [
   {
@@ -26,6 +27,14 @@ const routes: Routes = [
       { path: 'add', component: AddProductComponent },
       { path: 'update/:id', component: AddProductComponent },
       { path: 'details/:id', component: DetailsProductComponent },
+
+      // { path: ':id', component: DetailsResidenceComponent },
+    ],
+  },
+  {
+    path: 'order',
+    children: [
+      { path: '', component: OrderComponent },
 
       // { path: ':id', component: DetailsResidenceComponent },
     ],
