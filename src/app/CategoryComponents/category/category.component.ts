@@ -14,9 +14,7 @@ export class CategoryComponent {
   constructor(private catService: CategoryService) {
     this.catService.getAllCategorys().subscribe({
       next: (response) => {
-        console.log('Fetched categories:', response.data); // Debug log
         this.listCategorys = response.data;
-        console.log('listCategorys:', this.listCategorys); // Debug log
       },
       error: (error) => {
         console.error('Error fetching categories:', error); // Debug log
