@@ -20,7 +20,6 @@ export class ProductService {
     );
   }
   getProductById(id: string) {
-    console.log('idproooooo', this.apiUrlProducts + id);
     return this.http.get<{ data: Product }>(this.apiUrlProducts + id);
   }
   addProduct(body: FormData) {
