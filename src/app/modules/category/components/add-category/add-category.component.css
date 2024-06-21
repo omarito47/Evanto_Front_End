@@ -1,0 +1,11 @@
+.file-upload {
+  position: relative;
+  cursor: pointer;
+}
+
+.upload-image {
+  width: 100px; /* Adjust the size as needed */
+  height: 100px; /* Adjust the size as needed */
+  object-fit: cover;
+  cursor: pointer;
+}
