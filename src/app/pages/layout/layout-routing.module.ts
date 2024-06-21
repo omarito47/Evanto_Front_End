@@ -6,49 +6,79 @@ import { NavbarComponent } from './navbar/navbar.component';
 
 const routes: Routes = [
   {
-    path: '', component: NavbarComponent,
+    path: '',
+    component: NavbarComponent,
     children: [
       {
         path: '',
         loadChildren: () =>
-          import('../../modules/user-management/user-management.module').then((m) => m.UserManagementModule),
+          import('../../modules/user-management/user-management.module').then(
+            (m) => m.UserManagementModule
+          ),
       },
       {
         path: '',
         loadChildren: () =>
-          import('../../modules/type-event-managment/type-event-managment.module').then((m) => m.TypeEventManagmentModule),
+          import(
+            '../../modules/type-event-managment/type-event-managment.module'
+          ).then((m) => m.TypeEventManagmentModule),
       },
       {
         path: '',
         loadChildren: () =>
-          import('../../modules/event-managment/event-managment.module').then((m) => m.EventManagmentModule),
+          import('../../modules/event-managment/event-managment.module').then(
+            (m) => m.EventManagmentModule
+          ),
       },
       {
         path: 'admin',
         loadChildren: () =>
-          import('../../modules/reservation/reservation.module').then((m) => m.ReservationModule),
+          import('../../modules/reservation/reservation.module').then(
+            (m) => m.ReservationModule
+          ),
       },
-
+      {
+        path: 'admin',
+        loadChildren: () =>
+          import('../../modules/product/product.module').then(
+            (m) => m.ProductModule
+          ),
+      },
+      {
+        path: 'admin',
+        loadChildren: () =>
+          import('../../modules/category/category.module').then(
+            (m) => m.CategoryModule
+          ),
+      },
+      {
+        path: 'admin',
+        loadChildren: () =>
+          import('../../modules/order/order.module').then((m) => m.OrderModule),
+      },
     ],
   },
   {
-    path: 'nav2', component: NavbarV2Component,
+    path: 'nav2',
+    component: NavbarV2Component,
     children: [
       {
         path: '',
         loadChildren: () =>
-          import('../../modules/reservation/reservation.module').then((m) => m.ReservationModule),
+          import('../../modules/reservation/reservation.module').then(
+            (m) => m.ReservationModule
+          ),
       },
     ],
   },
   {
-    path: 'nav-split', component: NavSplitComponent,
-  }
-
+    path: 'nav-split',
+    component: NavSplitComponent,
+  },
 ];
 
 @NgModule({
   imports: [RouterModule.forChild(routes)],
-  exports: [RouterModule]
+  exports: [RouterModule],
 })
-export class LaoutRoutingModule { }
+export class LaoutRoutingModule {}

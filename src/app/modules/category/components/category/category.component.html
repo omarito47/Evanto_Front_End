@@ -1,0 +1,53 @@
+<!-- src/app/category/category.component.html -->
+<div class="container mt-5">
+  <h2 class="mb-4">Category List</h2>
+  <button class="btn btn-success mb-3" [routerLink]="['/category/add']">
+    Add New Category
+  </button>
+  <table class="table table-bordered table-hover">
+    <thead class="thead-dark">
+      <tr>
+        <th>Name</th>
+        <th>Description</th>
+        <th>Image</th>
+        <th>Actions</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let category of listCategorys">
+        <td>{{ category.name }}</td>
+        <td>{{ category.description }}</td>
+        <td>
+          <img
+            [src]="
+              category.image && category.image.length > 0
+                ? category.image
+                : 'assets/category_img.png'
+            "
+            alt="img_cat"
+            class="img-thumbnail"
+            width="50"
+          />
+        </td>
+
+        <td>
+          <button
+            class="btn btn-primary"
+            [routerLink]="['/category/details', category._id]"
+          >
+            View Details
+          </button>
+          <button
+            class="btn btn-info btn-sm mr-2"
+            [routerLink]="['/category/update', category._id]"
+          >
+            Update
+          </button>
+          <button class="btn btn-danger btn-sm" (click)="delete(category._id)">
+            Delete
+          </button>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</div>
