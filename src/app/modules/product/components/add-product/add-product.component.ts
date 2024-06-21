@@ -12,7 +12,6 @@ import { CategoryService } from 'src/app/core/services/category/category.service
 import { Category } from 'src/app/core/models/category';
 import { Product } from 'src/app/core/models/product';
 import { ProductService } from 'src/app/core/services/products/product.service';
-
 @Component({
   selector: 'app-add-product',
   templateUrl: './add-product.component.html',
