@@ -1,0 +1,78 @@
+<div class="container mt-5">
+  <h2 class="mb-4">{{ id ? "Update Category" : "Add Category" }}</h2>
+  <form [formGroup]="category" (ngSubmit)="add()">
+    <div class="form-group">
+      <label for="name">Name:</label>
+      <input
+        type="text"
+        class="form-control"
+        id="name"
+        formControlName="name"
+      />
+      <div
+        *ngIf="category.get('name')?.invalid && category.get('name')?.touched"
+        class="text-danger"
+      >
+        <small *ngIf="category.get('name')?.errors?.required"
+          >Name is required.</small
+        >
+        <small *ngIf="category.get('name')?.errors?.minlength"
+          >Name must be at least 3 characters long.</small
+        >
+      </div>
+    </div>
+    <div class="form-group">
+      <label for="description">Description:</label>
+      <textarea
+        class="form-control"
+        id="description"
+        formControlName="description"
+      ></textarea>
+      <div
+        *ngIf="
+          category.get('description')?.invalid &&
+          category.get('description')?.touched
+        "
+        class="text-danger"
+      >
+        <small *ngIf="category.get('description')?.errors?.required"
+          >Description is required.</small
+        >
+        <small *ngIf="category.get('description')?.errors?.minlength"
+          >Description must be at least 10 characters long.</small
+        >
+      </div>
+    </div>
+    <div class="form-group">
+      <label for="image">Image:</label>
+      <div class="file-upload">
+        <input
+          type="file"
+          #fileInput
+          (change)="onFileSelected($event)"
+          style="display: none"
+        />
+        <img
+          *ngIf="currentImageUrl"
+          [src]="currentImageUrl"
+          alt="Upload"
+          class="upload-image"
+          (click)="fileInput.click()"
+        />
+        <img
+          *ngIf="!currentImageUrl"
+          src="assets/category_img.png"
+          alt="Upload"
+          class="upload-image"
+          (click)="fileInput.click()"
+        />
+      </div>
+    </div>
+    <button type="submit" class="btn btn-primary" [disabled]="category.invalid">
+      {{ id ? "Update" : "Add" }}
+    </button>
+    <a *ngIf="id" class="btn btn-secondary" [routerLink]="['/category']"
+      >Cancel</a
+    >
+  </form>
+</div>
