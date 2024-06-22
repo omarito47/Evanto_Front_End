@@ -109,6 +109,13 @@ const routes: Routes = [
             (m) => m.PaymentModule
           ),
       },
+      {
+        path: '',
+        loadChildren: () =>
+          import('../../modules/product/product.module').then(
+            (m) => m.ProductModule
+          ),
+      },
     ],
   },
 
