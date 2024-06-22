@@ -3,6 +3,8 @@ import { RouterModule, Routes } from '@angular/router';
 import { ProductComponent } from './components/product/product.component';
 import { AddProductComponent } from './components/add-product/add-product.component';
 import { DetailsProductComponent } from './components/details-product/details-product.component';
+import { ProductCardComponent } from './components/product-card/product-card.component';
+import { DetailsCardProductComponent } from './components/details-card/details-card.component';
 
 const routes: Routes = [
   {
@@ -13,7 +15,10 @@ const routes: Routes = [
       { path: 'update/:id', component: AddProductComponent },
       { path: 'details/:id', component: DetailsProductComponent },
 
-      // { path: ':id', component: DetailsResidenceComponent },
+      /////////CLIENT /////////////////////
+
+      { path: 'list', component: ProductCardComponent },
+      { path: 'list/:id', component: DetailsCardProductComponent },
     ],
   },
 ];

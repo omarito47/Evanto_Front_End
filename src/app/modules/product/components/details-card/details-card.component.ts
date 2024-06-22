@@ -4,11 +4,11 @@ import { ActivatedRoute } from '@angular/router';
 import { ProductService } from 'src/app/core/services/products/product.service';
 
 @Component({
-  selector: 'app-details-product',
-  templateUrl: './details-product.component.html',
-  styleUrls: ['./details-product.component.css'],
+  selector: 'app-details-card-product',
+  templateUrl: './details-card.component.html',
+  styleUrls: ['./details-card.component.css'],
 })
-export class DetailsProductComponent {
+export class DetailsCardProductComponent {
   product!: Product;
   id!: string;
 

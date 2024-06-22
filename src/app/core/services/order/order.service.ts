@@ -1,4 +1,4 @@
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Order } from '../../models/order';
 
@@ -6,12 +6,29 @@ import { Order } from '../../models/order';
   providedIn: 'root',
 })
 export class OrderService {
+  private httpOptions;
   baseUrl: string = 'http://localhost:8000/';
   apiUrlOrders: string = this.baseUrl + 'orders/';
-  constructor(private http: HttpClient) {}
 
+  constructor(private http: HttpClient) {
+    const token = localStorage.getItem('token');
+    const httpHeaders = new HttpHeaders()
+      .set('Content-Type', 'application/json')
+      .set('Authorization', `Bearer ${token}`);
+
+    this.httpOptions = {
+      headers: httpHeaders,
+    };
+  }
   getAllOrders() {
-    return this.http.get<Order[]>(this.apiUrlOrders);
+    const token = localStorage.getItem('token');
+    const httpHeaders = new HttpHeaders()
+      .set('Content-Type', 'application/json')
+      .set('Authorization', `Bearer ${token}`);
+
+    return this.http.get<Order[]>(this.apiUrlOrders, {
+      headers: httpHeaders,
+    });
   }
   create(body: FormData) {
     return this.http.post(this.apiUrlOrders, body);
