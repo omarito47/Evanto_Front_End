@@ -1,0 +1,21 @@
+.card-header {
+  background-color: #467fff;
+  color: white;
+}
+
+.card-footer {
+  background-color: #f8f9fa;
+}
+
+.font-weight-bold {
+  font-weight: 700;
+}
+
+.img-thumbnail {
+  max-width: 100%;
+  height: auto;
+}
+
+h2 i {
+  margin-right: 10px;
+}

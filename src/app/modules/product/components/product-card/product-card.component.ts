@@ -1,13 +1,13 @@
 import { Component, OnInit } from '@angular/core';
-import { ProductService } from '../../core/services/products/product.service';
-import { Product } from '../../core/models/product';
+import { Product } from 'src/app/core/models/product';
+import { ProductService } from 'src/app/core/services/products/product.service';
 
 @Component({
-  selector: 'app-product',
-  templateUrl: './product.component.html',
-  styleUrls: ['./product.component.css'],
+  selector: 'app-product-card',
+  templateUrl: './product-card.component.html',
+  styleUrls: ['./product-card.component.css'],
 })
-export class ProductComponent implements OnInit {
+export class ProductCardComponent implements OnInit {
   listProducts: Product[] = [];
   listProductSearched: Product[] = [];
   searchText: string = '';
@@ -54,23 +54,6 @@ export class ProductComponent implements OnInit {
   onPageChange(page: number): void {
     this.currentPage = page;
     this.loadProducts();
-  }
-
-  delete(id: string): void {
-    this.productService.deleteProduct(id).subscribe({
-      next: () => {
-        this.listProducts = this.listProducts.filter(
-          (product) => product._id !== id
-        );
-        this.listProductSearched = this.listProductSearched.filter(
-          (product) => product._id !== id
-        );
-      },
-      error: (error) => {
-        console.error('Error deleting product:', error);
-        // Handle error deleting product
-      },
-    });
   }
 
   searchProduct(event: any): void {

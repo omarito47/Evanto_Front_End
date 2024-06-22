@@ -1,6 +1,6 @@
 <div class="container mt-5">
   <div *ngIf="product; else loading">
-    <h2 class="mb-4">{{ product.title }}</h2>
+    <h2 class="mb-4"><i class="bi bi-box-seam"></i> {{ product.title }}</h2>
     <div class="card">
       <div class="card-header">
         <h3>Product Details</h3>
@@ -23,7 +23,7 @@
           <div class="col-md-9">{{ product.price }}</div>
         </div>
         <div class="row mb-3">
-          <div class="col-md-3 font-weight-bold">Categories:</div>
+          <div class="col-md-3 font-weight-bold">Category:</div>
           <div class="col-md-9">{{ product.category.name }}</div>
         </div>
         <div class="row mb-3">
@@ -36,15 +36,15 @@
                   : 'assets/category_img.png'
               "
               alt="Product Image"
-              class="img-thumbnail"
-              width="50"
+              class="img-fluid img-thumbnail"
+              width="200"
             />
           </div>
         </div>
       </div>
       <div class="card-footer text-right">
-        <button class="btn btn-primary" [routerLink]="['/product']">
-          Back to Productes
+        <button class="btn btn-primary" [routerLink]="['/nav2/product/list']">
+          <i class="bi bi-arrow-left"></i> Back to Products
         </button>
       </div>
     </div>

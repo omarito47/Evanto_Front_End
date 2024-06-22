@@ -20,10 +20,7 @@
         href="#"
         [routerLink]="'home'"
       >
-        <img
-          src="../../../../../assets/images/logo.jpg"
-          class="logo"
-        />
+        <img src="../../../../../assets/images/logo.jpg" class="logo" />
       </a>
 
       <div
@@ -49,8 +46,16 @@
               >mes reservations</a
             >
           </li>
+          <li class="nav-item">
+            <a
+              class="nav-link"
+              [routerLink]="'product/list'"
+              routerLinkActive="active"
+              aria-current="page"
+              >Products</a
+            >
+          </li>
         </ul>
-
       </div>
 
       <div class="navbar-nav custom-navbar nav2 slide-in-blurred-top">
