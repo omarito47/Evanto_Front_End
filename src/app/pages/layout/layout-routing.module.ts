@@ -64,8 +64,16 @@ const routes: Routes = [
           ),
         canActivate: [AuthGuard],
       },
+      {
+        path: '',
+        loadChildren: () =>
+          import('../../modules/product/product.module').then(
+            (m) => m.ProductModule
+          ),
+      },
     ],
   },
+
   {
     path: 'nav-split',
     component: NavSplitComponent,

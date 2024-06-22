@@ -7,12 +7,16 @@ import { AddProductComponent } from './components/add-product/add-product.compon
 import { DetailsProductComponent } from './components/details-product/details-product.component';
 import { ProductComponent } from './components/product/product.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { ProductCardComponent } from './components/product-card/product-card.component';
+import { DetailsCardProductComponent } from './components/details-card/details-card.component';
 
 @NgModule({
   declarations: [
     AddProductComponent,
     DetailsProductComponent,
     ProductComponent,
+    DetailsCardProductComponent,
+    ProductCardComponent,
   ],
   imports: [
     CommonModule,
