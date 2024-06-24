@@ -1,0 +1,118 @@
+<div class="container">
+  <div class="content">
+    <form [formGroup]="checkoutForm" (ngSubmit)="createOrder()">
+      <!-- Form inputs for name and address -->
+      <div>
+        <label for="name">Name:</label>
+        <input id="name" formControlName="name" type="text" />
+        <div *ngIf="fc.name.invalid && (fc.name.dirty || fc.name.touched)">
+          <small *ngIf="fc.name.errors?.required">Name is required.</small>
+        </div>
+      </div>
+
+      <div formGroupName="address">
+        <label for="details">Address Details:</label>
+        <input id="details" formControlName="details" type="text" />
+        <div
+          *ngIf="
+            fc.address.get('details')?.invalid &&
+            (fc.address.get('details')?.dirty ||
+              fc.address.get('details')?.touched)
+          "
+        >
+          <small *ngIf="fc.address.get('details')?.errors?.required"
+            >Address details are required.</small
+          >
+        </div>
+
+        <label for="phone">Phone:</label>
+        <input id="phone" formControlName="phone" type="text" />
+        <div
+          *ngIf="
+            fc.address.get('phone')?.invalid &&
+            (fc.address.get('phone')?.dirty || fc.address.get('phone')?.touched)
+          "
+        >
+          <small *ngIf="fc.address.get('phone')?.errors?.required"
+            >Phone is required.</small
+          >
+        </div>
+
+        <label for="city">City:</label>
+        <input id="city" formControlName="city" type="text" />
+        <div
+          *ngIf="
+            fc.address.get('city')?.invalid &&
+            (fc.address.get('city')?.dirty || fc.address.get('city')?.touched)
+          "
+        >
+          <small *ngIf="fc.address.get('city')?.errors?.required"
+            >City is required.</small
+          >
+        </div>
+
+        <label for="postalCode">Postal Code:</label>
+        <input id="postalCode" formControlName="postalCode" type="text" />
+        <div
+          *ngIf="
+            fc.address.get('postalCode')?.invalid &&
+            (fc.address.get('postalCode')?.dirty ||
+              fc.address.get('postalCode')?.touched)
+          "
+        >
+          <small *ngIf="fc.address.get('postalCode')?.errors?.required"
+            >Postal Code is required.</small
+          >
+        </div>
+      </div>
+    </form>
+
+    <!-- Table for displaying order items -->
+    <table>
+      <thead>
+        <tr>
+          <th>Image</th>
+          <th>Title</th>
+          <th>Price</th>
+          <th>Quantity</th>
+          <th>Total Price</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let item of order.items">
+          <td>
+            <img
+              [src]="
+                getProduct(item.product).image &&
+                getProduct(item.product).image.length > 0
+                  ? getProduct(item.product).image
+                  : 'assets/category_img.png'
+              "
+              alt="Product Image"
+              class="img-thumbnail"
+              width="50"
+            />
+          </td>
+          <td>{{ getProduct(item.product).title }}</td>
+          <td>{{ getProduct(item.product).price }}</td>
+          <td>{{ item.quantity }}</td>
+          <td>{{ item.price }}</td>
+        </tr>
+        <tr>
+          <td colspan="3"></td>
+          <td><strong>Total:</strong></td>
+          <td>
+            <strong>{{ order.totalPrice }}</strong>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <!-- Buttons container -->
+  <div class="buttons-container">
+    <div class="buttons">
+      <button (click)="createOrder()">Go To Payment</button>
+    </div>
+  </div>
+</div>

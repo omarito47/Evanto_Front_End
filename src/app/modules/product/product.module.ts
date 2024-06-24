@@ -6,7 +6,6 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { AddProductComponent } from './components/add-product/add-product.component';
 import { DetailsProductComponent } from './components/details-product/details-product.component';
 import { ProductComponent } from './components/product/product.component';
-import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { ProductCardComponent } from './components/product-card/product-card.component';
 import { DetailsCardProductComponent } from './components/details-card/details-card.component';
 
