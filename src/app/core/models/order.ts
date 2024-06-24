@@ -1,9 +1,14 @@
 import { LatLng } from 'leaflet';
 import { CartItem } from './CartItem';
 
-export interface Order {
+interface OrderItem {
+  product: string;
+  quantity: number;
+}
+
+export class Order {
   _id: string;
-  items: CartItem[];
+  items: OrderItem[];
   totalPrice: number;
   name: string;
   address: {
