@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Product } from '../../models/product';
+import { filter } from 'rxjs';
 
 @Injectable({
   providedIn: 'root',
@@ -11,7 +12,11 @@ export class ProductService {
 
   constructor(private http: HttpClient) {}
 
-  getAllProducts(page: number, limit: number) {
+  getAllProducts(
+    page: number,
+    limit: number,
+    filters?: { category: string[] }
+  ) {
     const params = { page: page.toString(), limit: limit.toString() };
     return this.http.get<{ data: Product[]; paginationResult: any }>(
       this.apiUrlProducts,

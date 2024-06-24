@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
+import { CartService } from 'src/app/core/services/cart/cart.service';
 
 @Component({
   selector: 'app-navbar-v2',
@@ -9,6 +10,7 @@ import { Router } from '@angular/router';
 export class NavbarV2Component implements OnInit {
   userRole: string;
   userId: string;
+  cartQuantity = 0;
 
   ngOnInit() {
     // Retrieve the user's role from local storage
@@ -16,7 +18,12 @@ export class NavbarV2Component implements OnInit {
     // Retrieve the user id from local storage
     this.userId = localStorage.getItem('userId');
   }
-  constructor(private router: Router) {}
+
+  constructor(private router: Router, private cartservice: CartService) {
+    cartservice.getCartObservable().subscribe((newCart) => {
+      this.cartQuantity = newCart.totalCount;
+    });
+  }
 
   logout() {
     localStorage.clear();

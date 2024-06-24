@@ -1,6 +1,10 @@
 import { Component, OnInit } from '@angular/core';
+import { ActivatedRoute, Router } from '@angular/router';
 import { Product } from 'src/app/core/models/product';
+import { CartService } from 'src/app/core/services/cart/cart.service';
 import { ProductService } from 'src/app/core/services/products/product.service';
+import { CategoryService } from 'src/app/core/services/category/category.service';
+import { Category } from 'src/app/core/models/category';
 
 @Component({
   selector: 'app-product-card',
@@ -14,16 +18,37 @@ export class ProductCardComponent implements OnInit {
   currentPage = 1;
   pageSize = 10;
   totalPages = 0;
+  categories: Category[] = [];
+  filters: {
+    category: string[];
+  } = { category: [] };
 
-  constructor(private productService: ProductService) {}
+  constructor(
+    private productService: ProductService,
+    private catService: CategoryService,
+    private cartService: CartService,
+    private router: Router
+  ) {}
 
   ngOnInit(): void {
     this.loadProducts();
+    this.loadCategories();
+  }
+
+  loadCategories(): void {
+    this.catService.getAllCategorys().subscribe({
+      next: (response) => {
+        this.categories = response.data;
+      },
+      error: (error) => {
+        console.error('Error fetching categories:', error); // Debug log
+      },
+    });
   }
 
   loadProducts(): void {
     this.productService
-      .getAllProducts(this.currentPage, this.pageSize)
+      .getAllProducts(this.currentPage, this.pageSize, this.filters)
       .subscribe({
         next: (response) => {
           this.listProducts = response.data;
@@ -84,5 +109,11 @@ export class ProductCardComponent implements OnInit {
 
   totalPagesArray(): number[] {
     return Array.from({ length: this.totalPages }, (_, index) => index + 1);
+  }
+
+  addToCart(product: Product) {
+    this.cartService.addToCart(product);
+    console.log('click');
+    this.router.navigateByUrl('/cart-page');
   }
 }
