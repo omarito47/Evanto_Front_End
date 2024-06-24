@@ -32,12 +32,12 @@
 }
 
 .btn-primary {
-  background-color: #467fff;
+  background-color: ##ee6969;
   border: none;
 }
 
 .btn-primary:hover {
-  background-color: #315eaf;
+  background-color: ##ee6969;
 }
 
 .btn-success {
@@ -65,7 +65,13 @@ div.categories-filter a {
   margin: 0.2rem 0.15rem;
   border-radius: 10rem;
   font-weight: 600;
-  color: blue;
+  color: #ee6969;
+}
+div.categories-filter {
+  display: flex;
+  flex-wrap: wrap;
+  margin: 50px;
+  justify-content: center;
 }
 
 a .active {

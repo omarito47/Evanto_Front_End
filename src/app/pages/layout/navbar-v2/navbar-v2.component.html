@@ -68,9 +68,10 @@
 
       <div class="navbar-nav custom-navbar nav2 slide-in-blurred-top">
         <div class="nav-item text-nowrap nav-header px-0">
-          <div>
+          <div class="card">
             <a routerLink="/nav2/cart">
-              Cart <span *ngIf="cartQuantity">{{ cartQuantity }}</span>
+              <mat-icon class="icon-cart">shopping_cart</mat-icon> Cart
+              <span *ngIf="cartQuantity">{{ cartQuantity }}</span>
             </a>
           </div>
           <!-- start header notification -->
