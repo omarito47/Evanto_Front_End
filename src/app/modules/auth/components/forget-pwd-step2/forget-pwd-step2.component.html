@@ -1,0 +1,19 @@
+<html>
+<body>
+  <div class="container">
+    <div class="form-container">
+      <form [formGroup]="passwordForm" (ngSubmit)="updateUserPassword()">
+        <input type="password" formControlName="password" placeholder="Enter new password">
+        <div *ngIf="passwordForm.get('password')?.invalid && passwordForm.get('password')?.touched">
+          <p style="color: red;">New Password is required and must be at least 6 characters long</p>
+        </div>
+        <input type="password" formControlName="confirmPassword" placeholder="Confirm new password">
+        <div *ngIf="passwordForm.hasError('passwordMismatch') && passwordForm.get('confirmPassword')?.touched">
+          <p style="color: red;">Passwords do not match</p>
+        </div>
+        <button type="submit">Verify</button>
+      </form>
+    </div>
+  </div>
+</body>
+</html>

@@ -1,38 +1,24 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
-import { SignUpComponent } from './sign-up/sign-up.component';
-import { SignInComponent } from './sign-in/sign-in.component';
-import { VerificationCodeComponent } from './verification-code/verification-code.component';
-import { HomePageComponent } from './home-page/home-page.component';
-import { ForgetPwdStep1Component } from './forget-pwd-step1/forget-pwd-step1.component';
-import { ProfileComponent } from './profile/profile.component';
+import { AuthRoutingModule } from './modules/auth/auth-routing.module';
 
 const routes: Routes = [
   {
-    path:'signup',
-    component:SignUpComponent
+    path: 'auth',
+    loadChildren: () =>
+      import('./modules/auth/auth.module').then((m) => m.AuthModule),
   },
   {
-    path:'signin',
-    component:SignInComponent
+    path: '',
+    loadChildren: () =>
+      import('./pages/layout/layout.module').then((m) => m.LayouttModule),
   },
-  {
-    path:'verificationCode/:id',
-    component:VerificationCodeComponent
-  },
-  {
-    path:'homePage',
-    component:HomePageComponent
-  },
-  {
-    path:'forgetpwd_step1',
-    component:ForgetPwdStep1Component
-  },
-  {
-    path:'profile',
-    component:ProfileComponent
-  }
-];
+  
+  
+  
+  
+]
+
 
 @NgModule({
   imports: [RouterModule.forRoot(routes)],
