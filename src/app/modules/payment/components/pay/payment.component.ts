@@ -14,6 +14,7 @@ import {
 } from '@stripe/stripe-js';
 import { Order } from 'src/app/core/models/order';
 import { OrderService } from 'src/app/core/services/order/order.service';
+import Swal from 'sweetalert2';
 
 @Component({
   selector: 'app-payment',
@@ -44,7 +45,13 @@ export class PaymentComponent implements AfterViewInit {
         this.elements = this.stripe!.elements();
       });
     } else {
-      console.error('Failed to initialize Stripe');
+      Swal.fire({
+        title: 'Initialization Error',
+        text: 'Failed to initialize Stripe',
+        icon: 'error',
+        confirmButtonColor: '#d33',
+        confirmButtonText: 'OK',
+      });
     }
   }
 
@@ -64,7 +71,13 @@ export class PaymentComponent implements AfterViewInit {
 
   async handlePayment() {
     if (!this.stripe || !this.card) {
-      console.error('Stripe or card element not initialized');
+      Swal.fire({
+        title: 'Initialization Error',
+        text: 'Stripe or card element not initialized',
+        icon: 'error',
+        confirmButtonColor: '#d33',
+        confirmButtonText: 'OK',
+      });
       return;
     }
 
@@ -74,9 +87,16 @@ export class PaymentComponent implements AfterViewInit {
     });
 
     if (error) {
-      console.error('Error creating payment method:', error);
+      Swal.fire({
+        title: 'Payment Error',
+        text: `Error creating payment method: ${error.message}`,
+        icon: 'error',
+        confirmButtonColor: '#d33',
+        confirmButtonText: 'OK',
+      });
       return;
     }
+
     const order = this.orderService.getCurrentOrder();
 
     try {
@@ -92,28 +112,58 @@ export class PaymentComponent implements AfterViewInit {
       const result = await response.json();
 
       if (result.error) {
-        console.error('Error creating payment intent:', result.error);
+        Swal.fire({
+          title: 'Payment Error',
+          text: `Error creating payment intent: ${result.error.message}`,
+          icon: 'error',
+          confirmButtonColor: '#d33',
+          confirmButtonText: 'OK',
+        });
       } else {
-        console.log(
-          'Payment intent created successfully:',
-          result.paymentIntent
-        );
+        Swal.fire({
+          title: 'Payment Success',
+          text: 'Payment intent created successfully',
+          icon: 'success',
+          confirmButtonColor: '#3085d6',
+          confirmButtonText: 'OK',
+        });
         this.createOrder(order, result.paymentIntent.id);
       }
     } catch (err) {
-      console.error('Error:', err);
+      Swal.fire({
+        title: 'Payment Error',
+        text: `Error: ${err.message}`,
+        icon: 'error',
+        confirmButtonColor: '#d33',
+        confirmButtonText: 'OK',
+      });
     }
   }
 
   async createOrder(order: Order, paymentId: string) {
     this.orderService.create({ ...order, paymentId }).subscribe({
       next: (response) => {
-        console.log('oorder done', response);
-        this.orderService.clearOrder();
-        this.router.navigateByUrl('/nav2/checkout/orderTrack/' + response._id);
+        Swal.fire({
+          title: 'Order Completed',
+          text: 'Your order has been successfully placed!',
+          icon: 'success',
+          confirmButtonColor: '#3085d6',
+          confirmButtonText: 'OK',
+        }).then(() => {
+          this.orderService.clearOrder();
+          this.router.navigateByUrl(
+            '/nav2/checkout/orderTrack/' + response._id
+          );
+        });
       },
       error: (errorResponse) => {
-        console.error(errorResponse.error, 'Cart');
+        Swal.fire({
+          title: 'Order Error',
+          text: `Failed to place the order: ${errorResponse.error.message}`,
+          icon: 'error',
+          confirmButtonColor: '#d33',
+          confirmButtonText: 'OK',
+        });
       },
     });
   }
