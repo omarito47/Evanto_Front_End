@@ -46,7 +46,7 @@ export class ProductCardComponent implements OnInit {
 
   loadProducts(): void {
     this.productService
-      .getAllProducts(this.currentPage, this.pageSize, this.filters)
+      .getAllProducts(this.currentPage, this.pageSize)
       .subscribe({
         next: (response) => {
           this.listProducts = response.data;
