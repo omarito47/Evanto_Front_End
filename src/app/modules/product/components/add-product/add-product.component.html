@@ -12,6 +12,18 @@
           class="form-control"
           formControlName="title"
         />
+        <div
+          *ngIf="
+            product.get('title')?.invalid &&
+            (product.get('title')?.touched || product.get('title')?.dirty)
+          "
+        >
+          <small
+            class="text-danger"
+            *ngIf="product.get('title')?.errors?.['required']"
+            >Title is required.</small
+          >
+        </div>
       </div>
       <div class="form-group">
         <label for="description">Description:</label>
@@ -20,6 +32,19 @@
           class="form-control"
           formControlName="description"
         ></textarea>
+        <div
+          *ngIf="
+            product.get('description')?.invalid &&
+            (product.get('description')?.touched ||
+              product.get('description')?.dirty)
+          "
+        >
+          <small
+            class="text-danger"
+            *ngIf="product.get('description')?.errors?.['required']"
+            >Description is required.</small
+          >
+        </div>
       </div>
 
       <div class="col-md-4 form-group">
@@ -30,6 +55,23 @@
           class="form-control"
           formControlName="price"
         />
+        <div
+          *ngIf="
+            product.get('price')?.invalid &&
+            (product.get('price')?.touched || product.get('price')?.dirty)
+          "
+        >
+          <small
+            class="text-danger"
+            *ngIf="product.get('price')?.errors?.['required']"
+            >Price is required.</small
+          >
+          <small
+            class="text-danger"
+            *ngIf="product.get('price')?.errors?.['min']"
+            >Price must be greater than or equal to 0.</small
+          >
+        </div>
       </div>
     </div>
     <div class="form-row">
@@ -41,6 +83,23 @@
           class="form-control"
           formControlName="quantity"
         />
+        <div
+          *ngIf="
+            product.get('quantity')?.invalid &&
+            (product.get('quantity')?.touched || product.get('quantity')?.dirty)
+          "
+        >
+          <small
+            class="text-danger"
+            *ngIf="product.get('quantity')?.errors?.['required']"
+            >Quantity is required.</small
+          >
+          <small
+            class="text-danger"
+            *ngIf="product.get('quantity')?.errors?.['min']"
+            >Quantity must be greater than or equal to 0.</small
+          >
+        </div>
       </div>
       <div class="col-md-4 form-group">
         <label for="category">Category:</label>
@@ -52,6 +111,18 @@
             {{ category.name }}
           </option>
         </select>
+        <div
+          *ngIf="
+            product.get('category')?.invalid &&
+            (product.get('category')?.touched || product.get('category')?.dirty)
+          "
+        >
+          <small
+            class="text-danger"
+            *ngIf="product.get('category')?.errors?.['required']"
+            >Category is required.</small
+          >
+        </div>
       </div>
     </div>
 

@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Order } from 'src/app/core/models/order';
 import { OrderService } from 'src/app/core/services/order/order.service';
+import Swal from 'sweetalert2';
 @Component({
   selector: 'app-order',
   templateUrl: './order.component.html',
@@ -36,19 +37,37 @@ export class OrderComponent implements OnInit {
   }
 
   cancelOrder(id: string): void {
-    this.orderService.cancelOrder(id).subscribe({
-      next: () => {
-        // Update locally to reflect cancellation
-        this.orders = this.orders.map((order) => {
-          if (order._id === id) {
-            return { ...order, isCanceled: true };
-          }
-          return order;
+    Swal.fire({
+      title: 'Are you sure?',
+      text: "You won't be able to revert this!",
+      icon: 'warning',
+      showCancelButton: true,
+      confirmButtonColor: '#3085d6',
+      cancelButtonColor: '#d33',
+      confirmButtonText: 'Yes, cancel it!',
+    }).then((result) => {
+      if (result.isConfirmed) {
+        this.orderService.cancelOrder(id).subscribe({
+          next: () => {
+            // Update locally to reflect cancellation
+            this.orders = this.orders.map((order) => {
+              if (order._id === id) {
+                return { ...order, isCanceled: true };
+              }
+              return order;
+            });
+            Swal.fire('Canceled!', 'Your order has been canceled.', 'success');
+          },
+          error: (error) => {
+            console.error('Error canceling order:', error);
+            Swal.fire(
+              'Error!',
+              'There was an error canceling the order: ' + error.message,
+              'error'
+            );
+          },
         });
-      },
-      error: (error) => {
-        console.error('Error canceling order:', error);
-      },
+      }
     });
   }
 }

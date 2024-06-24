@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Product } from 'src/app/core/models/product';
 import { ProductService } from 'src/app/core/services/products/product.service';
+import Swal from 'sweetalert2';
 
 @Component({
   selector: 'app-product',
@@ -57,19 +58,35 @@ export class ProductComponent implements OnInit {
   }
 
   delete(id: string): void {
-    this.productService.deleteProduct(id).subscribe({
-      next: () => {
-        this.listProducts = this.listProducts.filter(
-          (product) => product._id !== id
-        );
-        this.listProductSearched = this.listProductSearched.filter(
-          (product) => product._id !== id
-        );
-      },
-      error: (error) => {
-        console.error('Error deleting product:', error);
-        // Handle error deleting product
-      },
+    Swal.fire({
+      title: 'Are you sure?',
+      text: "You won't be able to revert this!",
+      icon: 'warning',
+      showCancelButton: true,
+      confirmButtonColor: '#3085d6',
+      cancelButtonColor: '#d33',
+      confirmButtonText: 'Yes, delete it!',
+    }).then((result) => {
+      if (result.isConfirmed) {
+        this.productService.deleteProduct(id).subscribe({
+          next: () => {
+            this.listProducts = this.listProducts.filter(
+              (product) => product._id !== id
+            );
+            this.listProductSearched = this.listProductSearched.filter(
+              (product) => product._id !== id
+            );
+            Swal.fire('Deleted!', 'Your product has been deleted.', 'success');
+          },
+          error: (error) => {
+            Swal.fire(
+              'Error!',
+              'There was an error deleting the product: ' + error.message,
+              'error'
+            );
+          },
+        });
+      }
     });
   }
 

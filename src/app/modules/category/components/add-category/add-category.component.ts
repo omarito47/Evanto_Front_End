@@ -1,8 +1,15 @@
 import { Component, ElementRef } from '@angular/core';
-import { FormControl, FormGroup, Validators } from '@angular/forms';
+import {
+  FormBuilder,
+  FormControl,
+  FormGroup,
+  Validators,
+} from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
+import Swal from 'sweetalert2';
 import { Category } from 'src/app/core/models/category';
 import { CategoryService } from 'src/app/core/services/category/category.service';
+
 @Component({
   selector: 'app-add-category',
   templateUrl: './add-category.component.html',
@@ -18,7 +25,8 @@ export class AddCategoryComponent {
   constructor(
     private catService: CategoryService,
     private router: Router,
-    private ar: ActivatedRoute
+    private ar: ActivatedRoute,
+    private fb: FormBuilder
   ) {
     this.id = this.ar.snapshot.params['id'];
     if (this.id != undefined) {
@@ -35,35 +43,64 @@ export class AddCategoryComponent {
       });
     }
   }
-  category: FormGroup = new FormGroup({
-    name: new FormControl(''),
-    description: new FormControl(),
-    image: new FormControl(null),
+
+  category: FormGroup = this.fb.group({
+    name: ['', [Validators.required, Validators.minLength(3)]],
+    description: ['', [Validators.required, Validators.minLength(10)]],
+    image: [null],
   });
 
   add() {
+    if (this.category.invalid) {
+      Swal.fire({
+        title: 'Invalid Form',
+        text: 'Please fill in all required fields correctly.',
+        icon: 'error',
+        confirmButtonText: 'OK',
+      });
+      return;
+    }
+
     const formData = new FormData();
     formData.append('name', this.category.value.name);
     formData.append('description', this.category.value.description);
     if (this.selectedFile) {
       formData.append('image', this.selectedFile, this.selectedFile.name);
     }
-    if (this.id !== undefined) {
-      this.catService.updateCategory(this.id, formData).subscribe({
-        next: () => this.router.navigate(['/category']),
-        error: (e) => alert(e.message),
-      });
-    } else {
-      this.catService.addCategory(formData).subscribe({
-        next: () => this.router.navigate(['/category']),
-        error: (e) => alert(e.message),
-      });
-    }
+
+    const action =
+      this.id !== undefined
+        ? this.catService.updateCategory(this.id, formData)
+        : this.catService.addCategory(formData);
+
+    action.subscribe({
+      next: () => {
+        Swal.fire({
+          title: 'Success',
+          text: `Category has been ${
+            this.id !== undefined ? 'updated' : 'added'
+          } successfully.`,
+          icon: 'success',
+          confirmButtonText: 'OK',
+        }).then(() => {
+          this.router.navigate(['/category']);
+        });
+      },
+      error: (e) => {
+        Swal.fire({
+          title: 'Error',
+          text: `There was an error ${
+            this.id !== undefined ? 'updating' : 'adding'
+          } the category: ${e.message}`,
+          icon: 'error',
+          confirmButtonText: 'OK',
+        });
+      },
+    });
   }
 
   onFileSelected(event: any): void {
     this.selectedFile = event.target.files[0] as File;
-    // Update the form control value with the selected file
     this.category.patchValue({ image: this.selectedFile });
     const reader = new FileReader();
     reader.onload = () => {
