@@ -116,6 +116,25 @@ const routes: Routes = [
             (m) => m.ProductModule
           ),
       },
+      {
+        path: '',
+        loadChildren: () =>
+          import('../../modules/cart/cart.module').then((m) => m.CartModule),
+      },
+      {
+        path: '',
+        loadChildren: () =>
+          import('../../modules/checkout-page/checkout.module').then(
+            (m) => m.CheckoutModule
+          ),
+      },
+      {
+        path: '',
+        loadChildren: () =>
+          import('../../modules/payment/payment.module').then(
+            (m) => m.PaymentModule
+          ),
+      },
     ],
   },
 

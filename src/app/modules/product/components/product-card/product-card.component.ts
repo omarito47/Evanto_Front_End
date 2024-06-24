@@ -46,7 +46,7 @@ export class ProductCardComponent implements OnInit {
 
   loadProducts(): void {
     this.productService
-      .getAllProducts(this.currentPage, this.pageSize)
+      .getAllProducts(this.currentPage, this.pageSize, this.filters)
       .subscribe({
         next: (response) => {
           this.listProducts = response.data;
@@ -114,4 +114,6 @@ export class ProductCardComponent implements OnInit {
     this.cartService.addToCart(product);
     this.router.navigateByUrl('/cart-page');
   }
+
+
 }
