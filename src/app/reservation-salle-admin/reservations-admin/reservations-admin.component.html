@@ -1,0 +1,35 @@
+<div class="container">
+  <h1>Liste des réservations :</h1>
+
+  <table class="table table-bordered table-striped">
+    <thead class="thead-dark">
+      <tr>
+        <th scope="col">ID</th>
+        <th scope="col">Date de début</th>
+        <th scope="col">Date de fin</th>
+        <th scope="col">Tarif</th>
+        <th scope="col">Nom de la salle</th>
+        <th scope="col">Email</th>
+        <th scope="col">Nom de l'utilisateur</th>
+        <th scope="col">Actions</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let reservation of listReservation">
+        <td>{{ reservation._id }}</td>
+        <td>{{ reservation.dateDebut | date: 'yyyy-MM-dd' }}</td>
+        <td>{{ reservation.dateFin | date: 'yyyy-MM-dd' }}</td>
+        <td>{{ reservation.tarif }}</td>
+        <td>{{ getSalleName(reservation.idSalle) }}</td>
+        <td>{{ reservation.email }}</td>
+        <td>{{ getUserName(reservation.idUser) }}</td> <!-- Utiliser getUserName -->
+        <td>
+          <button type="button" class="btn btn-danger btn-sm" (click)="delete(reservation._id)">Supprimer</button>
+        </td>
+        <td>
+          <button type="button" class="btn btn-success btn-sm" [routerLink]="['update/', reservation._id]">Modifier</button>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</div>

@@ -1,21 +1,22 @@
 <div class="container">
-    <h1>Détails de la Salle</h1>
-    <div *ngIf="salle" class="salle-container">
-      <div class="salle-image">
-        <img [src]="salle.image" alt="{{ salle.nomSalle }}">
-      </div>
-      <div class="salle-details">
-        <p><strong>ID :</strong> {{ salle._id }}</p>
-        <p><strong>Nom de la Salle :</strong> {{ salle.nomSalle }}</p>
-        <p><strong>Description :</strong> {{ salle.description }}</p>
-        <p><strong>Lieu :</strong> {{ salle.lieu }}</p>
-        <p><strong>Prix :</strong> {{ salle.prix }} DT</p>
-        <p><strong>Type de Salle :</strong> {{ getTypeSalleLibelle(salle.typeSalle) }}</p>
-        <button class="btn btn-primary" [routerLink]="['/salle/update', salle._id]">modifier</button>
+    <h1 class="text-center mb-4">Détails de la Salle</h1>
+    <div class="row justify-content-center">
+      <div class="col-md-8">
+        <div *ngIf="salle" class="card salle-card">
+          <div class="card-body">
+            <p><strong>ID :</strong> {{ salle._id }}</p>
+            <p><strong>Nom de la Salle :</strong> {{ salle.nomSalle }}</p>
+            <p><strong>Description :</strong> {{ salle.description }}</p>
+            <p><strong>Lieu :</strong> {{ salle.lieu }}</p>
+            <p><strong>Prix :</strong> {{ salle.prix }} DT</p>
+            <p><strong>Type de Salle :</strong> {{ getTypeSalleLibelle(salle.typeSalle) }}</p>
+            <div class="d-flex justify-content-end">
+              <button class="btn btn-success mr-2" [routerLink]="['/salle/update', salle._id]">modifier</button>
+              <a class="btn btn-secondary" [routerLink]="['/salle']">Annuler</a>
+            </div>
+          </div>
+        </div>
       </div>
     </div>
   </div>
-  
-  
-  
   

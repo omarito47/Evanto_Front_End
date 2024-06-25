@@ -1,0 +1,41 @@
+<div class="container mt-5">
+  <h2 class="text-center mb-4">Update Reservation</h2>
+  <form [formGroup]="reservationSalle" (ngSubmit)="update()">
+    <div class="form-group">
+      <label for="dateDebut">Date debut</label>
+      <input type="date" id="dateDebut" class="form-control" formControlName="dateDebut" placeholder="YYYY-MM-DD" />
+    </div>
+
+    <div class="form-group">
+      <label for="dateFin">Date Fin</label>
+      <input type="date" id="dateFin" class="form-control" formControlName="dateFin" placeholder="YYYY-MM-DD" />
+    </div>
+
+    <div class="form-group">
+      <label for="idSalle">Salle</label>
+      <select id="idSalle" class="form-control" formControlName="idSalle">
+        <option *ngFor="let salle of salles" [value]="salle._id">{{ salle.nomSalle}}</option>
+      </select>
+    </div>
+
+    <div class="form-group">
+      <label for="email">Email</label>
+      <input type="email" id="email" class="form-control" formControlName="email" />
+    </div>
+
+    <div class="form-group">
+      <label for="idUser">User Name</label>
+      <select id="idUser" class="form-control" formControlName="idUser">
+        <option *ngFor="let user of users" [value]="user._id">{{ user.name }}</option>
+      </select>
+    </div>
+
+    <!-- Ajout du message de confirmation -->
+    <div *ngIf="showConfirmationMessage" class="alert alert-success mt-3" role="alert">
+      La réservation a été mise à jour avec succès. Un e-mail de confirmation sera envoyé à l'adresse de l'Utilisateur.
+    </div>
+
+    <button type="submit" class="btn btn-primary">Update</button>
+    <a class="btn btn-secondary" [routerLink]="['/reservationAdmin']">Annuler</a>
+  </form>
+</div>

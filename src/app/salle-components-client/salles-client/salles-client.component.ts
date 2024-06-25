@@ -1,20 +1,20 @@
 import { Component, OnInit } from '@angular/core';
-import { ConsumerGSService } from 'src/app/core/services/consumer-gs.service';
-import { Salle } from 'src/app/core/models/salle';;
 import { FormControl, FormGroup, Validators } from '@angular/forms';
+import { Salle } from 'src/app/core/models/salle';
 import { TypeSalle } from 'src/app/core/models/typeSalle';
-
+import { ConsumerGSService } from 'src/app/core/services/consumer-gs.service';
 
 @Component({
-  selector: 'app-salles',
-  templateUrl: './salles.component.html',
-  styleUrls: ['./salles.component.css']
+  selector: 'app-salles-client',
+  templateUrl: './salles-client.component.html',
+  styleUrls: ['./salles-client.component.css']
 })
-export class SallesComponent implements OnInit {
+export class SallesClientComponent implements OnInit {
   listSalles: Salle[] = [];
   listTypeSalles: TypeSalle[] = [];
   searchText : string ="";
   listSalleSearched:Salle[] = [];
+
 
   salle: FormGroup = new FormGroup({
     nomSalle: new FormControl(''),
@@ -38,7 +38,7 @@ export class SallesComponent implements OnInit {
     this.SCGS.getSalles().subscribe({
       next: (sal) => {
         this.listSalles = sal;
-        this.listSalleSearched = sal; 
+        this.listSalleSearched = sal; // Display all salles initially
       },
       error: (er) => {
         alert(er.message);
@@ -69,20 +69,6 @@ export class SallesComponent implements OnInit {
     return typeSalle ? typeSalle.libelle : 'Non défini';
   }
 
-  delete(id: string) {
-    if (confirm('Êtes-vous sûr de vouloir supprimer cette salle ?')) {
-      this.SCGS.deleteSalle(id).subscribe({
-        next: () =>
-          (this.listSalles = this.listSalles.filter(
-            (salle) => salle._id !== id
-          )),
-        error: (error) => {
-          console.error('Error deleting category:', error);
-        },
-      });
-    }
-  }
- 
   searchSalle(event: any) {
     const key = event.target.value;
     if (event.target.value.length >= 1) { // Start search after 3 characters
@@ -96,5 +82,6 @@ export class SallesComponent implements OnInit {
       this.listSalleSearched = this.listSalles; // Show all services if search key is less than 3 characters
     }
   }
+
   
 }
