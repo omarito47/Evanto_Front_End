@@ -10,8 +10,15 @@ import { User, UsersService } from 'src/app/core/services/users.service';
   styleUrls: ['./user-form-client.component.scss']
 })
 export class UserFormClientComponent implements OnInit {
-  user: User;
+  userBody={
+    name: '',
+    email: '',
+    age: 0,
+    address: '',
+    phoneNumber: ''
+  };
   isFromUserlistPage:String;
+  userId: string;
   constructor(
     private userService: UsersService,
     private route: ActivatedRoute,
@@ -20,24 +27,29 @@ export class UserFormClientComponent implements OnInit {
   ) {}
 
   ngOnInit(): void {
-    const userId = this.route.snapshot.paramMap.get('id');
+    this.userId = this.route.snapshot.paramMap.get('id');
      this.isFromUserlistPage =localStorage.getItem('fromListUser');
 
-    if (userId) {
-      this.userService.getUserById(userId).subscribe(user => {
-        this.user = user;
+    if (this.userId) {
+      this.userService.getUserById(this.userId).subscribe(user => {
+        this.userBody.address = user.address;
+        this.userBody.age = user.age;
+        this.userBody.email = user.email;
+        this.userBody.name = user.name;
+        this.userBody.phoneNumber = user.phoneNumber;
+
       });
     }
   }
 
   onSubmit(form: NgForm): void {
-    this.userService.updateUser(this.user._id!, this.user).subscribe(() => {
+    this.userService.updateUser(this.userId, form.value).subscribe(() => {
       this.snackBar.open('User updated successfully!', 'Close', {
         
         duration: 3000, // Duration in milliseconds
       });
 
-      this.router.navigate(['/nav2/edit-user/'+this.user._id]);
+      this.router.navigate(['/nav2/edit-user/'+this.userId]);
       
      
     });

@@ -38,8 +38,9 @@ export class UsersService {
     return this.http.post<User>(this.apiUrl, user);
   }
 
-  updateUser(id: string, user: User): Observable<User> {
-    return this.http.put<User>(`${this.apiUrl}/${id}`, user);
+  updateUser(id: string, updatedAttributes: Partial<User>): Observable<User> {
+    const url = `${this.apiUrl}/${id}`;
+    return this.http.put<User>(url, updatedAttributes);
   }
 
   deleteUser(id: string): Observable<void> {

@@ -3,6 +3,7 @@ import { NgForm } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { User, UsersService } from 'src/app/core/services/users.service';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 
 @Component({
   selector: 'app-user-form',
@@ -10,46 +11,75 @@ import { User, UsersService } from 'src/app/core/services/users.service';
   styleUrls: ['./user-form.component.scss']
 })
 export class UserFormComponent implements OnInit {
-  user: User;
+  userBody={
+    name: '',
+    email: '',
+    age: 0,
+    address: '',
+    phoneNumber: ''
+  };
   isEditMode: boolean = false;
   isFromUserlistPage: string;
+  userId: string;
 
   constructor(
     private userService: UsersService,
     private route: ActivatedRoute,
     private router: Router,
-    private snackBar: MatSnackBar // Inject MatSnackBar
+    private snackBar: MatSnackBar,
+    private http: HttpClient
   ) {}
 
   ngOnInit(): void {
-    const userId = this.route.snapshot.paramMap.get('id');
+    this. userId = this.route.snapshot.paramMap.get('id');
     this.isFromUserlistPage = localStorage.getItem('fromListUser');
 
-    if (userId) {
+    if (this.userId) {
       this.isEditMode = true;
-      this.userService.getUserById(userId).subscribe(user => {
-        this.user = user;
+      this.userService.getUserById(this.userId).subscribe(user => {
+        this.userBody.address = user.address;
+        this.userBody.age = user.age;
+        this.userBody.email = user.email;
+        this.userBody.name = user.name;
+        this.userBody.phoneNumber = user.phoneNumber;
+
       });
     }
   }
 
+  updateUser(): void {
+    const url = 'http://127.0.0.1:9090/user/66772b5a9b66fcaa30c2f3ea';
+    const headers = new HttpHeaders({
+      'Content-Type': 'application/json'
+    });
+
+    this.http.put(url, this.userBody, { headers }).subscribe(
+      response => {
+        console.log(response);
+      },
+      error => {
+        console.error(error);
+      }
+    );
+  }
+
   onSubmit(form: NgForm): void {
     if (this.isEditMode) {
-      this.userService.updateUser(this.user._id!, this.user).subscribe(() => {
-        this.snackBar.open('User updated successfully!', 'Close', {
-          duration: 3000, // Duration in milliseconds
-          panelClass:['custom-snackbar']
-        });
+      this.updateUser(); // Call the function to update the user
 
-        if (this.isFromUserlistPage === "true") {
-          this.router.navigate(['/liste-user']);
-          localStorage.setItem('fromListUser', "false");
-        } else {
-          this.router.navigate(['/users/edit/' + this.user._id]);
-        }
+      this.snackBar.open('User updated successfully!', 'Close', {
+        duration: 3000, // Duration in milliseconds
+        panelClass: ['custom-snackbar']
       });
+
+      if (this.isFromUserlistPage === 'true') {
+        this.router.navigate(['/liste-user']);
+        localStorage.setItem('fromListUser', 'false');
+      } else {
+        this.router.navigate(['/users/edit/' + this.userId]);
+      }
     } else {
-      this.userService.createUser(this.user).subscribe(() => {
+      this.userService.createUser(form.value).subscribe(() => {
         this.router.navigate(['/liste-user']);
       });
     }
