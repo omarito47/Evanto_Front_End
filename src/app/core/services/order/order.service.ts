@@ -8,7 +8,7 @@ import { BehaviorSubject, Observable } from 'rxjs';
 })
 export class OrderService {
   private httpOptions;
-  baseUrl: string = 'http://localhost:8000/';
+  baseUrl: string = 'http://localhost:9090/';
   apiUrlOrders: string = this.baseUrl + 'orders/';
   paymentUrl: string = this.baseUrl + 'payment/';
   private currentOrder: Order = this.getCartFromLocalStorage();

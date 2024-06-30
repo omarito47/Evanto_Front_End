@@ -7,7 +7,7 @@ import { filter } from 'rxjs';
   providedIn: 'root',
 })
 export class ProductService {
-  baseUrl: string = 'http://localhost:8000/';
+  baseUrl: string = 'http://localhost:9090/';
   apiUrlProducts: string = this.baseUrl + 'products/';
 
   constructor(private http: HttpClient) {}
