@@ -9,12 +9,20 @@
     />
   </div>
 
-  <div class="categories-filter">
-    <div *ngIf="categories">
-      <a *ngFor="let cat of categories">
+  <!-- Categories filter -->
+  <div class="categories-filter mb-3">
+    <label for="categoryFilter">Filter by Category:</label>
+    <select
+      id="categoryFilter"
+      class="form-select"
+      [(ngModel)]="selectedCategory"
+      (change)="applyCategoryFilter()"
+    >
+      <option value="">All Categories</option>
+      <option *ngFor="let cat of categories" [value]="cat._id">
         {{ cat.name }}
-      </a>
-    </div>
+      </option>
+    </select>
   </div>
 
   <div class="row">

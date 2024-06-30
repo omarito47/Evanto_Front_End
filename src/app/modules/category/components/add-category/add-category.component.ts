@@ -87,11 +87,18 @@ export class AddCategoryComponent {
         });
       },
       error: (e) => {
+        let errorMessage = `There was an error ${
+          this.id !== undefined ? 'updating' : 'adding'
+        } the category: ${e.message}`;
+        if (
+          e.status === 400 &&
+          e.error.message === 'Category name must be unique.'
+        ) {
+          errorMessage = 'Category name must be unique.';
+        }
         Swal.fire({
           title: 'Error',
-          text: `There was an error ${
-            this.id !== undefined ? 'updating' : 'adding'
-          } the category: ${e.message}`,
+          text: errorMessage,
           icon: 'error',
           confirmButtonText: 'OK',
         });

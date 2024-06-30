@@ -42,6 +42,25 @@ const routes: Routes = [
           ),
         canActivate: [AuthGuard],
       },
+      {
+        path: '',
+        loadChildren: () =>
+          import('../../modules/product/product.module').then(
+            (m) => m.ProductModule
+          ),
+      },
+      {
+        path: '',
+        loadChildren: () =>
+          import('../../modules/category/category.module').then(
+            (m) => m.CategoryModule
+          ),
+      },
+      {
+        path: '',
+        loadChildren: () =>
+          import('../../modules/order/order.module').then((m) => m.OrderModule),
+      },
     ],
   },
   {

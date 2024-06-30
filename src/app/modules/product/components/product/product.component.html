@@ -1,6 +1,6 @@
 <div class="container mt-5">
   <h2 class="mb-4">Product List</h2>
-  <button class="btn btn-success mb-3" [routerLink]="['/admin/product/add']">
+  <button class="btn btn-success mb-3" [routerLink]="['/product/add']">
     Add New Product
   </button>
 
@@ -46,13 +46,13 @@
         <td>
           <button
             class="btn btn-primary btn-sm"
-            [routerLink]="['/admin/product/details', product._id]"
+            [routerLink]="['/product/details', product._id]"
           >
             View
           </button>
           <button
             class="btn btn-info btn-sm ml-1"
-            [routerLink]="['/admin/product/update', product._id]"
+            [routerLink]="['/product/update', product._id]"
           >
             Edit
           </button>

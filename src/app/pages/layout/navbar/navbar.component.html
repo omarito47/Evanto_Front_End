@@ -158,6 +158,31 @@
         <mat-icon mat-list-icon class="icon-link">list</mat-icon>
         <span>Reservations</span>
       </mat-list-item>
+      <mat-list-item
+        [routerLink]="'/product'"
+        routerLinkActive="active"
+        class="list-item"
+      >
+        <mat-icon mat-list-icon class="icon-link">inventory</mat-icon>
+        <span>Produits</span>
+      </mat-list-item>
+      <mat-list-item
+        [routerLink]="'/category'"
+        routerLinkActive="active"
+        class="list-item"
+      >
+        <mat-icon mat-list-icon class="icon-link">category</mat-icon>
+        <span>Category</span>
+      </mat-list-item>
+      <mat-list-item
+        [routerLink]="'/order'"
+        routerLinkActive="active"
+        class="list-item"
+      >
+        <mat-icon mat-list-icon class="icon-link">shopping_cart</mat-icon>
+        <span>Orders</span>
+      </mat-list-item>
+
       <!-- <mat-list-item [routerLink]="'admin/all-reservations'" routerLinkActive="active" class="list-item">
             <mat-icon mat-list-icon class="icon-link" >list</mat-icon>
             <span >Reservations</span>

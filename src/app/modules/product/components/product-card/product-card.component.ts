@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute, Router } from '@angular/router';
+import { Router } from '@angular/router';
 import { Product } from 'src/app/core/models/product';
 import { CartService } from 'src/app/core/services/cart/cart.service';
 import { ProductService } from 'src/app/core/services/products/product.service';
@@ -19,9 +19,7 @@ export class ProductCardComponent implements OnInit {
   pageSize = 10;
   totalPages = 0;
   categories: Category[] = [];
-  filters: {
-    category: string[];
-  } = { category: [] };
+  selectedCategory: string | null = null;
 
   constructor(
     private productService: ProductService,
@@ -41,7 +39,7 @@ export class ProductCardComponent implements OnInit {
         this.categories = response.data;
       },
       error: (error) => {
-        console.error('Error fetching categories:', error); // Debug log
+        console.error('Error fetching categories:', error);
       },
     });
   }
@@ -52,8 +50,6 @@ export class ProductCardComponent implements OnInit {
       .subscribe({
         next: (response) => {
           this.listProducts = response.data;
-
-          // Check if paginationResult exists and contains totalItems
           if (
             response.paginationResult &&
             response.paginationResult.totalItems !== undefined
@@ -61,59 +57,61 @@ export class ProductCardComponent implements OnInit {
             this.totalPages = Math.ceil(
               response.paginationResult.totalItems / this.pageSize
             );
-            console.log('Total pages:', this.totalPages);
-          } else {
-            console.error('Invalid pagination data in response:', response);
-            // Handle or log the issue with pagination data
           }
-
-          this.listProductSearched = [...this.listProducts]; // Initialize listProductSearched with all products
+          {
+            this.totalPages = Math.ceil(
+              response.paginationResult.totalItems / this.pageSize
+            );
+          }
+          this.listProductSearched = [...this.listProducts];
+          this.applyCategoryFilter();
         },
         error: (error) => {
           console.error('Error fetching products:', error);
-          // Handle error loading products
         },
       });
   }
-
+  totalPagesArray(): number[] {
+    return Array.from({ length: this.totalPages }, (_, index) => index + 1);
+  }
   onPageChange(page: number): void {
     this.currentPage = page;
     this.loadProducts();
   }
 
   searchProduct(event: any): void {
-    const key = event.target.value.trim(); // Trim whitespace
-    this.searchText = key; // Update searchText
-
-    console.log('Search key:', key); // Debugging log
+    const key = event.target.value.trim();
+    this.searchText = key;
 
     if (key.length >= 2) {
       this.productService.chercherProduct(key).subscribe(
         (response) => {
-          console.log('Search results:', response); // Debugging log
-          this.listProductSearched = response; // Update listProductSearched with search results
+          this.listProductSearched = response;
+          this.applyCategoryFilter();
         },
         (error) => {
-          console.error('Error searching product', error); // Log error
-          this.listProductSearched = []; // Reset listProductSearched on error
+          console.error('Error searching product', error);
+          this.listProductSearched = [];
         }
       );
     } else {
-      this.listProductSearched = [...this.listProducts]; // Reset to all products if searchText is less than 2 characters
-      console.log(
-        'Reset search, showing all products:',
-        this.listProductSearched
-      ); // Debugging log
+      this.listProductSearched = [...this.listProducts];
+      this.applyCategoryFilter();
     }
   }
 
-  totalPagesArray(): number[] {
-    return Array.from({ length: this.totalPages }, (_, index) => index + 1);
+  applyCategoryFilter(): void {
+    if (this.selectedCategory) {
+      this.listProductSearched = this.listProducts.filter(
+        (product) => product.category?._id === this.selectedCategory
+      );
+    } else {
+      this.listProductSearched = [...this.listProducts];
+    }
   }
 
-  addToCart(product: Product) {
+  addToCart(product: Product): void {
     this.cartService.addToCart(product);
-    console.log('click');
     this.router.navigateByUrl('/cart-page');
   }
 }

@@ -35,7 +35,7 @@ export class AddProductComponent implements OnInit {
     private ar: ActivatedRoute
   ) {
     this.product = this.formBuilder.group({
-      title: ['', Validators.required],
+      title: ['', [Validators.required, Validators.minLength(3)]],
       description: ['', Validators.required],
       price: ['', [Validators.required, Validators.min(0)]],
       quantity: ['', [Validators.required, Validators.min(0)]],
