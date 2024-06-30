@@ -3,6 +3,7 @@ import { BreakpointObserver, Breakpoints } from '@angular/cdk/layout';
 import { Observable } from 'rxjs';
 import { map, shareReplay } from 'rxjs/operators';
 import { Router } from '@angular/router';
+import { UsersService } from 'src/app/core/services/users.service';
 
 @Component({
   selector: 'app-navbar',
@@ -13,12 +14,17 @@ export class NavbarComponent {
   screenWidth!: number;
   userRole: string;
   userId:string;
+  userName:string;
 
   ngOnInit() {
     // Retrieve the user's role from local storage
     this.userRole = localStorage.getItem('role');
     // Retrieve the user id from local storage
     this.userId = localStorage.getItem('userId');
+    //set the user name
+    this.userService.getUserById(this.userId).subscribe(user => {
+      this.userName=user.name
+     });
     
   }
 
@@ -33,7 +39,8 @@ export class NavbarComponent {
 
   constructor(
     private breakpointObserver: BreakpointObserver,
-    private router : Router
+    private router : Router,
+    private userService : UsersService  // Inject UserService for user name retrieval
   ) {
     this.getScreenSize();
   }
