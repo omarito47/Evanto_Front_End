@@ -1,6 +1,6 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { Commentaire } from '../models/commentaire';
+import { Commentaire } from '../model/commentaire';
 
 @Injectable({
   providedIn: 'root'
@@ -18,6 +18,9 @@ export class CommentService {
   getComments(iduser:string,idrec:string){
     return this.http.get<Commentaire[]>(this.apiUrlCommentaire+"/"+iduser+"/"+idrec);
   }
+  getCommentsByReclamation(idrec:string){
+    return this.http.get<Commentaire[]>(this.apiUrlCommentaire+"rec/"+idrec);
+  }
 
   deleteComment(id:string) {
     return this.http.delete(this.apiUrlCommentaire + id);
@@ -28,5 +31,9 @@ export class CommentService {
   }
   nonSatisfaitComment(id:string,comment:Commentaire){
     return this.http.patch<Commentaire>(this.apiUrlCommentaire+"/"+id+"/invalide",comment);
+  }
+
+  updateComment(id: string, comment: Commentaire) {
+    return this.http.patch<Commentaire>(this.apiUrlCommentaire + id, comment);
   }
 }

@@ -1,0 +1,94 @@
+<!-- 
+<h1> Liste des Reclamations : </h1>
+
+<input type="text" [(ngModel)]="searchText" placeholder="Search reclamations..." (keyup)="searchReclamation($event)" ><br> 
+<hr> 
+    <div>
+        <select (change)="onSortOrderChange($event)">
+          <option value="desc">Newest First</option>
+          <option value="asc">Oldest First</option>
+        </select>
+      </div>
+
+
+    <select [(ngModel)]="serviceidSearch" (change)="filterRecByService($event)">
+        <option value="all">All</option>
+        <option *ngFor="let s of listService" [value]="s._id">{{s.libelle}}</option>
+    </select>
+
+
+    <table border="1" class="table">
+      <thead>
+        <tr *ngIf="listReclamationsSearched.length != 0">
+          <th scope="col">Title</th>
+          <th scope="col">Date</th>
+          <th scope="col">etat</th>
+          <th scope="col">status</th>
+          <th scope="col">Document</th>
+          <th scope="col">Details</th>
+          <th scope="col">Update</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let r of listReclamationsSearched">
+          <td>{{r.title}}</td>
+          <td>{{r.createdAt | date:'medium'}}</td>
+          <td><span *ngIf="r.etat">Traiter</span><span *ngIf="!r.etat">Non Traiter</span></td>
+          <td><span *ngIf="r.status">Ouvert</span><span *ngIf="!r.status">Fermer</span></td>  
+          <td><a [href]="r.pieceJointe" target="_blank"><i class="fa fa-download"></i></a></td>
+          
+          <td> <a [routerLink]="[r._id]"><i class="fa fa-file-text" aria-hidden="true"></i>          </a></td>
+          <td> <a [routerLink]="['update',r._id]"><i class="fa fa-pencil-square" aria-hidden="true"></i></a></td>
+          <td> <button (click)="removeReclamation(r._id)"><i class="fa fa-trash" aria-hidden="true"></i>          </button></td>
+        </tr>
+      </tbody>
+    
+    
+    
+</table> -->
+<h1 class="title">Liste des Reclamations</h1>
+
+<div class="search-container">
+  <input type="text" [(ngModel)]="searchText" placeholder="Search reclamations..." (keyup)="searchReclamation($event)">
+</div>
+
+<hr>
+
+<div class="sort-filter-container">
+  <select (change)="onSortOrderChange($event)">
+    <option value="desc">Newest First</option>
+    <option value="asc">Oldest First</option>
+  </select>
+
+  <select [(ngModel)]="serviceidSearch" (change)="filterRecByService($event)">
+    <option value="all">All</option>
+    <option *ngFor="let s of listService" [value]="s._id">{{s.libelle}}</option>
+  </select>
+</div>
+
+<table class="reclamation-table">
+  <thead>
+    <tr *ngIf="listReclamationsSearched.length != 0">
+      <th scope="col">Title</th>
+      <th scope="col">Date</th>
+      <th scope="col">Etat</th>
+      <th scope="col">Status</th>
+      <th scope="col">Document</th>
+      <th scope="col">Details</th>
+      <th scope="col">Update</th>
+      <th scope="col">Delete</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr *ngFor="let r of listReclamationsSearched" class="reclamation-row">
+      <td>{{r.title}}</td>
+      <td>{{r.createdAt | date:'medium'}}</td>
+      <td><span *ngIf="r.etat">Traiter</span><span *ngIf="!r.etat">Non Traiter</span></td>
+      <td><span *ngIf="r.status">Ouvert</span><span *ngIf="!r.status">Fermer</span></td>
+      <td><a [href]="r.pieceJointe" target="_blank"><i class="fa fa-download"></i></a></td>
+      <td><a [routerLink]="[r._id]"><i class="fa fa-file-text" aria-hidden="true"></i></a></td>
+      <td><a [routerLink]="['update',r._id]"><i class="fa fa-pencil-square" aria-hidden="true"></i></a></td>
+      <td><button (click)="removeReclamation(r._id)"><i class="fa fa-trash" aria-hidden="true"></i></button></td>
+    </tr>
+  </tbody>
+</table>

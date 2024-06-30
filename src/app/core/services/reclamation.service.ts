@@ -1,6 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { Reclamation } from '../models/reclamation';
+import { Reclamation } from '../model/reclamation';
+import { Observable } from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
@@ -16,6 +17,9 @@ export class ReclamationService {
   }
   getReclamations(){
     return this.http.get<Reclamation[]>(this.apiUrlReclamation);
+  }
+  getReclamationByUser(id:string){
+    return this.http.get<Reclamation[]>(this.apiUrlReclamation+"user/"+id);
   }
   getReclamationById(id:string){
     return this.http.get<Reclamation>(this.apiUrlReclamation+id);
@@ -44,6 +48,14 @@ export class ReclamationService {
   }
   fermerReclamation(id: string , body:Reclamation) {
     return this.http.patch(this.apiUrlReclamation + id+"/fermer",body);
+  }
+
+  // getReclamationStats(): Observable<any> {
+  //   return this.http.get<any>(this.apiUrlReclamation+"stats");
+  // }
+
+  getReclamationsCountByService(): Observable<any> {
+    return this.http.get<any>(this.apiUrlReclamation+"reclamations-count-by-service");
   }
 
 }

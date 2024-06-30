@@ -1,0 +1,139 @@
+<!-- 
+<h1>{{reclamation.title}}</h1>
+
+<h3> Type : {{service.libelle}}</h3> <hr>
+<p>{{reclamation.description}}</p>
+<br><br>
+<div>
+    <span style="color:green;" *ngIf="reclamation.status ==true">OUVERT</span>
+    <span style="color:red;" *ngIf="reclamation.status ==false ">FERMER</span>
+<span>----------------------</span>
+    <span style="color:green;" *ngIf="reclamation.etat==true" >TRAITER</span>
+    <span style="color:red;" *ngIf="reclamation.etat==false">NON TRAITER</span>
+</div>
+<br><br>
+
+<p>{{reclamation.email}}</p>
+<p>{{reclamation.pieceJointe}}</p>
+<p>{{reclamation.email}}</p>
+<p>{{reclamation.createdAt}}</p>
+<p>{{reclamation.updatedAt}}</p>
+
+
+
+<hr>
+<button style="background-color: rgb(233, 214, 41);"  (click)="traiterRec()">traiter Reclamation </button>
+<button style="background-color: rgb(36, 238, 30);"  (click)="ouvrireRec()">ouvrire reclamation </button>
+<button style="background-color: rgb(233, 95, 41);"  (click)="fermerRec()">fermer Reclamation </button>
+<hr><hr>
+<h4>liste des commentaire </h4>
+<div *ngFor="let c of listComment">
+    <hr>
+    <p>{{c.description}}</p>
+    <button [disabled]="c.selection" (click)="satisfait(c)">satisfait</button>
+    <button [disabled]="c.selection" (click)="nonsatisfait(c)">non satisfait</button>
+    <button [disabled]="c.selection" (click)="delete(c)">delete</button>
+    <hr>
+</div>
+<hr><hr>
+<form [formGroup]="commentaire">
+   <hr>
+    <textarea formControlName="description" placeholder="description"></textarea><br>
+    <input type="submit" value="Envoyer" (click)="commenter()">
+</form>
+ -->
+<!-- ******************************************* -->
+
+ <!-- <div class="reclamation-container scrollable">
+    <h1 class="reclamation-title">{{reclamation.title}}</h1> : 
+    <h3 class="reclamation-type"> Type : {{service.libelle}}</h3>
+    <p class="reclamation-description">{{reclamation.description}}</p>
+    <div class="reclamation-status">
+       <div>
+        <p>Status : </p>
+            <span class="status-open" *ngIf="reclamation.status == true">OUVERT</span>
+            <span class="status-closed" *ngIf="reclamation.status == false">FERMER</span>
+       </div>
+
+       <div>
+        <p>Etat de Traitement : </p>
+            <span class="status-treated" *ngIf="reclamation.etat == true">TRAITER</span>
+            <span class="status-untreated" *ngIf="reclamation.etat == false">NON TRAITER</span>
+       </div>
+    </div>
+    <a [href]="reclamation.pieceJointe" target="_blank" *ngIf="reclamation.pieceJointe != null" class="reclamation-attachment">Downlaod Document</a><br>
+    <span>date pub : </span><span class="reclamation-updated">{{ reclamation.createdAt}}</span><br>
+    <span>last update : </span><span class="reclamation-updated">{{ reclamation.updatedAt}}</span>
+
+    <div class="reclamation-actions">
+        <button [disabled]="reclamation.etat == false" class="btn ouvrir" (click)="ouvrireRec()">Ouvrir Reclamation</button>
+        <button [disabled]="reclamation.status == false"  class="btn fermer" (click)="fermerRec()">Fermer Reclamation</button>
+    </div>
+    <form [formGroup]="commentaire" class="comment-form" *ngIf="listComment.length %2 !==0 && listComment.length !==0">
+        <textarea class="comment-textarea" formControlName="description" placeholder="Description"></textarea><br>
+        <input class="btn envoyer" type="submit" value="Envoyer" (click)="commenter()">
+    </form>
+    <h4 class="comment-title">Liste des commentaires</h4>
+    <div class="comment-list" *ngFor="let c of listComment">
+        <p *ngIf="c.roleUser === 'admin'">Admin</p>
+        <p *ngIf="c.roleUser === 'user'">Vous</p>
+        <p class="comment-description">{{c.description}}</p>
+        <p>Date Commentaire : <span>{{c.updatedAt}}</span></p>
+        <div class="comment-actions" *ngIf="c.roleUser === 'admin'">
+
+            <button class="btn satisfait" [disabled]="c.selection" (click)="satisfait(c)">Satisfait</button>
+            <button class="btn nonsatisfait" [disabled]="c.selection" (click)="nonsatisfait(c)">Non Satisfait</button>
+        </div>
+    </div>
+  
+</div>  -->
+
+<!-- ******************************************* -->
+
+<div class="reclamation-container">
+    <div class="reclamation-details">
+      <h1 class="reclamation-title">{{reclamation.title}}</h1>
+      <h3 class="reclamation-type">Type : {{service.libelle}}</h3>
+      <p class="reclamation-description">{{reclamation.description}}</p>
+      <div class="reclamation-status">
+        <div>
+          <p>Status :</p>
+          <span class="status-open" *ngIf="reclamation.status">OUVERT</span>
+          <span class="status-closed" *ngIf="!reclamation.status">FERMER</span>
+        </div>
+        <div>
+          <p>Etat de Traitement :</p>
+          <span class="status-treated" *ngIf="reclamation.etat">TRAITER</span>
+          <span class="status-untreated" *ngIf="!reclamation.etat">NON TRAITER</span>
+        </div>
+      </div>
+      <a [href]="reclamation.pieceJointe" target="_blank" *ngIf="reclamation.pieceJointe" class="reclamation-attachment">Download Document</a>
+      <div class="reclamation-dates">
+        <span>date pub :</span><span class="reclamation-updated">{{ reclamation.createdAt | date:'medium'}}</span><br>
+        <span>last update :</span><span class="reclamation-updated">{{ reclamation.updatedAt | date:'medium' }}</span>
+      </div>
+      <div class="reclamation-actions">
+        <button [disabled]="!reclamation.etat" class="btn ouvrir" (click)="ouvrireRec()">Ouvrir Reclamation</button>
+        <button [disabled]="!reclamation.status" class="btn fermer" (click)="fermerRec()">Fermer Reclamation</button>
+      </div>
+      <form [formGroup]="commentaire" class="comment-form" *ngIf="listComment.length % 2 !== 0 && listComment.length !== 0">
+        <textarea class="comment-textarea" formControlName="description" placeholder="Description"></textarea><br>
+        <input class="btn envoyer" type="submit" value="Envoyer" (click)="commenter()">
+      </form>
+    </div>
+    
+    <div class="comment-section">
+      <h4 class="comment-title">Liste des commentaires</h4>
+      <div class="comment-list" *ngFor="let c of listComment">
+        <p *ngIf="c.roleUser === 'admin'">Admin</p>
+        <p *ngIf="c.roleUser === 'user'">Vous</p>
+        <p class="comment-description">{{c.description}}</p>
+        <p>Date Commentaire : <span>{{c.updatedAt | date:'medium'}}</span></p>
+        <div class="comment-actions" *ngIf="c.roleUser === 'admin'">
+          <button class="btn satisfait" [disabled]="c.selection" (click)="satisfait(c)">Satisfait</button>
+          <button class="btn nonsatisfait" [disabled]="c.selection" (click)="nonsatisfait(c)">Non Satisfait</button>
+        </div>
+      </div>
+    </div>
+  </div>
+  

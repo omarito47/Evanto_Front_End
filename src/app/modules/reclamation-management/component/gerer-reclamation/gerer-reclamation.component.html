@@ -1,0 +1,122 @@
+<div class="main-box">
+    
+<div class="reclamation-box">  
+    <h1> Liste des Reclamations : </h1>
+    <input type="text" [(ngModel)]="searchText" placeholder="Search reclamations..." (keyup)="searchReclamation($event)" ><br> 
+    <hr> 
+        <div>
+            <!-- Optionally, you can add a dropdown to choose ascending or descending order -->
+            <select (change)="onSortOrderChange($event)">
+            <option value="desc">Newest First</option>
+            <option value="asc">Oldest First</option>
+            </select>
+        </div>
+        <select [(ngModel)]="serviceidSearch" (change)="filterRecByService($event)">
+            <option value="all">All</option>
+            <option *ngFor="let s of listService" [value]="s._id">{{s.libelle}}</option>
+        </select>
+        <table border="1" class="table">
+        <thead>
+            <tr *ngIf="listReclamationsSearched.length != 0">
+            <th scope="col">Title</th>
+            <th scope="col">Date</th>
+            <th scope="col">etat</th>
+            <th scope="col">status</th>
+            <th scope="col">Document</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr *ngFor="let r of listReclamationsSearched">
+            <td>{{r.title}}</td>
+            <td>{{r.createdAt}}</td>
+            <td><span *ngIf="r.etat">Traiter</span><span *ngIf="!r.etat">Non Traiter</span></td>
+            <td><span *ngIf="r.status">Ouvert</span><span *ngIf="!r.status">Fermer</span></td>  
+            <td><a [href]="r.pieceJointe" target="_blank">Document</a></td>
+            
+            <td> <a [routerLink]="[r._id]">details</a></td>
+            <td> <a [routerLink]="['/update',r._id]">update</a></td>
+            <td> <button (click)="removeReclamation(r._id)">Delete</button></td>
+            </tr>
+        </tbody>   
+    </table>
+
+
+</div>
+    <div class="service-box">
+        <h1> Liste des Services : </h1>
+
+        <input type="text" [(ngModel)]="searchTextService" placeholder="Search services..." (keyup)="searchService($event)" >
+
+        <!-- <form [formGroup]="service">
+            <input formControlName="libelle" placeholder="Service Name">
+            <input type="submit" value="Add"  (click)="addService()">
+        </form>
+        <table border="1">
+            <tr *ngIf="listServices.length != 0">
+                <th>libelle</th>
+            </tr>
+            <tr *ngFor="let s of listServices">
+                <td>{{s.libelle}}</td>
+                <td> <button (click)="removeService(s._id)">Delete</button></td>
+            </tr>
+        </table> -->
+
+        <form [formGroup]="serviceForm" (ngSubmit)="addService()">
+            <input formControlName="libelle" placeholder="Service Name">
+            <input type="submit" value="Add">
+          </form>
+          
+          <table border="1">
+            <tr *ngIf="listServices.length != 0">
+              <th>Libelle</th>
+              <th>Actions</th>
+            </tr>
+            <tr *ngFor="let s of listServices; let i = index">
+              <td *ngIf="editIndex !== i">{{s.libelle}}</td>
+              <td *ngIf="editIndex === i">
+                <input [(ngModel)]="s.libelle" name="libelle-{{i}}" />
+              </td>
+              <td>
+                <button *ngIf="editIndex !== i" (click)="editService(i)">Edit</button>
+                <button *ngIf="editIndex === i" (click)="updateService(i, s)">Update</button>
+                <button (click)="removeService(s._id)">Delete</button>
+              </td>
+            </tr>
+          </table>
+    </div>
+</div>
+
+
+
+
+   <!-- <td><a [routerLink]="r.pieceJointe">Document</a></td> -->
+        <!-- <td>{{r.id}}</td> -->
+        <!-- <td> <a [routerLink]="r._id">delete</a></td> -->
+        <!-- <td> <button [disabled]="m.nbr_place === 0" (click)="reserver(m)">Reserver</button></td> --> 
+        <!-- <td> <button (click)="removeReclamation(r.id)">Delete</button></td> -->
+        <!-- <td> <a [routerLink]="['/details/',m.id]">details</a></td> -->
+        <!-- <td> <a [routerLink]="['/update/',m.id]">update</a></td> -->
+
+        <!-- reclamations.component.html -->
+<!-- <div>
+    <h2>Monthly Reclamations</h2>
+    <canvas baseChart
+            [datasets]="monthlyData"
+            [labels]="monthlyLabels"
+            [options]="chartOptions"
+            [legend]="true"
+            [chartType]="'bar'">
+    </canvas>
+  </div>
+  
+  <div>
+    <h2>Reclamations by Service</h2>
+    <canvas baseChart
+            [datasets]="serviceData"
+            [labels]="serviceLabels"
+            [options]="chartOptions"
+            [legend]="true"
+            [chartType]="'pie'">
+    </canvas>
+  </div>
+   -->

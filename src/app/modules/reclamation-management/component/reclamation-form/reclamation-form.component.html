@@ -1,0 +1,44 @@
+<!-- 
+<form [formGroup]="reclamation">
+    <input formControlName="title" placeholder="title"><br>
+    <textarea formControlName="description" placeholder="description"></textarea><br>
+    <input formControlName="email" placeholder="email"><br>
+    <input type="number" formControlName="numTelReclamation" placeholder="numTelReclamation"><br>
+    <input *ngIf="idr == undefined" type="file" formControlName="pieceJointe" (change)="onFileChange($event)"><br>
+    
+
+    <select class="ss" formControlName="typeReclamation">
+        <option value="" disabled selected>Select Reclamation type</option>
+        <option *ngFor="let s of listServices" [value]="s._id">{{s.libelle}}</option>
+    </select>
+
+    <input type="submit" [value]="idr == undefined ? 'Add' : 'Update'"  (click)="add()">
+</form> 
+-->
+
+<form [formGroup]="reclamation" class="reclamation-form">
+    <div class="form-group">
+        <input formControlName="title" placeholder="Title" class="form-control">
+    </div>
+    <div class="form-group">
+        <textarea formControlName="description" placeholder="Description" class="form-control"></textarea>
+    </div>
+    <div class="form-group">
+        <input formControlName="email" placeholder="Email" class="form-control">
+    </div>
+    <div class="form-group">
+        <input type="number" formControlName="numTelReclamation" placeholder="Phone Number" class="form-control">
+    </div>
+    <div class="form-group" *ngIf="idr == undefined">
+        <input type="file" formControlName="pieceJointe" (change)="onFileChange($event)" class="form-control">
+    </div>
+    <div class="form-group typeReclamation">
+        <select class="form-control " formControlName="typeReclamation">
+            <option value="" disabled selected>Select Reclamation type</option>
+            <option *ngFor="let s of listServices" [value]="s._id">{{s.libelle}}</option>
+        </select>
+    </div>
+    <div class="form-group btn-container">
+        <input type="submit" value="Envoyer" (click)="add()" class="btn-submit">
+    </div>
+</form>
