@@ -19,10 +19,10 @@ export class ProductCardComponent implements OnInit {
   pageSize = 10;
   totalPages = 0;
   categories: Category[] = [];
-  selectedCategory: string | null = null;
+  selectedCategory: string | null = '';
 
   constructor(
-    private productService: ProductService,
+    private productService: ProductService, // adjust to your service
     private catService: CategoryService,
     private cartService: CartService,
     private router: Router
@@ -58,22 +58,15 @@ export class ProductCardComponent implements OnInit {
               response.paginationResult.totalItems / this.pageSize
             );
           }
-          {
-            this.totalPages = Math.ceil(
-              response.paginationResult.totalItems / this.pageSize
-            );
-          }
           this.listProductSearched = [...this.listProducts];
-          this.applyCategoryFilter();
+          this.applyFilters();
         },
         error: (error) => {
           console.error('Error fetching products:', error);
         },
       });
   }
-  totalPagesArray(): number[] {
-    return Array.from({ length: this.totalPages }, (_, index) => index + 1);
-  }
+
   onPageChange(page: number): void {
     this.currentPage = page;
     this.loadProducts();
@@ -87,7 +80,7 @@ export class ProductCardComponent implements OnInit {
       this.productService.chercherProduct(key).subscribe(
         (response) => {
           this.listProductSearched = response;
-          this.applyCategoryFilter();
+          this.applyFilters(); // Apply category filter after search
         },
         (error) => {
           console.error('Error searching product', error);
@@ -96,18 +89,42 @@ export class ProductCardComponent implements OnInit {
       );
     } else {
       this.listProductSearched = [...this.listProducts];
-      this.applyCategoryFilter();
+      this.applyFilters(); // Apply category filter without search
     }
   }
 
-  applyCategoryFilter(): void {
+  applyFilters(): void {
+    let filteredProducts = [...this.listProducts];
+
+    if (this.searchText.length >= 2) {
+      filteredProducts = this.filterBySearch(filteredProducts);
+    }
+
+    filteredProducts = this.filterByCategory(filteredProducts);
+
+    this.listProductSearched = filteredProducts;
+  }
+
+  filterBySearch(products: Product[]): Product[] {
+    const key = this.searchText.toLowerCase().trim();
+    return products.filter(
+      (product) =>
+        product.title.toLowerCase().includes(key) ||
+        product.description.toLowerCase().includes(key)
+    );
+  }
+
+  filterByCategory(products: Product[]): Product[] {
     if (this.selectedCategory) {
-      this.listProductSearched = this.listProducts.filter(
+      return products.filter(
         (product) => product.category?._id === this.selectedCategory
       );
     } else {
-      this.listProductSearched = [...this.listProducts];
+      return products;
     }
+  }
+  totalPagesArray(): number[] {
+    return Array.from({ length: this.totalPages }, (_, index) => index + 1);
   }
 
   addToCart(product: Product): void {
