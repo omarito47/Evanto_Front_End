@@ -5,7 +5,7 @@ import { Router } from '@angular/router';
 @Component({
   selector: 'app-add-categorie',
   templateUrl: './add-categorie.component.html',
-  styleUrls: ['./add-categorie.component.css']
+//styleUrls: ['./add-categorie.component.css']
 })
 export class AddCategorieComponent {
   form: any = {}; // Définir votre modèle de catégorie ici

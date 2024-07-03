@@ -9,7 +9,7 @@ import { CategorieService } from 'src/app/services/categorie.service';
 @Component({
   selector: 'app-categorie',
   templateUrl: './categorie.component.html',
-  styleUrls: ['./categorie.component.css']
+  //styleUrls: ['./categorie.component.css']
 })
 export class CategorieComponent implements OnInit {
   listServices: Categorie[] = [];
@@ -75,4 +75,56 @@ export class CategorieComponent implements OnInit {
       }
     });
   }
+
+  // Ajout de la fonction de recherche
+  search() {
+    if (this.searchText.trim()) {
+      this.categorieService.search(this.searchText).subscribe({
+        next: (categories: Categorie[]) => {
+          this.listServices = categories;
+        },
+        error: (error) => {
+          console.error('Erreur lors de la recherche des catégories:', error);
+          alert('Erreur lors de la recherche des catégories. Veuillez réessayer.');
+        }
+      });
+    } else {
+      this.getAll(); // Réinitialiser à toutes les catégories si la requête de recherche est vide
+    }
+  }
+
+  // Fonction pour archiver une catégorie
+  archive(id: string) {
+    if (confirm("Êtes-vous sûr de vouloir archiver cette catégorie ?")) {
+      this.categorieService.archiveCategory(id).subscribe({
+        next: (archivedCategory: Categorie) => {
+          alert('Catégorie archivée avec succès !');
+          setTimeout(() => {
+            this.getAll(); // Rafraîchir la liste après archivage
+          }, 100); // Attendre 100 millisecondes avant de rafraîchir
+        },
+        error: (error) => {
+          console.error('Erreur lors de l\'archivage de la catégorie:', error);
+          alert('Erreur lors de l\'archivage de la catégorie. Veuillez réessayer.');
+        }
+      });
+    }
+  }
+  
+  
+
+restore(id: string) {
+  this.categorieService.restoreCategory(id).subscribe({
+    next: (restoredCategory: Categorie) => {
+      console.log('Catégorie restaurée avec succès !', restoredCategory);
+      // Rafraîchir la liste des catégories ou effectuer d'autres actions nécessaires
+    },
+    error: (error) => {
+      console.error('Erreur lors de la restauration de la catégorie:', error);
+      // Gestion des erreurs
+    }
+  });
+}
+
+
 }

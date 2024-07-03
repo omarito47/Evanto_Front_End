@@ -7,7 +7,7 @@ import { Atelier } from '../model/atelier';
   providedIn: 'root'
 })
 export class AtelierService {
-  private apiUrl = 'http://127.0.0.1:9090/atelier';// Remplacez par votre URL d'API
+  private apiUrl = 'http://127.0.0.1:9090/atelier'; // Remplacez par votre URL d'API
 
   constructor(private http: HttpClient) {}
 
@@ -15,15 +15,13 @@ export class AtelierService {
     return this.http.get<Atelier[]>(`${this.apiUrl}/getAll`);
   }
 
-
   updateAtelier(id: string, atelier: Atelier): Observable<Atelier> {
-    const url = `${this.apiUrl}/update/${id}`; // URL complète avec l'ID
+    const url = `${this.apiUrl}/update/${id}`;
     return this.http.put<Atelier>(url, atelier);
   }
 
-
   addAtelier(atelier: Atelier): Observable<Atelier> {
-    return this.http.post<Atelier>(`${this.apiUrl}/add`, atelier); // URL pour ajouter un atelier
+    return this.http.post<Atelier>(`${this.apiUrl}/add`, atelier);
   }
 
   deleteAtelier(id: string): Observable<void> {
@@ -36,31 +34,19 @@ export class AtelierService {
     return this.http.get<Atelier>(url);
   }
 
-
-
-   // Nouvelle méthode pour exporter les ateliers en PDF
-   exportAteliersToPDF(): Observable<Blob> {
-    
-  return this.http.get(`${this.apiUrl}/ateliers/exporter-pdf`, { responseType: 'blob' });
-}
-
-  
-
+  // Méthode pour exporter les ateliers en PDF
+  exportAteliersToPDF(): Observable<Blob> {
+    return this.http.get(`${this.apiUrl}/ateliers/exporter-pdf`, { responseType: 'blob' });
+  }
 
   // Méthode pour trier les ateliers par date de début
   trierAteliersParDateDebut(): Observable<Atelier[]> {
     return this.http.get<Atelier[]>(`${this.apiUrl}/ateliers/trier-par-date`);
   }
 
-  // Autres méthodes CRUD pour les ateliers...
+// Méthode pour récupérer le tableau de bord administrateur
+getAdminDashboard(): Observable<any> {
+  return this.http.get<any>(`${this.apiUrl}/dashboard`);
 }
-
-  
-
-
-
-
-
-
-
+}
 

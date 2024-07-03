@@ -1,0 +1,23 @@
+<!-- add-evaluation.component.html -->
+
+<p>add-evaluation works!</p>
+
+<form (ngSubmit)="onSubmit(evaluationForm)" #evaluationForm="ngForm">
+    <div>
+      <label for="atelierId">Atelier ID:</label>
+      <input type="text" id="atelierId" required [(ngModel)]="evaluation.atelierId" name="atelierId">
+    </div>
+    <div>
+      <label for="rating">Rating:</label>
+      <input type="number" id="rating" required [(ngModel)]="evaluation.rating" name="rating" min="1" max="5">
+    </div>
+    <div>
+      <label for="comment">Comment:</label>
+      <textarea id="comment" required [(ngModel)]="evaluation.comment" name="comment"></textarea>
+    </div>
+    <button type="submit">Submit Evaluation</button>
+</form>
+
+<div *ngIf="responseMessage" class="response-message">
+  {{ responseMessage }}
+</div>

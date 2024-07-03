@@ -1,0 +1,27 @@
+<h2>Ajouter une Participation</h2>
+
+<form [formGroup]="participationForm" (ngSubmit)="onSubmit()">
+    <div>
+        <label for="userId">ID Utilisateur:</label>
+        <input type="text" id="userId" formControlName="userId">
+    </div>
+    <div>
+        <label for="atelierId">ID Atelier:</label>
+        <input type="text" id="atelierId" formControlName="atelierId">
+    </div>
+    <div>
+        <label for="categorieId">ID Catégorie:</label>
+        <input type="text" id="categorieId" formControlName="categorieId">
+    </div>
+    <button type="submit" [disabled]="!participationForm.valid">Ajouter Participation</button>
+</form>
+
+<!-- Afficher un message de succès -->
+<div *ngIf="submissionSuccess" class="success-message">
+    Participation ajoutée avec succès!
+</div>
+
+<!-- Afficher un message d'erreur en cas d'échec -->
+<div *ngIf="submissionError" class="error-message">
+    {{ submissionError }}
+</div>

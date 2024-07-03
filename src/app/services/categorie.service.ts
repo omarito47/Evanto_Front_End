@@ -1,3 +1,5 @@
+// categorie.service.ts
+
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
@@ -19,8 +21,6 @@ export class CategorieService {
     return this.http.get<Categorie[]>(this.apiUrl);
   }
 
-  
-
   update(id: string, categorie: Categorie): Observable<Categorie> {
     const url = `${this.apiUrl}/${id}`;
     return this.http.put<Categorie>(url, categorie);
@@ -33,5 +33,25 @@ export class CategorieService {
 
   getCategories(): Observable<Categorie[]> {
     return this.http.get<Categorie[]>(this.apiUrl);
+  }
+
+  search(query: string): Observable<Categorie[]> {
+    const url = `${this.apiUrl}/search?q=${query}`;
+    return this.http.get<Categorie[]>(url);
+  }
+
+  archiveCategory(id: string): Observable<Categorie> {
+    const url = `${this.apiUrl}/archive/${id}`;
+    return this.http.put<Categorie>(url, null);
+  }
+
+  restoreCategory(id: string): Observable<Categorie> {
+    const url = `${this.apiUrl}/restore/${id}`;
+    return this.http.put<Categorie>(url, null);
+  }
+
+  getArchivedCategories(): Observable<Categorie[]> {
+    const url = `${this.apiUrl}/archived`;
+    return this.http.get<Categorie[]>(url);
   }
 }

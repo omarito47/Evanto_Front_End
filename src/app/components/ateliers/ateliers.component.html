@@ -3,10 +3,10 @@
     <div class="pagetitle">
       <h1>Liste des Ateliers :</h1>
       <button (click)="exportToPDF()" class="export-btn">
-        <i class="fas fa-file-pdf"></i> Exporter en PDF
+        Exporter en PDF
       </button>
       <button (click)="trierParDateDebut()" class="sort-btn">
-        <i class="fas fa-sort"></i> Trier par Date de Début
+        Trier par Date de Début
       </button>
     </div>
 
@@ -22,12 +22,12 @@
           <th>Fréquence de Répétition</th>
           <th>Type d'Atelier</th>
           <th>Prix</th>
-          <th>frais_de_participation</th>
+          <th>Frais de Participation</th>
           <th>Actions</th>
         </tr>
       </thead>
       <tbody>
-        <tr *ngFor="let atelier of listAteliers; let i = index">
+        <tr *ngFor="let atelier of listAteliers">
           <td>{{ atelier.nom }}</td>
           <td>{{ atelier.description }}</td>
           <td>{{ atelier.lieu }}</td>
@@ -37,13 +37,16 @@
           <td>{{ atelier.frequence_de_repetition }}</td>
           <td>{{ getNomCategorie(atelier) }}</td>
           <td>{{ atelier.prix }}</td>
-          <td>{{ atelier.frais_de_participation}}</td>
+          <td>{{ atelier.frais_de_participation }}</td>
           <td>
             <button (click)="startEditing(atelier)" class="action-btn">
-              <i class="fas fa-edit"></i>
+              Modifier
             </button>
             <button (click)="deleteAtelier(atelier._id)" class="action-btn delete">
-              <i class="fas fa-trash"></i>
+              Supprimer
+            </button>
+            <button (click)="goToStatistiques(atelier._id)" class="action-btn">
+              Voir Statistiques
             </button>
           </td>
         </tr>
@@ -68,10 +71,10 @@
           <td><input type="text" [(ngModel)]="editingAtelier.frais_de_participation" name="frais_de_participation"></td>
           <td>
             <button (click)="updateAtelier()" class="action-btn">
-              <i class="fas fa-check"></i> <!-- Icône Valider -->
+              Valider
             </button>
             <button (click)="cancelEditing()" class="action-btn delete">
-              <i class="fas fa-times"></i> <!-- Icône Annuler -->
+              Annuler
             </button>
           </td>
         </tr>

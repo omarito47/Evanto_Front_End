@@ -3,6 +3,7 @@ import { Atelier } from 'src/app/model/atelier';
 import { AtelierService } from 'src/app/services/atelier.service';
 import { CategorieService } from 'src/app/services/categorie.service';
 import { Categorie } from 'src/app/model/categorie';
+import { Router } from '@angular/router'; // Importer Router
 
 @Component({
   selector: 'app-ateliers',
@@ -16,7 +17,8 @@ export class AteliersComponent implements OnInit {
 
   constructor(
     private atelierService: AtelierService,
-    private categorieService: CategorieService
+    private categorieService: CategorieService,
+    private router: Router // Injecter le service Router
   ) {}
 
   ngOnInit(): void {
@@ -113,5 +115,10 @@ export class AteliersComponent implements OnInit {
     this.listAteliers.sort((a, b) => {
       return new Date(a.date_debut).getTime() - new Date(b.date_debut).getTime();
     });
+  }
+
+  // Méthode pour naviguer vers la page de statistiques de l'atelier sélectionné
+  goToStatistiques(atelierId: string) {
+    this.router.navigate(['statistiques', atelierId]);
   }
 }

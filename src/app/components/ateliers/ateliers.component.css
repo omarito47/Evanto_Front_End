@@ -12,7 +12,7 @@
 }
 
 /* Style pour le bouton d'exportation en PDF */
-.export-btn {
+/* .export-btn {
     display: block;
     margin: 0 auto 20px auto;
     padding: 10px 20px;
@@ -23,14 +23,14 @@
     border-radius: 5px;
     cursor: pointer;
     text-align: center;
-}
+} */
 
 .export-btn:hover {
     background-color: #0056b3;
 }
 
 .export-btn i {
-    margin-right: 5px;
+    margin-left: 5px;
 }
 
 /* Style pour le tableau */
@@ -128,4 +128,17 @@ input[type="text"], input[type="date"], input[type="number"], select {
 /* Alignement du texte pour les boutons */
 button, .validation-btn, .cancel-btn {
     text-align: center;
+}
+.main-container .export-btn {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 10px;
+  }
+  
+  
+  .export-btn .fa-file-pdf {
+    color: #d32f2f; /* Couleur rouge pour l'icône PDF */
+    font-size: 35px; /* Taille de l'icône PDF */
+    margin-right: 10px; /* Espacement à gauche de l'icône PDF */
 }

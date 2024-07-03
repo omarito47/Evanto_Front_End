@@ -1,0 +1,55 @@
+<div class="container mt-4">
+  <div class="row mb-3">
+    <div class="col-auto">
+      <!-- Filtre par statut -->
+      <label for="statusFilter" class="form-label">Filtrer par statut :</label>
+      <select id="statusFilter" class="form-select" [(ngModel)]="selectedStatus" (change)="fetchParticipationsByStatus(selectedStatus)">
+        <option value="">Tous</option>
+        <option value="en attente">En attente</option>
+        <option value="confirmée">Confirmée</option>
+        <option value="annulée">Annulée</option>
+      </select>
+    </div>
+  </div>
+
+  <div *ngFor="let participation of participations">
+    <div class="card mb-3">
+      <div class="card-body">
+        <div *ngIf="editingParticipationId === participation._id; else displayMode">
+          <!-- Mode édition -->
+          <div class="mb-3">
+            <label class="form-label">Utilisateur :</label>
+            <input *ngIf="updatedParticipation.user" [(ngModel)]="updatedParticipation.user.name" class="form-control" placeholder="Nom Utilisateur">
+          </div>
+          <div class="mb-3">
+            <label class="form-label">Atelier :</label>
+            <input *ngIf="updatedParticipation.atelier" [(ngModel)]="updatedParticipation.atelier.nom" class="form-control" placeholder="Nom Atelier">
+          </div>
+          <div class="mb-3">
+            <label class="form-label">Catégorie :</label>
+            <input *ngIf="updatedParticipation.categorie" [(ngModel)]="updatedParticipation.categorie.nom_categorie" class="form-control" placeholder="Nom Catégorie">
+          </div>
+          <div class="mb-3">
+            <label class="form-label">Statut :</label>
+            <input [(ngModel)]="updatedParticipation.status" class="form-control" placeholder="Statut">
+          </div>
+          <div class="mb-3">
+            <button class="btn btn-success me-2" (click)="saveChanges(participation._id)">Enregistrer</button>
+            <button class="btn btn-secondary" (click)="cancelEditing()">Annuler</button>
+          </div>
+        </div>
+        <ng-template #displayMode>
+          <!-- Mode affichage -->
+          <p class="card-text">Utilisateur : {{ participation.user.name }}</p>
+          <p class="card-text">Atelier : {{ participation.atelier.nom }}</p>
+          <p class="card-text">Catégorie : {{ participation.categorie.nom_categorie }}</p>
+          <p class="card-text">Statut : {{ participation.status }}</p>
+          <div>
+            <button class="btn btn-danger me-2" (click)="deleteParticipation(participation._id)">Supprimer</button>
+            <button class="btn btn-primary" (click)="startEditing(participation)">Modifier</button>
+          </div>
+        </ng-template>
+      </div>
+    </div>
+  </div>
+</div>

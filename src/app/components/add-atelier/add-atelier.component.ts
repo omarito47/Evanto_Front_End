@@ -9,7 +9,7 @@ import { Router } from '@angular/router';
 @Component({
   selector: 'app-add-atelier',
   templateUrl: './add-atelier.component.html',
-  styleUrls: ['./add-atelier.component.css']
+  //styleUrls: ['./add-atelier.component.css']
 })
 export class AddAtelierComponent implements OnInit {
   form: FormGroup; // Utilisation de FormGroup
