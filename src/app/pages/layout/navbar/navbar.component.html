@@ -10,9 +10,9 @@
         menu
       </mat-icon>
     </button>
-    
-      <img src="../../../../../assets/images/logo.jpg" class="logo">
-    
+
+    <img src="../../../../../assets/images/logo.jpg" class="logo">
+
   </div>
 
 
@@ -37,7 +37,7 @@
               <img src="../../../../../assets/images/pict-user.jpg" alt="" width="40" height="40"
                 class="rounded me-2 color-change-2x1"> <br>
               {{userName}}
-              
+
             </div>
           </li>
           <li>
@@ -65,8 +65,7 @@
     [opened]="(isHandset$ | async) === false" [ngClass]="{'new-width': !isExpanded}">
 
     <mat-nav-list class=" menu-style" [ngClass]="{'new-style-css': !isExpanded}">
-      <mat-list-item [routerLink]="'dashboard'" routerLinkActive="active" class="list-item"
-        *ngIf="userRole == 'admin'">
+      <mat-list-item [routerLink]="'dashboard'" routerLinkActive="active" class="list-item" *ngIf="userRole == 'admin'">
         <mat-icon mat-list-icon class="icon-link">group</mat-icon>
         <span>Dashbord</span>
       </mat-list-item>
@@ -79,10 +78,10 @@
         <mat-icon mat-list-icon class="icon-link">person</mat-icon>
         <span >Users</span>
         </mat-list-item> -->
-        <mat-list-item [routerLink]="'users/edit/'+userId" routerLinkActive="active" class="list-item" >
-          <mat-icon mat-list-icon class="icon-link">group_add</mat-icon>
-          <span>Profile</span>
-        </mat-list-item>
+      <mat-list-item [routerLink]="'users/edit/'+userId" routerLinkActive="active" class="list-item">
+        <mat-icon mat-list-icon class="icon-link">group_add</mat-icon>
+        <span>Profile</span>
+      </mat-list-item>
 
       <mat-list-item [routerLink]="'type-event'" routerLinkActive="active" class="list-item">
         <mat-icon mat-list-icon class="icon-link">access_time</mat-icon>
@@ -108,6 +107,34 @@
             <mat-icon mat-list-icon class="icon-link" >list</mat-icon>
             <span >Reservations</span>
           </mat-list-item> -->
+      <!--insaf-->
+      <mat-list-item [routerLink]="'listSalle'" routerLinkActive="active" class="list-item">
+        <mat-icon mat-list-icon class="icon-link">control_point</mat-icon>
+        <span>Ajouter salle</span>
+      </mat-list-item>
+
+
+      <mat-list-item [routerLink]="'addTypeSalle'" routerLinkActive="active" class="list-item">
+        <mat-icon mat-list-icon class="icon-link">control_point</mat-icon>
+        <span>Ajouter TypeSalle</span>
+      </mat-list-item>
+
+      <mat-list-item [routerLink]="'listeReservationSalle'" routerLinkActive="active" class="list-item">
+        <mat-icon mat-list-icon class="icon-link">list</mat-icon>
+        <span>Reservations Salle</span>
+      </mat-list-item>
+
+      <!-- <mat-list-item [routerLink]="'Ratings'" routerLinkActive="active" class="list-item">
+    <mat-icon mat-list-icon class="icon-link" >list</mat-icon>
+    <span >Rating</span>
+  </mat-list-item> -->
+
+      <mat-list-item [routerLink]="'stats'" routerLinkActive="active" class="list-item">
+        <mat-icon mat-list-icon class="icon-link">bar_chart</mat-icon>
+        <span>Statistiques</span>
+      </mat-list-item>
+
+      <!--insaf-->
 
     </mat-nav-list>
 

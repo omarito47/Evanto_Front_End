@@ -1,0 +1,26 @@
+<div class="container">
+    <h1 class="text mb-4">Salles > Détails de la Salle</h1>
+    <div *ngIf="salle" class="salle-container card p-4" style="max-width: 1000px; margin: 0 auto;">
+      <div class="row align-items-center">
+        <div class="col-md-5">
+          <div class="salle-image" style="height: 400px;">
+            <img [src]="salle.image" alt="{{ salle.nomSalle }}" class="card-img-top h-100 w-100" style="object-fit: cover;">
+          </div>
+        </div>
+        <div class="col-md-7">
+          <div class="card-body text-center text-md-start d-flex flex-column h-100 justify-content-center">
+            <h1 class="card-title">{{ salle.nomSalle }}</h1>
+            <p class="card-text">{{ salle.description }}</p>
+            <p class="card-text"><strong>Lieu :</strong> {{ salle.lieu }}</p>
+            <p class="card-text"><strong>Prix :</strong> {{ salle.prix }} DT</p>
+            <p class="card-text"><strong>Type de Salle :</strong> {{ getTypeSalleLibelle(salle.typeSalle) }}</p>
+            <div class="mt-auto text-end">
+              <a href="#" class="btn btn-primary mr-2" [routerLink]="['/update', salle._id]">modifier</a>
+              <a class="btn btn-secondary" [routerLink]="['/listSalle']">retour</a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  

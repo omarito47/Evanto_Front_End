@@ -33,6 +33,24 @@ const routes: Routes = [
           import('../../modules/reservation/reservation.module').then((m) => m.ReservationModule),
         canActivate: [AuthGuard]
       },
+      //insaf
+      {
+        path: '',
+        loadChildren: () =>
+          import('../../modules/gestion-salle/gestion-salle.module').then((m) => m.GestionSalleModule),
+      },
+      {
+        path: '',
+        loadChildren: () =>
+          import('../../modules/gestion-reservation-salle/gestion-reservation-salle.module').then((m) => m.GestionReservationSalleModule),
+      },
+
+      {
+        path: '',
+        loadChildren: () =>
+          import('../../modules/gestion-rating/gestion-rating.module').then((m) => m.GestionRatingModule),
+      },
+      //insaf
 
     ],
   },
@@ -51,6 +69,20 @@ const routes: Routes = [
           import('../../modules/user-management/user-management.module').then((m) => m.UserManagementModule),
         canActivate: [AuthGuard]
       },
+      // insaf
+      {
+        path: '',
+        loadChildren: () =>
+          import('../../modules/gestion-salle/gestion-salle.module').then((m) => m.GestionSalleModule),
+      },
+
+      {
+        path: '',
+        loadChildren: () =>
+          import('../../modules/gestion-reservation-salle/gestion-reservation-salle.module').then((m) => m.GestionReservationSalleModule),
+      },
+
+      // insaf
     ],
   },
   {

@@ -1,0 +1,12 @@
+<div *ngIf="ratings.length > 0">
+    <h2>Liste des Ratings</h2>
+    <ul>
+      <li *ngFor="let rating of ratings">
+        {{ rating.idUser }} a donné une note de {{ rating.ratingValue }} à la salle {{ rating.idSalle }}
+      </li>
+    </ul>
+  </div>
+  
+  <div *ngIf="ratings.length === 0">
+    <p>Aucun rating trouvé.</p>
+  </div>

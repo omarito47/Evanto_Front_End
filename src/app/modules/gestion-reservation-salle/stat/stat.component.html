@@ -1,0 +1,50 @@
+<!-- <div>
+  <p>Nombre total de salles : {{ getNombreTotalSalles() }}</p>
+  <p>Nombre total de réservations : {{ getNombreTotalReservations() }}</p>
+  <p>Salle la plus réservée : {{ sallePlusReservee?.nomSalle }}</p>
+  <h3>Réservations par salle</h3>
+  <ul>
+    <li *ngFor="let item of reservationsParSalle">
+      {{ item.salle }} : {{ item.nombreReservations }} réservations
+    </li>
+  </ul>
+</div>
+<div>
+
+   -->
+   <div class="stats-dashboard">
+    <div class="summary-container">
+      <div class="summary-item">
+        <p><strong>Nombre total de salles :</strong></p>
+        <p>{{ getNombreTotalSalles() }}</p>
+      </div>
+      <div class="summary-item">
+        <p><strong>Nombre total de réservations :</strong></p>
+        <p>{{ getNombreTotalReservations() }}</p>
+      </div>
+      <div class="summary-item">
+        <p><strong>Salle la plus réservée :</strong></p>
+        <p>{{ sallePlusReservee?.nomSalle }}</p>
+      </div>
+    </div>
+  
+    <div class="reservations-chart">
+      <h3>Répartitions des réservations par salle</h3>
+      <div class="bars">
+        <div *ngFor="let item of reservationsParSalle" class="bar-container">
+          <div class="bar" [style.width.%]="getBarWidth(item.nombreReservations)">
+            <div class="bar-label">{{ item.salle }}</div>
+            <div class="bar-value">{{ item.nombreReservations }}</div>
+          </div>
+        </div>
+        <div class="no-reservations" *ngIf="reservationsParSalle.length === 0">
+          Aucune réservation n'a été effectuée pour l'instant.
+        </div>
+      </div>
+    </div>
+  </div>
+  
+  
+  
+  
+  

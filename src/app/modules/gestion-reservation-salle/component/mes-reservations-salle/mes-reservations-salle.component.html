@@ -1,0 +1,67 @@
+<div class="container overflow-auto" style="max-height: 600px;">
+  <h3 class="text mb-4">salles > Vos Réservations</h3>
+
+  <!-- Section principale des réservations actives -->
+  <div *ngIf="listReservation.length > 0" class="mb-4">
+    <h2 class="text-center mb-3">Réservations Actives</h2>
+    <div class="row">
+      <div class="col-md-4 mb-4" *ngFor="let reservation of listReservation">
+        <div class="card shadow-sm border rounded-3">
+          <div class="card-header bg-light">
+            <strong class="card-title">Détails de la réservation</strong>
+          </div>
+          <div class="card-body">
+            <p class="card-text">
+              <strong>Nom Salle:</strong> {{ getSalleName(reservation.idSalle) }}
+              <br>
+              <strong>Date de début:</strong> {{ reservation.dateDebut | date: 'dd/MM/yyyy' }}
+              <br>
+              <strong>Date de fin:</strong> {{ reservation.dateFin | date: 'dd/MM/yyyy' }}
+              <br>
+              <strong>Tarif:</strong> {{ reservation.tarif }} dinars
+              <br>
+              <strong>Email:</strong> {{ reservation.email }}
+            </p>
+          </div>
+          <div class="card-footer bg-light text-end">
+            <button type="button" class="btn btn-outline-danger btn-sm" (click)="delete(reservation._id)">
+              Annuler Réservation
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Section d'historique des réservations terminées -->
+  <div *ngIf="historiqueReservation.length > 0" class="mb-4">
+    <h2 class="text-center mb-3">Historique des Réservations Terminées</h2>
+    <div class="row">
+      <div class="col-md-4 mb-4" *ngFor="let reservation of historiqueReservation">
+        <div class="card shadow-sm border rounded-3">
+          <div class="card-header bg-light">
+            <strong class="card-title">Détails de la réservation terminée</strong>
+          </div>
+          <div class="card-body">
+            <p class="card-text">
+              <strong>Nom Salle:</strong> {{ getSalleName(reservation.idSalle) }}
+              <br>
+              <strong>Date de début:</strong> {{ reservation.dateDebut | date: 'dd/MM/yyyy' }}
+              <br>
+              <strong>Date de fin:</strong> {{ reservation.dateFin | date: 'dd/MM/yyyy' }}
+              <br>
+              <strong>Tarif:</strong> {{ reservation.tarif }} dinars
+              <br>
+              <strong>Email:</strong> {{ reservation.email }}
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Aucune réservation trouvée -->
+  <div *ngIf="listReservation.length === 0 && historiqueReservation.length === 0" class="alert alert-info">
+    Aucune réservation trouvée.
+  </div>
+</div>
