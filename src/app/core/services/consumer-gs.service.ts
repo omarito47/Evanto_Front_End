@@ -1,7 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { TypeSalle } from '../models/typeSalle';
-import { Salle } from '../models/salle';
+import { TypeSalle } from '../model/typeSalle';
+import { Salle } from '../model/salle';
 import { Observable } from 'rxjs';
 
 @Injectable({
@@ -54,11 +54,13 @@ addSalle(salle:FormData) {
   chercherSalle(key: string) {
     return this.http.get<Salle[]>(this.apiUrlSalle+"search/"+key);
   }
-  getHighestRatedSalle() {
-    return this.http.get<Salle>(this.apiUrlSalle + "mieuxNotee");
-  }
+  // getHighestRatedSalle() {
+  //   return this.http.get<Salle>(this.apiUrlSalle + "mieuxNotee");
+  // }
 
   getMostReservedSalle() {
     return this.http.get<Salle>(this.apiUrlSalle + "plusReservee");
   }
+
+  
 }

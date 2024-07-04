@@ -2,13 +2,17 @@ import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 export interface User {
-  _id: string;
-  name: string;
-  email: string;
-  password: string;
-  age: number;
-  address: string;
-  role: 'admin' | 'user';
+  _id?: string;
+    name?:string;
+    email?:string;
+    password?:string;
+    age?:number;
+    address?:string;
+    verified?:boolean;
+    verificationCode?:string;
+    phoneNumber?:string;
+    token?:string;
+    role?:string;
 }
 @Injectable({
   providedIn: 'root'
@@ -26,7 +30,10 @@ export class UsersService {
   getUserById(id: string): Observable<User> {
     return this.http.get<User>(`${this.apiUrl}/${id}`);
   }
-
+  //omar.taamallah@pardus-it.com
+  getUserByEmail(email: string): Observable<User> {
+    return this.http.get<User>(`${this.apiUrl}/getuserbyEmail/${email}`);
+  }
   createUser(user: User): Observable<User> {
     return this.http.post<User>(this.apiUrl, user);
   }

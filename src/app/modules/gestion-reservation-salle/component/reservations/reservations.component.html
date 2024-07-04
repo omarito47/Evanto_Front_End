@@ -1,0 +1,53 @@
+<div class="container" style="height: 80vh; overflow: auto;">
+  <h1 class="mb-4 text-center">Liste des réservations :</h1>
+
+  <div class="mb-4">
+    <h2></h2>
+    <select (change)="onSalleSelectChange($event)" class="form-select">
+      <option value="">All Salles</option>
+      <option *ngFor="let salle of salleNames | keyvalue" [value]="salle.key">{{ salle.value }}</option>
+    </select>
+  </div>
+
+  <div class="row">
+    <div class="col-lg-6 mb-4" *ngFor="let reservation of filteredReservations">
+      <div class="card border shadow-sm">
+        <div class="card-body">
+          <h5 class="card-title mb-3 text-center"><strong>Réservation {{ reservation._id }}</strong></h5>
+          <div class="row mb-3">
+            <div class="col-md-6">
+              <p><strong>Utilisateur:</strong> {{ getUserName(reservation.idUser) }}</p>
+            </div>
+            <div class="col-md-6">
+              <p><strong>Email:</strong> {{ reservation.email }}</p>
+            </div>
+          </div>
+          <div class="row mb-3">
+            <div class="col-md-6">
+              <p><strong>Salle réservée:</strong> {{ getSalleName(reservation.idSalle) }}</p>
+            </div>
+            <div class="col-md-6">
+              <p><strong>Tarif:</strong> {{ reservation.tarif }} dinars</p>
+            </div>
+          </div>
+          <div class="row mb-3">
+            <div class="col-md-6">
+              <p><strong>Date de début:</strong> {{ reservation.dateDebut | date: 'yyyy-MM-dd' }}</p>
+            </div>
+            <div class="col-md-6">
+              <p><strong>Date de fin:</strong> {{ reservation.dateFin | date: 'yyyy-MM-dd' }}</p>
+            </div>
+          </div>
+          <div class="text-center mt-3">
+            <button type="button" class="btn btn-outline-success btn-sm mr-2" [routerLink]="['/detailsReservationSalle', reservation._id]">
+              <i class="fa fa-edit"></i> Modifier
+            </button>
+            <button type="button" class="btn btn-outline-danger btn-sm" (click)="delete(reservation._id)">
+              <i class="fa fa-trash-alt"></i> Supprimer
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

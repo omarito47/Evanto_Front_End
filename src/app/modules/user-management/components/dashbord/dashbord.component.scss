@@ -1,0 +1,91 @@
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: #f5f5f5;
+}
+
+.dashboard {
+    width: 80%;
+    margin: auto;
+    padding: 20px;
+    background-color: white;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+.header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background-color: #333;
+    color: white;
+    padding: 10px 20px;
+}
+
+.user-info {
+    display: flex;
+    align-items: center;
+    background-color: #e0e0e0;
+    padding: 10px;
+}
+
+.user-info img {
+    border-radius: 50%;
+    width: 50px;
+    height: 50px;
+    margin-right: 10px;
+}
+
+.stats {
+    display: flex;
+    justify-content: space-around;
+    margin: 20px 0;
+}
+
+.stat {
+    text-align: center;
+    padding: 10px;
+    flex: 1;
+    color: white;
+}
+
+.requirements {
+    background-color: #e74c3c;
+}
+
+.total-hours {
+    background-color: #3498db;
+}
+
+.timesheet {
+    background-color: #2ecc71;
+}
+
+.non-billable-hours {
+    background-color: #f1c40f;
+}
+
+.content {
+    display: flex;
+    justify-content: space-between;
+}
+
+.time-spent, .guard-hours {
+    width: 48%;
+    background-color: #f5f5f5;
+    padding: 10px;
+    box-shadow: 0 0 5px rgba(0, 0, 0, 0.1);
+}
+
+.no-data {
+    text-align: center;
+    color: gray;
+    margin-top: 10px;
+}
+
+.details {
+    margin-top: 20px;
+    padding: 10px;
+    background-color: #f5f5f5;
+    box-shadow: 0 0 5px rgba(0, 0, 0, 0.1);
+}

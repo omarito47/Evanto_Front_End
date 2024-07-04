@@ -1,6 +1,6 @@
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpHeaders, HttpErrorResponse } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { ReservationSalle } from '../models/reservationSalle';
+import { ReservationSalle } from '../model/reservationSalle';
 
 @Injectable({
   providedIn: 'root'
@@ -28,4 +28,11 @@ export class ReservationSalleService {
     deleteReservation(id: string) {
       return this.http.delete(this.apiUrlReservationSalle+ id);}
     
-   }
+      getReservationsBySalle(id: string) {
+        return this.http.get<ReservationSalle[]>(this.apiUrlReservationSalle + 'RbySalle/'+ id);}
+
+        getReservationsByUser(id: string) {
+          return this.http.get(this.apiUrlReservationSalle+'RbyUser/'+ id);}
+
+          
+}

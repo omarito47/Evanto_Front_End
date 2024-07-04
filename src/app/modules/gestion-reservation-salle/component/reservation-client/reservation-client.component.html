@@ -1,0 +1,65 @@
+<div class="container mt-5">
+  <div class="row">
+    <div class="col-md-6">
+      <div class="card p-4 h-100">
+        <h2 class="text-center mb-4">Reservation</h2>
+        <form [formGroup]="reservationSalle" (ngSubmit)="add()" class="d-flex flex-column justify-content-between h-100">
+          <div>
+            <div class="form-group mb-4">
+              <label for="dateDebut" class="form-label">Date Debut</label>
+              <input 
+                type="date" 
+                id="dateDebut" 
+                class="form-control" 
+                formControlName="dateDebut" 
+                placeholder="Enter start date (YYYY-MM-DD)" 
+              />
+            </div>
+
+            <div class="form-group mb-4">
+              <label for="dateFin" class="form-label">Date Fin</label>
+              <input 
+                type="date" 
+                id="dateFin" 
+                class="form-control" 
+                formControlName="dateFin" 
+                placeholder="Enter end date (YYYY-MM-DD)" 
+              />
+            </div>
+
+            <div class="form-group mb-4">
+              <label for="email" class="form-label">Email</label>
+              <input 
+                type="email" 
+                id="email" 
+                class="form-control" 
+                formControlName="email" 
+                placeholder="Enter your email address" 
+              />
+            </div>
+
+            <div *ngIf="showConfirmationMessage" class="alert alert-success mt-3" role="alert">
+              La réservation a été effectuée avec succès. Un e-mail de confirmation sera envoyé à votre adresse !
+            </div>
+          </div>
+
+          <div class="row mt-auto">
+            <div class="col-6">
+              <button type="submit" class="btn btn-primary w-100">Submit</button>
+            </div>
+            <div class="col-6">
+              <a class="btn btn-secondary w-100" [routerLink]="['/nav2/listSalleClient']">retour</a>
+            </div>
+          </div>
+        </form>
+      </div>
+    </div>
+    <div class="col-md-6">
+      <div class="card p-4 h-100">
+        <div class="calendar-container" style="height: 100%;">
+          <div #calendarEl style="height: 100%;"></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

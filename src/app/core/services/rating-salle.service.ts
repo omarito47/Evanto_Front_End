@@ -1,11 +1,12 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { Rating } from '../models/rating';
+import { Rating } from '../model/rating';
 
 @Injectable({
   providedIn: 'root'
 })
 export class RatingSalleService {
+
   constructor(private http:HttpClient) { }
 
   baseUrl : string = "http://127.0.0.1:9090/"

@@ -1,0 +1,56 @@
+<div class="container mt-5">
+  <h3 class="mb-4">{{ id ? 'Modifier la salle' : 'Ajouter une nouvelle salle' }}</h3>
+  <div style="max-height: 500px; overflow-y: auto; border: 1px solid #ccc; padding: 15px;">
+    <form [formGroup]="salle" (ngSubmit)="add()">
+      <div class="mb-3">
+        <label for="nomSalle" class="form-label">Nom de la salle:</label>
+        <input type="text" class="form-control form-control-lg" id="nomSalle" formControlName="nomSalle">
+        <div *ngIf="salle.get('nomSalle').invalid && (salle.get('nomSalle').touched || salle.get('nomSalle').dirty)" class="text-danger">
+          <small *ngIf="salle.get('nomSalle').errors.required">Nom de la salle est requis.</small>
+        </div>
+      </div>
+      <div class="mb-3">
+        <label for="description" class="form-label">Description:</label>
+        <textarea class="form-control form-control-lg" id="description" formControlName="description"></textarea>
+        <div *ngIf="salle.get('description').invalid && (salle.get('description').touched || salle.get('description').dirty)" class="text-danger">
+          <small *ngIf="salle.get('description').errors.required">Description est requise.</small>
+        </div>
+      </div>
+      <div class="mb-3">
+        <label for="lieu" class="form-label">Lieu:</label>
+        <input type="text" class="form-control form-control-lg" id="lieu" formControlName="lieu">
+        <div *ngIf="salle.get('lieu').invalid && (salle.get('lieu').touched || salle.get('lieu').dirty)" class="text-danger">
+          <small *ngIf="salle.get('lieu').errors.required">Lieu est requis.</small>
+        </div>
+      </div>
+      <div class="mb-3">
+        <label for="prix" class="form-label">Prix:</label>
+        <input type="number" class="form-control form-control-lg" id="prix" formControlName="prix">
+        <div *ngIf="salle.get('prix').invalid && (salle.get('prix').touched || salle.get('prix').dirty)" class="text-danger">
+          <small *ngIf="salle.get('prix').errors.required">Prix est requis.</small>
+        </div>
+      </div>
+      <div class="mb-3">
+        <label for="image" class="form-label">Image:</label>
+        <input type="file" class="form-control-file form-control-lg" id="image" (change)="onFileChange($event)">
+        <div *ngIf="salle.get('image').invalid && (salle.get('image').touched || salle.get('image').dirty)" class="text-danger">
+          <small *ngIf="salle.get('image').errors.required">Image est requise.</small>
+        </div>
+      </div>
+      <div class="mb-3">
+        <label for="typeSalle" class="form-label">Type de salle:</label>
+        <select class="form-select form-control-lg" id="typeSalle" formControlName="typeSalle">
+          <option *ngFor="let typeSalle of ListTypeSalles" [value]="typeSalle._id">{{ typeSalle.libelle }}</option>
+        </select>
+        <div *ngIf="salle.get('typeSalle').invalid && (salle.get('typeSalle').touched || salle.get('typeSalle').dirty)" class="text-danger">
+          <small *ngIf="salle.get('typeSalle').errors.required">Type de salle est requis.</small>
+        </div>
+      </div>
+      <div class="my-3">
+        <button type="submit" class="btn btn-success ">{{ id ? 'Modifier' : 'Ajouter' }}</button>
+        <a *ngIf="id" class="btn btn-secondary" [routerLink]="['/listSalle']">Annuler</a>
+        <a class="btn btn-secondary" [routerLink]="['/listSalle']">Retour</a>
+      </div>
+    </form>
+  </div>
+</div>
