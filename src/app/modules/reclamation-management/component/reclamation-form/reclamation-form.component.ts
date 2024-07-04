@@ -63,7 +63,7 @@ export class ReclamationFormComponent implements OnInit {
     title: new FormControl("",[Validators.required, Validators.maxLength(50)]),
     description: new FormControl("",[Validators.required, Validators.maxLength(300)]),
     email: new FormControl("",[Validators.required, Validators.email]),
-    numTelReclamation: new FormControl(0,[Validators.required, Validators.pattern(/^\d{8}$/)]),
+    numTelReclamation: new FormControl([Validators.required, Validators.pattern(/^\d{8}$/)]),
     pieceJointe: new FormControl(this.selectedFile),
     typeReclamation: new FormControl("",[Validators.required]),
     userReclamation: new FormControl(this.current_id_user),

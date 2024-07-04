@@ -1,4 +1,4 @@
-.reclamation-container {
+/* .reclamation-container {
     display: flex;
     justify-content: space-between;
     gap: 20px;
@@ -95,6 +95,7 @@
     transition: background-color 0.3s ease;
   }
   
+  
   .ouvrir {
     background-color: #4caf50;
     color: #fff;
@@ -185,3 +186,258 @@
     overflow-y: auto;
   }
   
+ */
+ .reclamation-container {
+  display: flex;
+  justify-content: space-between;
+  gap: 20px;
+  padding: 20px;
+  height: 90vh;
+  overflow-y: hidden;
+}
+
+.reclamation-details, .comment-section {
+  flex: 1;
+  max-height: 100%;
+  overflow-y: auto;
+  background-color: #fff;
+  padding: 20px;
+  border-radius: 10px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.reclamation-details:hover, .comment-section:hover {
+  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+}
+
+.reclamation-title {
+  font-size: 2em;
+  margin-bottom: 10px;
+}
+
+.reclamation-type {
+  font-size: 1.2em;
+  margin-bottom: 10px;
+}
+
+.reclamation-description {
+  margin-bottom: 20px;
+}
+
+.reclamation-status {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 20px;
+}
+
+.status-open, .status-closed, .status-treated, .status-untreated {
+  font-weight: bold;
+  padding: 5px 10px;
+  border-radius: 5px;
+}
+
+.status-open {
+  background-color: #4caf50;
+  color: #fff;
+}
+
+.status-closed {
+  background-color: #f44336;
+  color: #fff;
+}
+
+.status-treated {
+  background-color: #2196f3;
+  color: #fff;
+}
+
+.status-untreated {
+  background-color: #ff9800;
+  color: #fff;
+}
+
+.reclamation-attachment {
+  display: inline-block;
+  margin-bottom: 20px;
+  text-decoration: none;
+  color: #2196f3;
+}
+
+.reclamation-dates {
+  margin-bottom: 20px;
+}
+
+.reclamation-actions {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 20px;
+}
+
+.btn {
+  padding: 10px 20px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+.ouvrir {
+  background-color: #4caf50;
+  color: #fff;
+}
+
+.ouvrir:disabled {
+  background-color: #a5d6a7;
+  cursor: not-allowed;
+}
+
+.fermer {
+  background-color: #f44336;
+  color: #fff;
+}
+
+.fermer:disabled {
+  background-color: #ef9a9a;
+  cursor: not-allowed;
+}
+
+.comment-form {
+  display: flex;
+  flex-direction: column;
+  margin-bottom: 20px;
+}
+
+.comment-textarea {
+  width: 100%;
+  padding: 10px;
+  margin-bottom: 10px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+}
+
+.envoyer {
+  align-self: flex-end;
+  padding: 10px 20px;
+  background-color: #2196f3;
+  color: #fff;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+.envoyer:hover {
+  background-color: #1976d2;
+}
+
+.comment-title {
+  font-size: 1.5em;
+  margin-bottom: 10px;
+}
+
+.comment-list {
+  margin-bottom: 20px;
+  background-color: #e3f2fd;
+  padding: 5px 10px;
+  border-radius: 3px; 
+  position: relative;
+  transition: transform 0.9s ease, box-shadow 0.9s ease;
+
+}
+
+.comment-list:hover {
+  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+}
+
+.comment-description {
+  margin-bottom: 10px;
+}
+
+.comment-actions {
+  display: flex;
+  justify-content: space-between;
+}
+
+.satisfait {
+  background-color: #4caf50;
+  color: #fff;
+}
+
+.nonsatisfait {
+  background-color: #f44336;
+  color: #fff;
+}
+
+.scrollable {
+  overflow-y: auto;
+}
+
+/* Styles for the editing comment section */
+.editing-comment {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.edit-textarea {
+  width: 100%;
+  padding: 10px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+}
+
+.update, .cancel {
+  padding: 10px 20px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+.update {
+  background-color: #4caf50;
+  color: #fff;
+}
+
+.cancel {
+  background-color: #f44336;
+  color: #fff;
+}
+
+.update:hover {
+  background-color: #388e3c;
+}
+
+.cancel:hover {
+  background-color: #d32f2f;
+}
+.btn.edit{
+  position: absolute;
+  top: 0;
+  display: block;
+  background-color: transparent;
+
+}
+
+.btn.edit > i {
+  color: #388e3c;
+  font-size: 25px;
+  font-weight: bold;
+
+}
+
+
+.btn.delete {
+  background-color: transparent;
+  position: absolute;
+  right: 2%;
+  top: 60%;
+
+}
+.btn.delete > i{
+  color: red;
+  font-size: 25px;
+  font-weight: bold;
+}
+
+.comment-list:hover {
+  transform: scale(1.01);
+  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+}
