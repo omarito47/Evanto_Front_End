@@ -46,7 +46,8 @@
     
     
 </table> -->
-<h1 class="title">Liste des Reclamations</h1>
+<!-- ******************************* fonctionnel******************************************************* -->
+<!-- <h1 class="title">Liste des Reclamations</h1>
 
 <div class="search-container">
   <input type="text" [(ngModel)]="searchText" placeholder="Search reclamations..." (keyup)="searchReclamation($event)">
@@ -91,4 +92,98 @@
       <td><button (click)="removeReclamation(r._id)"><i class="fa fa-trash" aria-hidden="true"></i></button></td>
     </tr>
   </tbody>
-</table>
+</table> -->
+<!-- ******************************* fonctionnel******************************************************* -->
+ <!-- <h1 class="title">Liste des Reclamations</h1>
+
+<div class="search-container">
+  <input type="text" [(ngModel)]="searchText" placeholder="Search reclamations..." (keyup)="searchReclamation($event)">
+</div>
+
+<hr>
+
+<div class="sort-filter-container">
+  <select (change)="onSortOrderChange($event)">
+    <option value="desc">Newest First</option>
+    <option value="asc">Oldest First</option>
+  </select>
+
+  <select [(ngModel)]="serviceidSearch" (change)="filterRecByService($event)">
+    <option value="all">All</option>
+    <option *ngFor="let s of listService" [value]="s._id">{{s.libelle}}</option>
+  </select>
+</div>
+
+<div class="table-container">
+  <table class="reclamation-table">
+    <thead>
+      <tr *ngIf="listReclamationsSearched.length != 0">
+        <th scope="col">Title</th>
+        <th scope="col">Date</th>
+        <th scope="col">Etat</th>
+        <th scope="col">Status</th>
+        <th scope="col">Document</th>
+        <th scope="col">Details</th>
+        <th scope="col">Update</th>
+        <th scope="col">Delete</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let r of listReclamationsSearched" class="reclamation-row">
+        <td>{{r.title}}</td>
+        <td>{{r.createdAt | date:'medium'}}</td>
+        <td><span *ngIf="r.etat">Traiter</span><span *ngIf="!r.etat">Non Traiter</span></td>
+        <td><span *ngIf="r.status">Ouvert</span><span *ngIf="!r.status">Fermer</span></td>
+        <td><a [href]="r.pieceJointe" target="_blank"><i class="fa fa-download"></i></a></td>
+        <td><a [routerLink]="[r._id]"><i class="fa fa-file-text" aria-hidden="true"></i></a></td>
+        <td><a [routerLink]="['update',r._id]"><i class="fa fa-pencil-square" aria-hidden="true"></i></a></td>
+        <td><button (click)="removeReclamation(r._id)"><i class="fa fa-trash" aria-hidden="true"></i></button></td>
+      </tr>
+    </tbody>
+  </table>
+</div> 
+
+
+ -->
+
+
+<div class="my-reclamation-component-container">
+
+  
+
+  <h1 class="title">Liste des Reclamations</h1>
+
+  <div class="search-container">
+    <input type="text" [(ngModel)]="searchText" placeholder="Search reclamations..." (keyup)="searchReclamation($event)">
+  </div>
+  <div class="sort-filter-container">
+    <select (change)="onSortOrderChange($event)">
+      <option value="desc">Newest First</option>
+      <option value="asc">Oldest First</option>
+    </select>
+
+    <select [(ngModel)]="serviceidSearch" (change)="filterRecByService($event)">
+      <option value="all">All</option>
+      <option *ngFor="let s of listService" [value]="s._id">{{s.libelle}}</option>
+    </select>
+  </div>
+
+  <div class="card-container">
+    <div *ngFor="let r of listReclamationsSearched" class="reclamation-card">
+      <h2 class="card-title">{{ r.title }}</h2>
+      <p class="card-date">{{ r.createdAt | date:'medium' }}</p>
+      <p class="card-etat"><span *ngIf="r.etat">Traiter</span><span *ngIf="!r.etat">Non Traiter</span></p>
+      <p class="card-status"><span *ngIf="r.status">Ouvert</span><span *ngIf="!r.status">Fermer</span></p>
+      <div class="card-actions">
+        <a [href]="r.pieceJointe" target="_blank" class="card-link"><i class="fa fa-download"></i> Download</a>
+        <a [routerLink]="[r._id]" class="card-link"><i class="fa fa-file-text" aria-hidden="true"></i> Details</a>
+        <a [routerLink]="['update', r._id]" class="card-link"><i class="fa fa-pencil-square" aria-hidden="true"></i> Update</a>
+        <button (click)="removeReclamation(r._id)" class="card-link"><i class="fa fa-trash" aria-hidden="true"></i> Delete</button>
+      </div>
+    </div>
+  </div>
+
+</div>
+
+
+

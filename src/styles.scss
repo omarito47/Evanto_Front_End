@@ -106,8 +106,9 @@ h1, h2, h3, h4, h5, h6, p, pre, span {
   
 }
 body{
-  overflow: hidden;
+  overflow: auto;
 }
+
 mat-sidenav-content{
   overflow: hidden !important;
   height: calc(100% - 4rem) !important;
@@ -203,6 +204,9 @@ main{
     background: #555; 
   }
 
+
+
+  
   /************************************************/
 
   @media only screen and (min-width: 200px) and (max-width: 768px) {

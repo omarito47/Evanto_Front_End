@@ -123,6 +123,7 @@ export class MyReclamationDetailsComponent implements OnInit {
         });
         this.cs.addComment(newComment).subscribe({
           next:(coms)=> {
+            console.log(coms);
             
             this.getAllList()
           },

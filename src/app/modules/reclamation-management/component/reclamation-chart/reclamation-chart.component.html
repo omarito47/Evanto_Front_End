@@ -1,4 +1,12 @@
-<div>
-    <canvas id="canvas"></canvas>
+<div class="container">
+  <h1>Statistique Reclamations</h1>
+  <button (click)="exportReclamation()">export Reclamation</button>
+<div class="chart-container">
+  <div class="box1">
+      <canvas id="canvas"></canvas>
   </div>
-  
+  <div class="box2">
+      <app-reclamation-monthly-stats></app-reclamation-monthly-stats>
+  </div>
+</div>
+</div>

@@ -58,4 +58,11 @@ export class ReclamationService {
     return this.http.get<any>(this.apiUrlReclamation+"reclamations-count-by-service");
   }
 
+  getMonthlyReclamations(): Observable<any> {
+    return this.http.get<any>(`${this.apiUrlReclamation}getMonthlyReclamations`);
+  }
+  exportReclamation(){
+    return this.http.get(this.apiUrlReclamation+"/export", { responseType: 'blob' });
+  }
+
 }

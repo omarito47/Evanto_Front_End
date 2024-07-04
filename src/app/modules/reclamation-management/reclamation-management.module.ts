@@ -30,6 +30,7 @@ import { MatSnackBarModule } from '@angular/material/snack-bar';
 import { ButtonModule } from 'primeng/button';
 import { TableModule } from 'primeng/table';
 import { AngularSplitModule } from 'angular-split';
+import { ReclamationMonthlyStatsComponent } from './component/reclamation-monthly-stats/reclamation-monthly-stats.component';
 
 @NgModule({
   declarations: [
@@ -40,7 +41,8 @@ import { AngularSplitModule } from 'angular-split';
     GererReclamationComponent,
     MyReclamationComponent,
     MyReclamationDetailsComponent,
-    ReclamationChartComponent
+    ReclamationChartComponent,
+    ReclamationMonthlyStatsComponent
   ],
   imports: [
     CommonModule,

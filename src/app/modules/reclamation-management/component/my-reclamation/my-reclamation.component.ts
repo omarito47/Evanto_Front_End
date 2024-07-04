@@ -18,7 +18,7 @@ export class MyReclamationComponent implements OnInit {
   etatRchercher:string ="";
   sortOrder: string = "desc";
   serviceidSearch:string="all";
-  // idUser:string = "66510cf1d2437c2280e41b0e"
+  curent_user:string = localStorage.getItem("userId")
 
 
   constructor(private sr:ReclamationService,
@@ -59,7 +59,7 @@ export class MyReclamationComponent implements OnInit {
     })
   }
   getAllReclamations(){
-    this.sr.getReclamations().subscribe({
+    this.sr.getReclamationByUser(this.curent_user).subscribe({
       next:(rec)=>{
         console.log(rec);
         this.listReclamations = rec;

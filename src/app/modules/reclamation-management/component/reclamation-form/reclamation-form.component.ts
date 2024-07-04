@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { FormControl, FormGroup } from '@angular/forms';
+import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Reclamation } from '../../../../core/model/reclamation';
 import { Service } from '../../../../core/model/service';
@@ -60,18 +60,22 @@ export class ReclamationFormComponent implements OnInit {
 
   
   reclamation: FormGroup = new FormGroup({
-    title: new FormControl(""),
-    description: new FormControl(""),
-    email: new FormControl(""),
-    numTelReclamation: new FormControl(),
+    title: new FormControl("",[Validators.required, Validators.maxLength(50)]),
+    description: new FormControl("",[Validators.required, Validators.maxLength(300)]),
+    email: new FormControl("",[Validators.required, Validators.email]),
+    numTelReclamation: new FormControl(0,[Validators.required, Validators.pattern(/^\d{8}$/)]),
     pieceJointe: new FormControl(this.selectedFile),
-    typeReclamation: new FormControl(""),
+    typeReclamation: new FormControl("",[Validators.required]),
     userReclamation: new FormControl(this.current_id_user),
-    // userReclamation: new FormControl("6679eb2153ec8d3269984e14"),
   });
 
 
   add() {
+
+    if (this.reclamation.invalid) {
+      this.reclamation.markAllAsTouched();
+      return;
+    }
     console.log(this.current_id_user);
     
     const formData: FormData = new FormData();
