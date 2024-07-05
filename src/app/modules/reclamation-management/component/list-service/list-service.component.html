@@ -1,0 +1,66 @@
+<!-- 
+<div class="service-box">
+    <h1> Liste des Services : </h1>
+
+    <input type="text" [(ngModel)]="searchTextService" placeholder="Search services..." (keyup)="searchService($event)" >
+    <form [formGroup]="serviceForm" (ngSubmit)="addService()">
+        <input formControlName="libelle" placeholder="Service Name">
+        <input type="submit" value="Add">
+      </form>
+      
+      <table border="1">
+        <tr *ngIf="listServices.length != 0">
+          <th>Libelle</th>
+          <th>Actions</th>
+        </tr>
+        <tr *ngFor="let s of listServices; let i = index">
+          <td *ngIf="editIndex !== i">{{s.libelle}}</td>
+          <td *ngIf="editIndex === i">
+            <input [(ngModel)]="s.libelle" name="libelle-{{i}}" />
+          </td>
+          <td>
+            <button *ngIf="editIndex !== i" (click)="editService(i)">Edit</button>
+            <button *ngIf="editIndex === i" (click)="updateService(i, s)">Update</button>
+            <button (click)="removeService(s._id)">Delete</button>
+          </td>
+        </tr>
+      </table>
+</div>
+
+ -->
+
+ <div class="service-box">
+    <h1>Liste des Services</h1>
+
+    <input type="text" [(ngModel)]="searchTextService" placeholder="Search services..." (keyup)="searchService($event)" class="form-input">
+
+    <form [formGroup]="serviceForm" (ngSubmit)="addService()" class="service-form">
+        <input formControlName="libelle" placeholder="Service Name" class="form-input">
+        <input type="submit" value="Add" class="form-submit">
+    </form>
+
+    <div class="table-container">
+        <table class="service-table">
+            <thead>
+                <tr *ngIf="listServices.length != 0">
+                    <th>Libelle</th>
+                    <th>Actions</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr *ngFor="let s of listServices; let i = index">
+                    <td *ngIf="editIndex !== i">{{s.libelle}}</td>
+                    <td *ngIf="editIndex === i">
+                        <input [(ngModel)]="s.libelle" name="libelle-{{i}}" class="form-input-inline">
+                    </td>
+                    <td class="actions">
+                        <button *ngIf="editIndex !== i" (click)="editService(i)" class="btn-edit">Edit</button>
+                        <button *ngIf="editIndex === i" (click)="updateService(i, s)" class="btn-update">Update</button>
+                        <button (click)="removeService(s._id)" class="btn-delete">Delete</button>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</div>
+

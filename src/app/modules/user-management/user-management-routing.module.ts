@@ -6,6 +6,11 @@ import { UserFormComponent } from './components/user-form/user-form.component';
 import { AuthGuard } from 'src/app/core/services/auth.guard';
 import { DashbordComponent } from './components/dashbord/dashbord.component';
 import { UserFormClientComponent } from './components/user-form-client/user-form-client.component';
+import { ListServiceComponent } from '../reclamation-management/component/list-service/list-service.component';
+import { ReclamationChartComponent } from '../reclamation-management/component/reclamation-chart/reclamation-chart.component';
+import { ReclamationDetailsComponent } from '../reclamation-management/component/reclamation-details/reclamation-details.component';
+import { ReclamationFormComponent } from '../reclamation-management/component/reclamation-form/reclamation-form.component';
+import { ReclamationsComponent } from '../reclamation-management/component/reclamations/reclamations.component';
 
 const routes: Routes = [
   { path: 'liste-user', component: ListeUserComponent ,canActivate: [AuthGuard]},
@@ -13,7 +18,14 @@ const routes: Routes = [
   { path: 'users/add', component: UserFormComponent ,canActivate: [AuthGuard]},
   { path: 'users/edit/:id', component: UserFormComponent,canActivate: [AuthGuard]},
   { path: 'edit-user/:id',component: UserFormClientComponent,canActivate: [AuthGuard]},
-  {path: 'dashboard', component:DashbordComponent,canActivate: [AuthGuard]}
+  { path: 'dashboard', component:DashbordComponent,canActivate: [AuthGuard]},
+
+
+  { path: 'reclamation/list', component: ReclamationsComponent ,canActivate: [AuthGuard]},
+  { path: 'reclamation/stats', component: ReclamationChartComponent ,canActivate: [AuthGuard]},
+  { path: 'reclamation/type', component: ListServiceComponent ,canActivate: [AuthGuard]},
+  { path: 'reclamation/list/:id', component: ReclamationDetailsComponent ,canActivate: [AuthGuard]},
+  { path: 'reclamation/list/update/:id', component: ReclamationFormComponent ,canActivate: [AuthGuard]},
 
 ];
 

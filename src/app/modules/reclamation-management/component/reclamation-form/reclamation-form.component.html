@@ -1,0 +1,100 @@
+<!-- 
+<form [formGroup]="reclamation">
+    <input formControlName="title" placeholder="title"><br>
+    <textarea formControlName="description" placeholder="description"></textarea><br>
+    <input formControlName="email" placeholder="email"><br>
+    <input type="number" formControlName="numTelReclamation" placeholder="numTelReclamation"><br>
+    <input *ngIf="idr == undefined" type="file" formControlName="pieceJointe" (change)="onFileChange($event)"><br>
+    
+
+    <select class="ss" formControlName="typeReclamation">
+        <option value="" disabled selected>Select Reclamation type</option>
+        <option *ngFor="let s of listServices" [value]="s._id">{{s.libelle}}</option>
+    </select>
+
+    <input type="submit" [value]="idr == undefined ? 'Add' : 'Update'"  (click)="add()">
+</form> 
+-->
+<!-- ***************************************************** -->
+<!-- <form [formGroup]="reclamation" class="reclamation-form">
+    <div class="form-group">
+        <input formControlName="title" placeholder="Title" class="form-control">
+    </div>
+    <div class="form-group">
+        <textarea formControlName="description" placeholder="Description" class="form-control"></textarea>
+    </div>
+    <div class="form-group">
+        <input formControlName="email" placeholder="Email" class="form-control">
+    </div>
+    <div class="form-group">
+        <input type="number" formControlName="numTelReclamation" placeholder="Phone Number" class="form-control">
+    </div>
+    <div class="form-group" *ngIf="idr == undefined">
+        <input type="file" formControlName="pieceJointe" (change)="onFileChange($event)" class="form-control">
+    </div>
+    <div class="form-group typeReclamation">
+        <select class="form-control " formControlName="typeReclamation">
+            <option value="" disabled selected>Select Reclamation type</option>
+            <option *ngFor="let s of listServices" [value]="s._id">{{s.libelle}}</option>
+        </select>
+    </div>
+    <div class="form-group btn-container">
+        <input type="submit" value="Envoyer" (click)="add()" class="btn-submit">
+    </div>
+</form> -->
+<!-- ***************************************************** -->
+<form [formGroup]="reclamation" class="reclamation-form" (ngSubmit)="add()">
+    <div class="form-group">
+      <input formControlName="title" placeholder="Title" class="form-control">
+      <div *ngIf="reclamation.get('title').touched && reclamation.get('title').invalid" class="error-message">
+        <div *ngIf="reclamation.get('title').errors?.required">Title is required.</div>
+        <div *ngIf="reclamation.get('title').errors?.maxlength">Title cannot exceed 50 characters.</div>
+      </div>
+    </div>
+  
+    <div class="form-group">
+      <textarea formControlName="description" placeholder="Description" class="form-control"></textarea>
+      <div *ngIf="reclamation.get('description').touched && reclamation.get('description').invalid" class="error-message">
+        <div *ngIf="reclamation.get('description').errors?.required">Description is required.</div>
+        <div *ngIf="reclamation.get('description').errors?.maxlength">Description cannot exceed 50 characters.</div>
+      </div>
+    </div>
+  
+    <div class="form-group">
+      <input formControlName="email" placeholder="Email" class="form-control">
+      <div *ngIf="reclamation.get('email').touched && reclamation.get('email').invalid" class="error-message">
+        <div *ngIf="reclamation.get('email').errors?.required">Email is required.</div>
+        <div *ngIf="reclamation.get('email').errors?.email">Enter a valid email.</div>
+      </div>
+    </div>
+  
+    <div class="form-group">
+      <input type="number" formControlName="numTelReclamation" placeholder="Phone Number" class="form-control">
+      <div *ngIf="reclamation.get('numTelReclamation').touched && reclamation.get('numTelReclamation').invalid" class="error-message">
+        <div *ngIf="reclamation.get('numTelReclamation').errors?.required">Phone number is required.</div>
+        <div *ngIf="reclamation.get('numTelReclamation').errors?.pattern">Phone number must be 8 digits.</div>
+      </div>
+    </div>
+  
+    <div class="form-group" *ngIf="idr == undefined">
+      <input type="file" (change)="onFileChange($event)" class="form-control">
+      <div *ngIf="reclamation.get('pieceJointe').touched && reclamation.get('pieceJointe').invalid" class="error-message">
+        <div *ngIf="reclamation.get('pieceJointe').errors?.required">File is required (.jpg-png | .pdf | .doc).</div>
+      </div>
+    </div>
+  
+    <div class="form-group typeReclamation">
+      <select class="form-control" formControlName="typeReclamation">
+        <option value="" disabled selected>Select Reclamation type</option>
+        <option *ngFor="let s of listServices" [value]="s._id">{{ s.libelle }}</option>
+      </select>
+      <div *ngIf="reclamation.get('typeReclamation').touched && reclamation.get('typeReclamation').invalid" class="error-message">
+        <div *ngIf="reclamation.get('typeReclamation').errors?.required">Reclamation type is required.</div>
+      </div>
+    </div>
+  
+    <div class="form-group btn-container">
+      <input type="submit" value="Envoyer" class="btn-submit">
+    </div>
+  </form>
+  

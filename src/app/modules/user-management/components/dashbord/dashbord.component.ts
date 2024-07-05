@@ -1,6 +1,10 @@
 import { HttpHeaders, HttpClient } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
+import { Reclamation } from 'src/app/core/model/reclamation';
+import { ReservationSalle } from 'src/app/core/model/reservationSalle';
+import { ReclamationService } from 'src/app/core/services/reclamation.service';
+import { ReservationSalleService } from 'src/app/core/services/reservation-salle.service';
 import { User, UsersService } from 'src/app/core/services/users.service';
 import Swal from 'sweetalert2';
 
@@ -14,17 +18,31 @@ export class DashbordComponent implements OnInit {
   users: User[] = [];
   userId: string;
   private apiUrl = 'http://127.0.0.1:9090/user/';
+  listReclamtions: Reclamation[] = [];
+  nbrRecTraiter: number;
+  nbrRecNonTraiter: number;
+  nbrRecOuvert: number;
+  nbrRecFermer: number;
+  reservations: ReservationSalle[];
+
   
   constructor(
     private userService: UsersService,
     private router : Router,
     private http: HttpClient,
     private route: ActivatedRoute,
+    private rs: ReclamationService,
+    private reservationService: ReservationSalleService,
+
+
   ) {}
 
   ngOnInit(): void {
     this.userId = localStorage.getItem('userId'); // Get userId from localStorage
     this.getAll();
+    this.loadReservations();
+    this.getAllReclamations(); 
+
   }
 
   // Get all users
@@ -77,5 +95,36 @@ export class DashbordComponent implements OnInit {
         });
       }
     });
+  }
+
+
+
+  getAllReclamations(){
+    this.rs.getReclamations().subscribe({
+      next:(rec)=>{
+        console.log(rec);
+        this.listReclamtions = rec;
+        
+        this.nbrRecOuvert = this.listReclamtions.filter(reclamation => reclamation.status).length;
+        this.nbrRecFermer = this.listReclamtions.filter(reclamation => !reclamation.status).length;
+        this.nbrRecNonTraiter = this.listReclamtions.filter(reclamation => !reclamation.etat).length;
+        this.nbrRecTraiter = this.listReclamtions.filter(reclamation => reclamation.etat).length;
+      },
+      error:(er)=>alert(er.message)
+    })
+  }
+
+  loadReservations() {
+    this.reservationService.getReservations().subscribe(
+      data => {
+        this.reservations = data;
+      },
+      error => {
+        console.error('Erreur lors du chargement des réservations : ', error);
+      }
+    );
+  }
+  getNombreTotalReservations(): number {
+    return this.reservations ? this.reservations.length : 0;
   }
 }

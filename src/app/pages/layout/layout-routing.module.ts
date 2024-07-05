@@ -83,6 +83,15 @@ const routes: Routes = [
       },
 
       // insaf
+        /****Gestion de Reclamation module ********* */
+        {
+          path: '',
+          loadChildren: () =>
+            import('../../modules/reclamation-management/reclamation-management.module').then((m) => m.ReclamationManagementModule),
+          canActivate: [AuthGuard]
+        },
+  
+        /****Gestion de Reclamation module ********* */
     ],
   },
   {

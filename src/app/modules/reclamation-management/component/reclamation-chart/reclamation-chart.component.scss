@@ -1,0 +1,27 @@
+.container{
+  background-color: #f3e6e6;
+  width: 100%;
+  height: 100vh;
+}
+
+.chart-container{
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  background-color: #fff8f8;
+}
+
+.container .box1{
+  display: block;
+  background-color: rgb(157, 255, 0)(51, 255, 0);
+}
+.container .box2 .chart-disk{
+  position: relative;
+  height:40vh;
+  width:80vw;
+  margin: auto;
+  display: block;
+  background-color: red;
+}
+
+

@@ -4,8 +4,8 @@
         <p>{{users.length}}</p>
     </div>
     <div class="stat total-hours">
-        <p>TOTAL HOURS</p>
-        <p>0 H</p>
+        <p>Nombre réservations salles :</p>
+        <p>{{getNombreTotalReservations()}}</p>
     </div>
     <div class="stat timesheet">
         <p>TIMESHEET</p>
@@ -15,6 +15,24 @@
         <p>NON BILLABLE HOURS</p>
         <p>0 H</p>
     </div>
+</div>
+<div class="stats">
+  <div class="stat requirements">
+      <p>Nombre des Reclamations Total</p>
+      <p>{{listReclamtions.length}}</p>
+  </div>
+  <div class="stat total-hours">
+      <p>Reclamations ouverts</p>
+      <p>{{nbrRecOuvert}}</p>
+  </div>
+  <div class="stat timesheet">
+      <p>Reclamations fermer</p>
+      <p>{{nbrRecFermer}}</p>
+  </div>
+  <div class="stat non-billable-hours">
+      <p>reclamation traiter </p>
+      <p>{{nbrRecNonTraiter}}</p>
+  </div>
 </div>
 <div class="div-main">
     <div class="title-page">
