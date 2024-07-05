@@ -65,7 +65,7 @@ export class UserFormComponent implements OnInit {
 
   onSubmit(form: NgForm): void {
     if (this.isEditMode) {
-      this.updateUser(); // Call the function to update the user
+      this.userService.updateUser(this.userId, form.value).subscribe(() => {});
 
       this.snackBar.open('User updated successfully!', 'Close', {
         duration: 3000, // Duration in milliseconds
@@ -73,14 +73,14 @@ export class UserFormComponent implements OnInit {
       });
 
       if (this.isFromUserlistPage === 'true') {
-        this.router.navigate(['/liste-user']);
+        this.router.navigate(['/dashboard']);
         localStorage.setItem('fromListUser', 'false');
       } else {
         this.router.navigate(['/users/edit/' + this.userId]);
       }
     } else {
       this.userService.createUser(form.value).subscribe(() => {
-        this.router.navigate(['/liste-user']);
+        this.router.navigate(['/dashboard']);
       });
     }
   }
