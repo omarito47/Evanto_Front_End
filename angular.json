@@ -21,6 +21,9 @@
             "index": "src/index.html",
             "main": "src/main.ts",
             "tsConfig": "tsconfig.app.json",
+            "assets": ["src/favicon.ico", "src/assets"],
+
+            "polyfills": ["zone.js", "src/polyfills.ts"],
             "inlineStyleLanguage": "scss",
             "assets": ["src/favicon.ico", "src/assets"],
 

@@ -131,6 +131,4 @@ export class ProductCardComponent implements OnInit {
     this.cartService.addToCart(product);
     this.router.navigateByUrl('/cart-page');
   }
-
-
 }
