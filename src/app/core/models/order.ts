@@ -17,6 +17,7 @@ export class Order {
     city: string;
     postalCode: string;
   };
+  isAccepted: boolean;
   isCanceled: boolean;
   addressLatLng: LatLng;
   paymentId: string;

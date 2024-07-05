@@ -100,7 +100,7 @@ export class PaymentComponent implements AfterViewInit {
     const order = this.orderService.getCurrentOrder();
 
     try {
-      const response = await fetch('http://localhost:8000/payment', {
+      const response = await fetch('http://localhost:9090/payment', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({

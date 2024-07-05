@@ -90,12 +90,17 @@ export class AddCategoryComponent {
         let errorMessage = `There was an error ${
           this.id !== undefined ? 'updating' : 'adding'
         } the category: ${e.message}`;
+
+        // Improved error handling to check the error message
         if (
           e.status === 400 &&
           e.error.message === 'Category name must be unique.'
         ) {
           errorMessage = 'Category name must be unique.';
+        } else if (e.status === 500) {
+          errorMessage = 'Category name must be unique.';
         }
+
         Swal.fire({
           title: 'Error',
           text: errorMessage,

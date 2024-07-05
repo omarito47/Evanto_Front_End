@@ -10,7 +10,7 @@ import Swal from 'sweetalert2';
 })
 export class CategoryComponent {
   listCategorys: Category[] = [];
-  baseUrl: string = 'http://localhost:8000/';
+  baseUrl: string = 'http://localhost:9090/';
 
   constructor(private catService: CategoryService) {
     this.catService.getAllCategorys().subscribe({
