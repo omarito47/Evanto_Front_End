@@ -21,6 +21,21 @@ import { PaymentComponent } from '../payment/components/pay/payment.component';
 import { CheckoutSuccessComponent } from '../payment/components/checkout-success/checkout-success.component';
 import { OrderTrackComponent } from '../checkout-page/order-track/order-track.component';
 import { CheckoutPageComponent } from '../checkout-page/checkout/checkout-page.component';
+import { DashboardComponent } from '../gestion-statistiques/component/dashboard/dashboard.component';
+import { GetStatistiquesComponent } from '../gestion-statistiques/component/get-statistiques/get-statistiques.component';
+import { AdminEvaluationComponent } from '../gestion-evaluation/component/admin-evaluation/admin-evaluation.component';
+import { AddEvaluationComponent } from '../gestion-evaluation/component/add-evaluation/add-evaluation.component';
+import { DetailEvaluationComponent } from '../gestion-evaluation/component/detail-evaluation/detail-evaluation.component';
+import { AddAtelierComponent } from '../gestion-ateliers/component/add-atelier/add-atelier.component';
+import { AteliersComponent } from '../gestion-ateliers/component/ateliers/ateliers.component';
+import { AtelierLieuComponent } from '../gestion-ateliers/component/atelier-lieu/atelier-lieu.component';
+import { AtelierClientComponent } from '../gestion-ateliers/component/atelier-client/atelier-client.component';
+import { AddCategorieComponent } from '../gestion-categorie/component/add-categorie/add-categorie.component';
+import { ListCategorieComponent } from '../gestion-categorie/component/list-categorie/list-categorie.component';
+import { AdminParticipationComponent } from '../gestion-participation/component/admin-participation/admin-participation.component';
+import { AddParticipationComponent } from '../gestion-participation/component/add-participation/add-participation.component';
+import { AddQuizComponent } from '../gestion-quizz/component/add-quiz/add-quiz.component';
+import { QuizListComponent } from '../gestion-quizz/component/quiz-list/quiz-list.component';
 
 const routes: Routes = [
   { path: 'liste-user', component: ListeUserComponent ,canActivate: [AuthGuard]},
@@ -82,7 +97,28 @@ const routes: Routes = [
       // { path: ':id', component: DetailsResidenceComponent },
     ],
   },
+
+
+  { path: 'add-evaluation/:atelierId', component: AddEvaluationComponent }, // Route avec paramètre atelierId
   
+  { path: 'evaluation/list', component: AdminEvaluationComponent },
+
+  { path: 'atelier/add', component: AddAtelierComponent },
+  { path: 'atelier/get', component: AteliersComponent },
+  { path: 'atelier/lieu', component: AtelierLieuComponent },
+  { path: 'atelier/client', component: AtelierClientComponent },
+  { path: 'atelier/:id', component: DetailEvaluationComponent },
+  { path: 'categorie/list', component: AddCategorieComponent },
+  { path: 'categorie/add', component: ListCategorieComponent },
+
+
+  { path: 'dashboard/get', component: DashboardComponent }, // Modifier la route pour les statistiques
+  { path: 'atelier/:atelierId/add-quiz', component: AddQuizComponent },
+  { path: 'atelier/:atelierId/quizzes', component: QuizListComponent },
+  { path: 'statistiques/:atelierId', component:GetStatistiquesComponent },  
+  { path: 'admin-participations', component: AdminParticipationComponent },
+
+  { path: 'add-participation/:id', component: AddParticipationComponent },
 ];
 
 @NgModule({

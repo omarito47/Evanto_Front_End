@@ -1,0 +1,22 @@
+
+
+<form (ngSubmit)="onSubmit(evaluationForm)" #evaluationForm="ngForm" class="container mt-4">
+    <div class="mb-3">
+      <label for="atelierId" class="form-label">Atelier ID:</label>
+      <input type="text" id="atelierId" required [(ngModel)]="evaluation.atelierId" name="atelierId" class="form-control">
+    </div>
+    <div class="mb-3">
+      <label for="rating" class="form-label">Rating:</label>
+      <input type="number" id="rating" required [(ngModel)]="evaluation.rating" name="rating" min="1" max="5" class="form-control">
+    </div>
+    <div class="mb-3">
+      <label for="comment" class="form-label">Comment:</label>
+      <textarea id="comment" required [(ngModel)]="evaluation.comment" name="comment" class="form-control" rows="3"></textarea>
+    </div>
+    <button type="submit" class="btn btn-primary">Submit Evaluation</button>
+  </form>
+  
+  <div *ngIf="responseMessage" class="alert alert-info mt-3">
+    {{ responseMessage }}
+  </div>
+  

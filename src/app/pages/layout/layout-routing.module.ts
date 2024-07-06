@@ -4,6 +4,7 @@ import { NavSplitComponent } from './nav-split/nav-split.component';
 import { NavbarV2Component } from './navbar-v2/navbar-v2.component';
 import { NavbarComponent } from './navbar/navbar.component';
 import { AuthGuard } from 'src/app/core/services/auth.guard';
+import { DashboardComponent } from 'src/app/modules/gestion-statistiques/component/dashboard/dashboard.component';
 
 const routes: Routes = [
   {
@@ -136,6 +137,40 @@ const routes: Routes = [
           import('../../modules/payment/payment.module').then(
             (m) => m.PaymentModule
           ),
+      },
+      {
+        path: '',
+        loadChildren: () =>
+          import('../../modules/gestion-statistiques/gestion-statistiques.module').then((m) => m.GestionStatistiquesModule),
+      },
+
+      {
+        path: '',
+        loadChildren: () =>
+          import('../../modules/gestion-participation/gestion-participation.module').then((m) => m.GestionParticipationModule),
+      },
+      {
+        path: '',
+        loadChildren: () =>
+          import('../../modules/gestion-quizz/gestion-quizz.module').then((m) => m.GestionQuizzModule),
+      },
+      {
+        path: '',
+        loadChildren: () =>
+          import('../../modules/gestion-categorie/gestion-categorie.module').then((m) => m.GestionCategorieModule),
+      },
+
+      {
+        path: '',
+        loadChildren: () =>
+          import('../../modules/gestion-ateliers/gestion-ateliers.module').then((m) => m.GestionAteliersModule),
+        canActivate: [AuthGuard]
+      },
+      {
+        path: '',
+        loadChildren: () =>
+          import('../../modules/gestion-evaluation/gestion-evaluation.module').then((m) => m.GestionEvaluationsModule),
+        canActivate: [AuthGuard]
       },
     
     ],

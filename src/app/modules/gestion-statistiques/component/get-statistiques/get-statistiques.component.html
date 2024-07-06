@@ -1,0 +1,38 @@
+<p>get-statistiques works!</p>
+<div class="container mt-4">
+    <!-- Statistiques de l'atelier -->
+    <div *ngIf="workshopStats" class="card mb-4">
+      <div class="card-header">
+        <h2>Statistiques de l'atelier</h2>
+      </div>
+      <div class="card-body">
+        <p><strong>Nombre total de participations:</strong> {{ workshopStats.totalParticipations }}</p>
+        <p><strong>Nombre total d'évaluations:</strong> {{ workshopStats.totalEvaluations }}</p>
+        <p><strong>Note moyenne:</strong> {{ workshopStats.averageRating }}</p>
+        <p><strong>Total des mentions J'aime:</strong> {{ workshopStats.totalLikes }}</p>
+      </div>
+    </div>
+  
+    <!-- Graphique des statistiques de l'atelier -->
+    <div *ngIf="pieChartImage" class="card mb-4">
+      <div class="card-header">
+        <h2>Graphique des statistiques de l'atelier</h2>
+      </div>
+      <div class="card-body text-center">
+        <img [src]="pieChartImage" alt="Graphique des statistiques de l'atelier" class="img-fluid">
+      </div>
+    </div>
+  
+    <!-- Message de chargement -->
+    <div *ngIf="!workshopStats" class="alert alert-info" role="alert">
+      Chargement des statistiques en cours...
+    </div>
+  
+    <!-- Bouton de génération du graphique -->
+    <div class="text-center mt-4">
+      <button (click)="generatePieChart()" class="btn btn-primary">
+        Générer le graphique des statistiques
+      </button>
+    </div>
+  </div>
+  

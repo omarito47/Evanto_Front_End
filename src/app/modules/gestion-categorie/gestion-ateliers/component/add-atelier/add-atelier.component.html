@@ -1,0 +1,109 @@
+<p>add-atelier works!</p>
+<section class="scrollable-section">
+  <div class="row justify-content-center">
+    <div class="col-lg-8">
+      <h1 class="mb-4">Ajouter Atelier</h1>
+
+      <div class="card">
+        <div class="card-body">
+          <h5 class="card-title">Détail de l'Atelier</h5>
+
+          <!-- Message de succès -->
+          <div *ngIf="successMessage" class="alert alert-success" role="alert">
+            {{ successMessage }}
+          </div>
+
+          <form [formGroup]="form" (ngSubmit)="addAtelier()">
+            <div class="mb-3">
+              <label for="nom" class="form-label">Nom Atelier</label>
+              <input id="nom" type="text" class="form-control" formControlName="nom" required>
+            </div>
+
+            <div class="mb-3">
+              <label for="description" class="form-label">Description</label>
+              <textarea id="description" class="form-control" formControlName="description" rows="3" required></textarea>
+            </div>
+
+            <div class="row mb-3">
+              <div class="col-md-6">
+                <label for="lieu" class="form-label">Lieu</label>
+                <input id="lieu" type="text" class="form-control" formControlName="lieu" required>
+              </div>
+
+              <div class="col-md-3">
+                <label for="date_debut" class="form-label">Date début</label>
+                <input id="date_debut" type="date" class="form-control" formControlName="date_debut" required>
+              </div>
+
+              <div class="col-md-3">
+                <label for="date_fin" class="form-label">Date fin</label>
+                <input id="date_fin" type="date" class="form-control" formControlName="date_fin" required>
+              </div>
+            </div>
+
+            <div class="row mb-3">
+              <div class="col-md-4">
+                <label for="Nbr_place" class="form-label">Nombre de places</label>
+                <input id="Nbr_place" type="number" class="form-control" formControlName="Nbr_place" required>
+              </div>
+
+              <div class="col-md-4">
+                <label for="frequence_de_repetition" class="form-label">Fréquence de répétition</label>
+                <select id="frequence_de_repetition" class="form-select" formControlName="frequence_de_repetition" required>
+                  <option value="Une seule fois">Une seule fois</option>
+                  <option value="Quotidien">Quotidien</option>
+                  <option value="Hebdomadaire">Hebdomadaire</option>
+                  <option value="Bihebdomadaire">Bihebdomadaire</option>
+                </select>
+              </div>
+
+              <div class="col-md-4">
+                <label for="prix" class="form-label">Prix</label>
+                <input id="prix" type="number" class="form-control" formControlName="prix" required>
+              </div>
+            </div>
+
+            <div class="mb-3">
+              <label class="form-label">Type Atelier</label>
+              <select id="typeAtelier" class="form-select" formControlName="typeAtelier" required>
+                <option *ngFor="let categorie of categories" [value]="categorie._id">{{ categorie.nom_categorie }}</option>
+              </select>
+            </div>
+
+            <div class="mb-3">
+              <label class="form-label">Frais de participation</label>
+              <select id="frais_de_participation" class="form-select" formControlName="frais_de_participation" required>
+                <option value="payant">Payant</option>
+                <option value="gratuit">Gratuit</option>
+              </select>
+            </div>
+
+            <div class="mb-3">
+              <label class="form-label">Image</label>
+              <input type="file" (change)="onFileChange($event)" class="form-control-file">
+            </div>
+
+            <div class="text-end">
+              <button type="submit" class="btn btn-primary">
+                <i class="fas fa-plus"></i> Ajouter Atelier
+              </button>
+
+              <!-- Bouton pour voir la carte -->
+              <button type="button" class="btn btn-secondary ms-2" (click)="navigateToMap()">
+                <i class="fas fa-map-marked-alt"></i> Voir carte
+              </button>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<style>
+  .scrollable-section {
+    max-height: 700px;
+    overflow-y: auto;
+    padding: 20px;
+  }
+</style>

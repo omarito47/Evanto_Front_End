@@ -1,0 +1,36 @@
+<div class="container">
+    <h2>Liste des participations</h2>
+    
+    <table class="table table-striped">
+      <thead>
+        <tr>
+          <th>Utilisateur</th>
+          <th>Atelier</th>
+          <th>État</th>
+          <th>Action</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let participation of participations">
+          <td>{{ getUserName(participation.userId) }}</td>
+          <td>{{ getNomAtelier(participation.atelierId) }}</td>
+          <td>{{ getEtatParticipation(participation) }}</td>
+          <td>
+            <button class="btn btn-danger" *ngIf="canCancelParticipation(participation)" (click)="confirmCancelParticipation(participation)">Annuler</button>
+            <button class="btn btn-secondary" (click)="onDeleteParticipation(participation._id)">Supprimer</button>
+            <button class="btn btn-success" *ngIf="getEtatParticipation(participation) === 'En attente'" (click)="onConfirmParticipation(participation._id)">Confirmer</button>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  
+    <div *ngIf="successMessage" class="alert alert-success alert-dismissible fade show" role="alert">
+      {{ successMessage }}
+      <button type="button" class="btn-close" aria-label="Close" (click)="closeSuccessMessage()"></button>
+    </div>
+  
+    <div *ngIf="errorMessage" class="alert alert-danger alert-dismissible fade show" role="alert">
+      {{ errorMessage }}
+      <button type="button" class="btn-close" aria-label="Close" (click)="closeErrorMessage()"></button>
+    </div>
+  </div>

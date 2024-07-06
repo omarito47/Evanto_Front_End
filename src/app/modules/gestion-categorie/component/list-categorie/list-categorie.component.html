@@ -1,0 +1,33 @@
+<p>list-categorie works!</p>
+<main id="main" class="container">
+    <div class="my-4">
+        <h1>Ajouter une Catégorie</h1>
+    </div><!-- End Page Title -->
+
+    <section style="max-height: 600px; overflow-y: auto;">
+        <div class="row justify-content-md-center">
+            <div class="col-md-8">
+                <div class="card">
+                    <div class="card-body">
+                        <h2 class="card-title">Détail de la Catégorie</h2>
+
+                        <!-- General Form Elements -->
+                        <form (ngSubmit)="onSubmit()" #categoryForm="ngForm">
+                            <div class="mb-3">
+                                <label for="nom_categorie" class="form-label">Nom de la Catégorie</label>
+                                <input type="text" id="nom_categorie" name="nom_categorie" [(ngModel)]="form.nom_categorie" class="form-control" required>
+                                <div *ngIf="categoryForm.controls['nom_categorie'].invalid && categoryForm.controls['nom_categorie'].touched" class="invalid-feedback">
+                                    Le nom de la catégorie est requis.
+                                </div>
+                            </div>
+
+                            <button type="submit" class="btn btn-primary">Ajouter Catégorie</button>
+                        </form><!-- End General Form Elements -->
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+</main><!-- End #main -->

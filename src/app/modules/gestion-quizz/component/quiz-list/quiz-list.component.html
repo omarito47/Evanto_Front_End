@@ -1,0 +1,63 @@
+
+<section class="scrollable-section">
+    <div class="row">
+<main id="main" class="container mt-4">
+    <div class="pagetitle mb-4">
+      <h1>Quizzes pour l'Atelier</h1>
+    </div>
+  
+    <div class="card shadow-sm">
+      <div class="card-body">
+        <div *ngIf="quizzes.length > 0">
+          <ul class="list-group">
+            <li class="list-group-item mb-3" *ngFor="let quiz of quizzes">
+              <h3 class="mb-3">{{ quiz.question }}</h3>
+              <form (ngSubmit)="submitAnswer(quiz._id, quizForm)" #quizForm="ngForm">
+                <div class="list-group">
+                  <div class="list-group-item" *ngFor="let option of quiz.options">
+                    <div class="form-check">
+                      <input
+                        class="form-check-input"
+                        type="radio"
+                        name="quiz{{ quiz._id }}"
+                        [value]="option"
+                        ngModel
+                        required
+                        (change)="selectedOption[quiz._id] = option"
+                        id="option{{ quiz._id }}{{ option }}"
+                      />
+                      <label class="form-check-label" for="option{{ quiz._id }}{{ option }}">
+                        {{ option }}
+                      </label>
+                    </div>
+                  </div>
+                </div>
+                <button type="submit" class="btn btn-primary mt-3" [disabled]="!quizForm.valid">Soumettre</button>
+                <div *ngIf="submittedAnswers[quiz._id]" class="mt-3">
+                  <p *ngIf="submittedAnswers[quiz._id] === quiz.correctAnswer" class="text-success">
+                    Correct! La réponse est : {{ quiz.correctAnswer }}
+                  </p>
+                  <p *ngIf="submittedAnswers[quiz._id] !== quiz.correctAnswer" class="text-danger">
+                    Incorrect! La bonne réponse est : {{ quiz.correctAnswer }}
+                  </p>
+                </div>
+              </form>
+            </li>
+          </ul>
+        </div>
+        <div *ngIf="quizzes.length === 0">
+          <p>Aucun quiz disponible pour cet atelier.</p>
+        </div>
+      </div>
+    </div>
+
+  </main>
+
+
+  <style>
+    .scrollable-section {
+      max-height: 1000px;
+      overflow-y: auto;
+    }
+  </style>
+  

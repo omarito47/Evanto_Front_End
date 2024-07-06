@@ -1,0 +1,133 @@
+
+<main id="main" class="container mt-5">
+    <div class="pagetitle mb-4">
+      <h1>Liste des Ateliers</h1>
+      <div class="d-flex justify-content-between mb-3">
+        <button (click)="exportToPDF()" class="btn btn-primary">
+          Exporter en PDF
+        </button>
+        <button (click)="trierParDateDebut()" class="btn btn-secondary">
+          Trier par Date de Début
+        </button>
+      </div>
+    </div>
+  
+    <section class="scrollable-section">
+      <div class="card shadow-sm">
+        <div class="card-body">
+          <section>
+            <div class="col-md-6 mb-4" *ngFor="let atelier of listAteliers">
+              <div class="card h-100 shadow-sm border">
+                <div class="card-header bg-primary text-white">
+                  <!-- Contenu du header de la carte (si nécessaire) -->
+                </div>
+                <img class="card-img-top img-fluid" [src]="atelier.image" alt="Image de l'atelier" style="height:300px; object-fit: cover;">
+                <div class="card-body">
+                  <ul class="list-unstyled">
+                    <li><strong>Nom:</strong> {{ atelier.nom }}</li>
+                    <li><strong>Description:</strong> {{ atelier.description }}</li>
+                    <li><strong>Lieu:</strong> {{ atelier.lieu }}</li>
+                    <li><strong>Date Début:</strong> {{ atelier.date_debut | date }}</li>
+                    <li><strong>Date Fin:</strong> {{ atelier.date_fin | date }}</li>
+                    <li><strong>Nombre de Places:</strong> {{ atelier.Nbr_place }}</li>
+                    <li><strong>Fréquence de Répétition:</strong> {{ atelier.frequence_de_repetition }}</li>
+                    <li><strong>Type d'Atelier:</strong> {{ getNomCategorie(atelier) }}</li>
+                    <li><strong>Prix:</strong> {{ atelier.prix }}</li>
+                    <li><strong>Frais de Participation:</strong> {{ atelier.frais_de_participation === 'gratuit' ? 'Gratuit' : 'Payant' }}</li>
+                  </ul>
+                </div>
+                <div class="card-footer d-flex justify-content-between">
+                  <div class="btn-group">
+                    <button type="button" class="btn btn-info dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false">
+                      Actions
+                    </button>
+                    <ul class="dropdown-menu">
+                      <li><button class="dropdown-item" (click)="startEditing(atelier)">Modifier</button></li>
+                      <li><button class="dropdown-item" (click)="deleteAtelier(atelier._id)">Supprimer</button></li>
+                      <li><button class="dropdown-item" (click)="goToStatistiques(atelier._id)">Statistiques</button></li>
+                      <li><button class="dropdown-item" (click)="goToAddQuiz(atelier._id)">Ajouter Quiz</button></li>
+                      <li><button class="dropdown-item" [routerLink]="['/atelier', atelier._id]">Voir Évaluation</button></li>
+                      
+                      <!-- Remove or comment out the Evaluation button -->
+                      <!-- <li><button class="dropdown-item" [routerLink]="['/atelier', atelier._id]">Evaluation</button></li> -->
+                    </ul>
+                  </div>
+                </div>
+              </div>
+    
+              <!-- Formulaire de mise à jour de l'atelier -->
+              <form *ngIf="editingAtelier && editingAtelier._id === atelier._id" (ngSubmit)="updateAtelier()">
+                <div class="mb-3">
+                  <label for="nom" class="form-label">Nom</label>
+                  <input type="text" class="form-control" id="nom" [(ngModel)]="editingAtelier.nom" name="nom">
+                </div>
+                <div class="mb-3">
+                  <label for="description" class="form-label">Description</label>
+                  <input type="text" class="form-control" id="description" [(ngModel)]="editingAtelier.description" name="description">
+                </div>
+                <div class="mb-3">
+                  <label for="lieu" class="form-label">Lieu</label>
+                  <input type="text" class="form-control" id="lieu" [(ngModel)]="editingAtelier.lieu" name="lieu">
+                </div>
+                <div class="mb-3">
+                  <label for="date_debut" class="form-label">Date Début</label>
+                  <input type="date" class="form-control" id="date_debut" [(ngModel)]="editingAtelier.date_debut" name="date_debut">
+                </div>
+                <div class="mb-3">
+                  <label for="date_fin" class="form-label">Date Fin</label>
+                  <input type="date" class="form-control" id="date_fin" [(ngModel)]="editingAtelier.date_fin" name="date_fin">
+                </div>
+                <div class="mb-3">
+                  <label for="Nbr_place" class="form-label">Nombre de Places</label>
+                  <input type="number" class="form-control" id="Nbr_place" [(ngModel)]="editingAtelier.Nbr_place" name="Nbr_place">
+                </div>
+                <div class="mb-3">
+                  <label for="frequence_de_repetition" class="form-label">Fréquence de Répétition</label>
+                  <select class="form-control" id="frequence_de_repetition" [(ngModel)]="editingAtelier.frequence_de_repetition" name="frequence_de_repetition">
+                    <option value="Une seule fois">Une seule fois</option>
+                    <option value="Quotidien">Quotidien</option>
+                    <option value="Hebdomadaire">Hebdomadaire</option>
+                    <option value="ihebdomadaire">ihebdomadaire</option>
+                  </select>
+                </div>
+                <div class="mb-3">
+                  <label for="typeAtelier" class="form-label">Type d'Atelier</label>
+                  <select class="form-control" id="typeAtelier" [(ngModel)]="editingAtelier.typeAtelier" name="typeAtelier">
+                    <option *ngFor="let categorie of categories" [value]="categorie._id">{{ categorie.nom_categorie }}</option>
+                  </select>
+                </div>
+                <div class="mb-3">
+                  <label for="prix" class="form-label">Prix</label>
+                  <input type="number" class="form-control" id="prix" [(ngModel)]="editingAtelier.prix" name="prix">
+                </div>
+                <div class="mb-3">
+                  <label for="frais_de_participation" class="form-label">Frais de Participation</label>
+                  <select class="form-control" id="frais_de_participation" [(ngModel)]="editingAtelier.frais_de_participation" name="frais_de_participation">
+                    <option value="payant">Payant</option>
+                    <option value="gratuit">Gratuit</option>
+                  </select>
+                </div>
+                <div class="mb-3">
+                  <label for="image" class="form-label">Image</label>
+                  <input type="file" class="form-control" id="image" name="image">
+                </div>
+                <button type="submit" class="btn btn-primary">Mettre à jour</button>
+                <button type="button" class="btn btn-secondary" (click)="cancelEditing()">Annuler</button>
+              </form>
+              <!-- Fin du formulaire de mise à jour -->
+            </div>
+            <!-- Fin de la boucle sur la liste des ateliers -->
+          </section>
+          <!-- Fin de la section pour le défilement -->
+        </div>
+      </div>
+    </section>
+  </main>
+  
+  <style>
+    .scrollable-section {
+      max-height: 500px;
+      overflow-y: auto;
+    }
+  </style>
+  

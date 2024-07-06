@@ -1,0 +1,58 @@
+
+<div class="container mt-4">
+    <div class="pagetitle">
+      <h1>Tableau de Bord des Ateliers</h1>
+    </div>
+  
+    <div class="row">
+      <div class="col-lg-6">
+        <div class="dashboard-summary">
+          <div class="summary-card">
+            <h3>Total des Ateliers</h3>
+            <p>{{ dashboardData.totalAteliers || 0 }}</p>
+          </div>
+          <div class="summary-card">
+            <h3>Ateliers Annulés</h3>
+            <p>{{ dashboardData.ateliersAnnules || 0 }}</p>
+          </div>
+          <div class="summary-card">
+            <h3>Ateliers à Venir</h3>
+            <p>{{ dashboardData.ateliersAVenir || 0 }}</p>
+          </div>
+          <div class="summary-card">
+            <h3>Ateliers Confirmés</h3>
+            <p>{{ dashboardData.ateliersConfirmes || 0 }}</p>
+          </div>
+        </div>
+      </div>
+      <div class="col-lg-6">
+        <div class="scrollable-section">
+          <div class="chart-container">
+            <canvas #myChart></canvas>
+          </div>
+        </div>
+        <div class="scrollable-section">
+          <div class="chart-container">
+            <canvas #monthlyChart></canvas>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  
+  <style>
+    .scrollable-section {
+      max-height: 350px; /* Hauteur maximale souhaitée */
+      overflow-y: auto; /* Ajoute une scrollbar verticale si nécessaire */
+      margin-bottom: 20px; /* Marge inférieure optionnelle pour l'espace entre les sections */
+    }
+  
+    .chart-container {
+      width: 100%; /* Assure que le conteneur du graphique occupe toute la largeur disponible */
+    }
+  
+    canvas {
+      width: 100% !important; /* Assure que le canvas du graphique occupe toute la largeur de son conteneur */
+    }
+  </style>
+  

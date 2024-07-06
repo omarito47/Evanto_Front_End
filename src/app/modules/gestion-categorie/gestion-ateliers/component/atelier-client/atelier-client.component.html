@@ -1,0 +1,59 @@
+<p>atelier-client works!</p>
+<section class="scrollable-section">
+    <div class="row">
+
+<main id="main" class="container mt-4">
+    <div class="pagetitle mb-4">
+
+
+      <h1>Liste des Ateliers</h1>
+    </div>
+    <section class="scrollable-section">
+      <div class="row">
+        <div class="col-md-4 mb-4" *ngFor="let atelier of ateliers">
+          <div class="card h-100 shadow-sm border">
+            <div class="card-header bg-primary text-white">
+              <!-- Contenu du header de la carte (si nécessaire) -->
+            </div>
+            <div class="card-body">
+              <!-- Affichage de l'image -->
+              <img class="card-img-top img-fluid" [src]="atelier.image" alt="Image de l'atelier" style="height:300px; object-fit: cover;">
+  
+              <ul class="list-unstyled mb-3">
+                <li><strong>Nom:</strong> {{ atelier.nom }}</li>
+                <li><strong>Description:</strong> {{ atelier.description }}</li>
+                <li><strong>Lieu:</strong> {{ atelier.lieu }}</li>
+                <li><strong>Date Début:</strong> {{ atelier.date_debut | date }}</li>
+                <li><strong>Date Fin:</strong> {{ atelier.date_fin | date }}</li>
+                <li><strong>Nombre de Places:</strong> {{ atelier.Nbr_place }}</li>
+                <li><strong>Fréquence de Répétition:</strong> {{ atelier.frequence_de_repetition }}</li>
+                <li><strong>Type d'Atelier:</strong> {{ getNomCategorie(atelier) }}</li>
+                <li><strong>Prix:</strong> {{ atelier.prix }}</li>
+                <li><strong>Frais de Participation:</strong> {{ atelier.frais_de_participation }}</li>
+              </ul>
+              <div class="d-flex justify-content-between">
+                <button class="btn btn-primary" [routerLink]="['/add-participation', atelier._id]">
+                  Participer
+                </button>
+                <button class="btn btn-success" [routerLink]="['/add-evaluation', atelier._id]">
+                  Évaluer
+                </button>
+                <button class="btn btn-info" [routerLink]="['/atelier', atelier._id, 'quizzes']">
+                  Passer au Quiz
+                </button>
+                
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+  
+  <style>
+    .scrollable-section {
+      max-height: 800px;
+      overflow-y: auto;
+    }
+  </style>
+  

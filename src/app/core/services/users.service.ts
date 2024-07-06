@@ -22,6 +22,9 @@ export class UsersService {
   constructor(
     private http : HttpClient
   ) { }
+  private userId: string | null = null;
+  private userIdKey = 'userId'; 
+
 
   getUsers(): Observable<User[]> {
     return this.http.get<User[]>(this.apiUrl);
@@ -46,4 +49,20 @@ export class UsersService {
   deleteUser(id: string): Observable<void> {
     return this.http.delete<void>(`${this.apiUrl}/${id}`);
   }
+
+  
+
+  getUsername(id: string): Observable<{ username: string }> {
+    return this.http.get<{ username: string }>(`${this.apiUrl}/user/username/${id}`);
+  }
+
+
+  setUserId(userId: string): void {
+    this.userId = userId;
+  }
+
+  getUserId(): string | null {
+    return localStorage.getItem(this.userIdKey); // Utilisation de userIdKey ici pour récupérer l'ID de l'utilisateur
+  }
+
 }
