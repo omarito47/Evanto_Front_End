@@ -11,6 +11,16 @@ import { ReclamationChartComponent } from '../reclamation-management/component/r
 import { ReclamationDetailsComponent } from '../reclamation-management/component/reclamation-details/reclamation-details.component';
 import { ReclamationFormComponent } from '../reclamation-management/component/reclamation-form/reclamation-form.component';
 import { ReclamationsComponent } from '../reclamation-management/component/reclamations/reclamations.component';
+import { ProductComponent } from '../product/components/product/product.component';
+import { AddProductComponent } from '../product/components/add-product/add-product.component';
+import { DetailsProductComponent } from '../product/components/details-product/details-product.component';
+import { ProductCardComponent } from '../product/components/product-card/product-card.component';
+import { DetailsCardProductComponent } from '../product/components/details-card/details-card.component';
+import { CartPageComponent } from '../cart/components/cart-page.component';
+import { PaymentComponent } from '../payment/components/pay/payment.component';
+import { CheckoutSuccessComponent } from '../payment/components/checkout-success/checkout-success.component';
+import { OrderTrackComponent } from '../checkout-page/order-track/order-track.component';
+import { CheckoutPageComponent } from '../checkout-page/checkout/checkout-page.component';
 
 const routes: Routes = [
   { path: 'liste-user', component: ListeUserComponent ,canActivate: [AuthGuard]},
@@ -27,6 +37,52 @@ const routes: Routes = [
   { path: 'reclamation/list/:id', component: ReclamationDetailsComponent ,canActivate: [AuthGuard]},
   { path: 'reclamation/list/update/:id', component: ReclamationFormComponent ,canActivate: [AuthGuard]},
 
+
+  {
+    path: 'product',
+    children: [
+      { path: '', component: ProductComponent },
+      { path: 'add', component: AddProductComponent },
+      { path: 'update/:id', component: AddProductComponent },
+      { path: 'details/:id', component: DetailsProductComponent },
+
+      /////////CLIENT /////////////////////
+
+      { path: 'list', component: ProductCardComponent },
+      { path: 'list/:id', component: DetailsCardProductComponent },
+    ],
+  },
+
+  {
+    path: 'cart',
+    children: [
+      { path: '', component: CartPageComponent },
+
+      // { path: ':id', component: DetailsResidenceComponent },
+    ],
+  },
+
+  {
+    path: 'checkout',
+    children: [
+      { path: '', component: CheckoutPageComponent },
+      { path: 'orderTrack/:id', component: OrderTrackComponent },
+
+      // { path: ':id', component: DetailsResidenceComponent },
+    ],
+  },
+
+  {
+    path: 'payment',
+    children: [
+      { path: '', component: PaymentComponent },
+      { path: 'success', component: CheckoutSuccessComponent },
+      // { path: 'success', component: CheckoutSuccessComponent },
+
+      // { path: ':id', component: DetailsResidenceComponent },
+    ],
+  },
+  
 ];
 
 @NgModule({

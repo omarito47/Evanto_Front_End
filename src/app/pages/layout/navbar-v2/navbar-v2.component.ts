@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
+import { CartService } from 'src/app/core/services/cart/cart.service';
 import { UsersService } from 'src/app/core/services/users.service';
 
 @Component({
@@ -12,6 +13,8 @@ export class NavbarV2Component implements OnInit {
   userRole: string;
   userId:string;
   userName:string;
+  cartQuantity = 0;
+
   
 
   ngOnInit() {
@@ -27,7 +30,12 @@ export class NavbarV2Component implements OnInit {
   constructor(
     private router : Router,
     private userService: UsersService,
-  ) { }
+    private cartservice: CartService,
+  ) { 
+    cartservice.getCartObservable().subscribe((newCart) => {
+      this.cartQuantity = newCart.totalCount;
+    });
+  }
 
   
 

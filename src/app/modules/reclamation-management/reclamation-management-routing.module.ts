@@ -20,6 +20,7 @@ const routes: Routes = [
   {path:"update/:id",component:ReclamationFormComponent,canActivate: [AuthGuard]},
 
   /**************Clent side********** */
+  
   { path: 'add-reclamation', component: ReclamationFormComponent ,canActivate: [AuthGuard]},
   { path: 'mes-reclamations', component: MyReclamationComponent ,canActivate: [AuthGuard]},
   { path: 'mes-reclamations/:id', component: MyReclamationDetailsComponent ,canActivate: [AuthGuard]},

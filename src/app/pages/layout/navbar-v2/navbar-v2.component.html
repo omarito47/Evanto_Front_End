@@ -48,6 +48,15 @@
               > Mes Reclamations</a
             >
           </li>
+            <li class="nav-item">
+              <a
+                class="nav-link"
+                [routerLink]="'product/list'"
+                routerLinkActive="active"
+                aria-current="page"
+                >Products</a
+              >
+            </li>
         
         </ul>
 
@@ -55,6 +64,12 @@
 
       <div class="navbar-nav custom-navbar nav2 slide-in-blurred-top">
         <div class="nav-item text-nowrap nav-header px-0">
+          <div class="card">
+            <a routerLink="/nav2/cart">
+              <mat-icon class="icon-cart">shopping_cart</mat-icon> Cart
+              <span *ngIf="cartQuantity">{{ cartQuantity }}</span>
+            </a>
+          </div>
           <!-- start header notification -->
 
           <!-- end header notification -->

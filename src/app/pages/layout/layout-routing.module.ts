@@ -51,6 +51,25 @@ const routes: Routes = [
           import('../../modules/gestion-rating/gestion-rating.module').then((m) => m.GestionRatingModule),
       },
       //insaf
+      {
+        path: '',
+        loadChildren: () =>
+          import('../../modules/product/product.module').then(
+            (m) => m.ProductModule
+          ),
+      },
+      {
+        path: '',
+        loadChildren: () =>
+          import('../../modules/category/category.module').then(
+            (m) => m.CategoryModule
+          ),
+      },
+      {
+        path: '',
+        loadChildren: () =>
+          import('../../modules/order/order.module').then((m) => m.OrderModule),
+      },
 
     ],
   },
@@ -83,15 +102,42 @@ const routes: Routes = [
       },
 
       // insaf
-        /****Gestion de Reclamation module ********* */
-        {
-          path: '',
-          loadChildren: () =>
-            import('../../modules/reclamation-management/reclamation-management.module').then((m) => m.ReclamationManagementModule),
-          canActivate: [AuthGuard]
-        },
-  
-        /****Gestion de Reclamation module ********* */
+      /****Gestion de Reclamation module ********* */
+      {
+        path: '',
+        loadChildren: () =>
+          import('../../modules/reclamation-management/reclamation-management.module').then((m) => m.ReclamationManagementModule),
+        canActivate: [AuthGuard]
+      },
+
+      /****Gestion de Reclamation module ********* */
+      {
+        path: '',
+        loadChildren: () =>
+          import('../../modules/product/product.module').then(
+            (m) => m.ProductModule
+          ),
+      },
+      {
+        path: '',
+        loadChildren: () =>
+          import('../../modules/cart/cart.module').then((m) => m.CartModule),
+      },
+      {
+        path: '',
+        loadChildren: () =>
+          import('../../modules/checkout-page/checkout.module').then(
+            (m) => m.CheckoutModule
+          ),
+      },
+      {
+        path: '',
+        loadChildren: () =>
+          import('../../modules/payment/payment.module').then(
+            (m) => m.PaymentModule
+          ),
+      },
+    
     ],
   },
   {

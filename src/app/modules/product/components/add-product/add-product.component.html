@@ -1,0 +1,167 @@
+<!-- src/app/product/product.component.html -->
+<div class="container mt-5">
+  <h2 class="mb-4">{{ id ? "Update Product" : "Add Product" }}</h2>
+
+  <form [formGroup]="product" (ngSubmit)="submitForm()">
+    <div class="form-row">
+      <div class="col-md-4 form-group">
+        <label for="title">Title:</label>
+        <input
+          type="text"
+          id="title"
+          class="form-control"
+          formControlName="title"
+        />
+        <div
+          *ngIf="
+            product.get('title')?.invalid &&
+            (product.get('title')?.touched || product.get('title')?.dirty)
+          "
+        >
+          <small
+            class="text-danger"
+            *ngIf="product.get('title')?.errors?.['required']"
+            >Title is required.</small
+          >
+          <small
+            class="text-danger"
+            *ngIf="product.get('title')?.errors?.['minlength']"
+            >Title must be at least 3 characters long.</small
+          >
+        </div>
+      </div>
+      <div class="form-group">
+        <label for="description">Description:</label>
+        <textarea
+          id="description"
+          class="form-control"
+          formControlName="description"
+        ></textarea>
+        <div
+          *ngIf="
+            product.get('description')?.invalid &&
+            (product.get('description')?.touched ||
+              product.get('description')?.dirty)
+          "
+        >
+          <small
+            class="text-danger"
+            *ngIf="product.get('description')?.errors?.['required']"
+            >Description is required.</small
+          >
+        </div>
+      </div>
+
+      <div class="col-md-4 form-group">
+        <label for="price">Price:</label>
+        <input
+          type="number"
+          id="price"
+          class="form-control"
+          formControlName="price"
+        />
+        <div
+          *ngIf="
+            product.get('price')?.invalid &&
+            (product.get('price')?.touched || product.get('price')?.dirty)
+          "
+        >
+          <small
+            class="text-danger"
+            *ngIf="product.get('price')?.errors?.['required']"
+            >Price is required.</small
+          >
+          <small
+            class="text-danger"
+            *ngIf="product.get('price')?.errors?.['min']"
+            >Price must be greater than or equal to 0.</small
+          >
+        </div>
+      </div>
+    </div>
+    <div class="form-row">
+      <div class="col-md-4 form-group">
+        <label for="quantity">Quantity:</label>
+        <input
+          type="number"
+          id="quantity"
+          class="form-control"
+          formControlName="quantity"
+        />
+        <div
+          *ngIf="
+            product.get('quantity')?.invalid &&
+            (product.get('quantity')?.touched || product.get('quantity')?.dirty)
+          "
+        >
+          <small
+            class="text-danger"
+            *ngIf="product.get('quantity')?.errors?.['required']"
+            >Quantity is required.</small
+          >
+          <small
+            class="text-danger"
+            *ngIf="product.get('quantity')?.errors?.['min']"
+            >Quantity must be greater than or equal to 0.</small
+          >
+        </div>
+      </div>
+      <div class="col-md-4 form-group">
+        <label for="category">Category:</label>
+        <select id="category" class="form-control" formControlName="category">
+          <option
+            *ngFor="let category of listCategories"
+            [value]="category._id"
+          >
+            {{ category.name }}
+          </option>
+        </select>
+        <div
+          *ngIf="
+            product.get('category')?.invalid &&
+            (product.get('category')?.touched || product.get('category')?.dirty)
+          "
+        >
+          <small
+            class="text-danger"
+            *ngIf="product.get('category')?.errors?.['required']"
+            >Category is required.</small
+          >
+        </div>
+      </div>
+    </div>
+
+    <div class="form-group">
+      <label for="images">Images:</label>
+      <div class="file-upload">
+        <input
+          type="file"
+          #fileInput
+          (change)="onFileSelected($event)"
+          style="display: none"
+        />
+        <img
+          *ngIf="currentImageUrl"
+          [src]="currentImageUrl"
+          alt="Upload"
+          class="upload-image"
+          (click)="fileInput.click()"
+        />
+        <img
+          *ngIf="!currentImageUrl"
+          src="assets/category_img.png"
+          alt="Upload"
+          class="upload-image"
+          (click)="fileInput.click()"
+        />
+      </div>
+    </div>
+
+    <button type="submit" class="btn btn-primary">
+      {{ id ? "Update" : "Add" }}
+    </button>
+    <a *ngIf="id" class="btn btn-secondary ml-2" [routerLink]="['/product']"
+      >Cancel</a
+    >
+  </form>
+</div>

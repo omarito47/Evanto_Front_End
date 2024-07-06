@@ -85,11 +85,11 @@
 
       <mat-list-item [routerLink]="'type-event'" routerLinkActive="active" class="list-item">
         <mat-icon mat-list-icon class="icon-link">access_time</mat-icon>
-        <span>Type event</span>
+        <span>add event</span>
       </mat-list-item>
       <mat-list-item [routerLink]="'typeEvenement/add'" routerLinkActive="active" class="list-item">
         <mat-icon mat-list-icon class="icon-link">add_alarm</mat-icon>
-        <span>Add Type Event</span>
+        <span>Add type Event</span>
       </mat-list-item>
       <mat-list-item [routerLink]="'evenements'" routerLinkActive="active" class="list-item">
         <mat-icon mat-list-icon class="icon-link">event_available</mat-icon>
@@ -97,7 +97,7 @@
       </mat-list-item>
       <mat-list-item [routerLink]="'evenement/add'" routerLinkActive="active" class="list-item">
         <mat-icon mat-list-icon class="icon-link">control_point</mat-icon>
-        <span>Add Type Event</span>
+        <span>Add  Event</span>
       </mat-list-item>
       <mat-list-item [routerLink]="'admin/all-reservations'" routerLinkActive="active" class="list-item">
         <mat-icon mat-list-icon class="icon-link">list</mat-icon>
@@ -136,21 +136,33 @@
 
       <!--insaf-->
       <mat-list-item [routerLink]="'reclamation/list'" routerLinkActive="active" class="list-item">
-        <mat-icon mat-list-icon class="icon-link" >list</mat-icon>
-        <span >List Reclamation</span>
+        <mat-icon mat-list-icon class="icon-link">list</mat-icon>
+        <span>List Reclamation</span>
       </mat-list-item>
       <mat-list-item [routerLink]="'reclamation/stats'" routerLinkActive="active" class="list-item">
-        <mat-icon mat-list-icon class="icon-link" >list</mat-icon>
-        <span >stats Reclamation</span>
+        <mat-icon mat-list-icon class="icon-link">list</mat-icon>
+        <span>stats Reclamation</span>
       </mat-list-item>
-    <!-- </mat-nav-list>
+      <!-- </mat-nav-list>
       <mat-list-item [routerLink]="'reclamation/list'" routerLinkActive="active" class="list-item">
         <mat-icon mat-list-icon class="icon-link" >list</mat-icon>
         <span >List Reclamation</span>
       </mat-list-item> -->
-        <mat-list-item [routerLink]="'reclamation/type'" routerLinkActive="active" class="list-item">
-        <mat-icon mat-list-icon class="icon-link" >list</mat-icon>
-        <span >Gerer Type </span>
+      <mat-list-item [routerLink]="'reclamation/type'" routerLinkActive="active" class="list-item">
+        <mat-icon mat-list-icon class="icon-link">list</mat-icon>
+        <span>Gerer Type </span>
+      </mat-list-item>
+      <mat-list-item [routerLink]="'/product'" routerLinkActive="active" class="list-item">
+        <mat-icon mat-list-icon class="icon-link">inventory</mat-icon>
+        <span>Produits</span>
+      </mat-list-item>
+      <mat-list-item [routerLink]="'/category'" routerLinkActive="active" class="list-item">
+        <mat-icon mat-list-icon class="icon-link">category</mat-icon>
+        <span>Category</span>
+      </mat-list-item>
+      <mat-list-item [routerLink]="'/order'" routerLinkActive="active" class="list-item">
+        <mat-icon mat-list-icon class="icon-link">shopping_cart</mat-icon>
+        <span>Orders</span>
       </mat-list-item>
 
     </mat-nav-list>

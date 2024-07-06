@@ -70,8 +70,7 @@ export class ReclamationFormComponent implements OnInit {
   });
 
 
-  add() {
-
+  add() {    
     if (this.reclamation.invalid) {
       this.reclamation.markAllAsTouched();
       return;

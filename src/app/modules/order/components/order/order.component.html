@@ -1,0 +1,43 @@
+<div class="container mt-5">
+  <h2 class="mb-4">Order List</h2>
+
+  <table class="table table-bordered table-hover">
+    <thead class="thead-dark">
+      <tr>
+        <th>Name</th>
+        <th>Address</th>
+        <th>Total Price</th>
+        <th>Created At</th>
+        <th>Status</th>
+        <th>Actions</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let order of orders">
+        <td>{{ order.name }}</td>
+        <td>
+          {{ order.address.details }}, {{ order.address.city }},
+          {{ order.address.postalCode }}
+        </td>
+        <td>{{ order.totalPrice }}</td>
+        <td>{{ order.createdAt | date : "medium" }}</td>
+        <td>{{ order.isCanceled ? "Annuler" : "En cours" }}</td>
+
+        <td>
+          <!-- <button class="btn btn-primary btn-sm">Details</button> -->
+          <!-- <button class="btn btn-info btn-sm ml-1">Update</button> -->
+          <button
+            class="btn btn-danger btn-sm ml-1"
+            (click)="cancelOrder(order._id)"
+          >
+            Cancel
+          </button>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+
+  <p *ngIf="orders && orders.length === 0" class="text-center">
+    No orders found!
+  </p>
+</div>
