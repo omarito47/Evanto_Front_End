@@ -1,0 +1,20 @@
+
+
+<html>
+
+<body>
+  <div class="container">
+    <div class="form-container">
+     
+      <form [formGroup]="codeForm" (ngSubmit)="verify()">
+        <input type="text" formControlName="code" placeholder="Enter 5-digit code">
+        <div *ngIf="codeForm.get('code')!.invalid && codeForm.get('code')!.touched || validCode==false">
+          <p style="color: red;">Your code isn't valid or wrong</p>
+        </div>
+        <button type="submit">Verify</button>
+      </form>
+    </div>
+  </div>
+</body>
+
+</html>
